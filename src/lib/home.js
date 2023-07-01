@@ -7,7 +7,9 @@ import KarEmlak from "../assets/KAR-Emlak.jpeg";
 import KarOu from "../assets/KAR-PETROLEUM-OU.jpeg";
 import KarPetRus from "../assets/KAR-PETROLEUM-RUS.webp";
 import KarPetUAE from "../assets/KAR-PETROLEUM-UAE.jpg";
-// import DobroLLc from "../assets/DobroLLc.jpeg";
+import Tourism from "../assets/Tourism.jpg";
+import ToleranceBg from "../assets/ToleranceBg.jpg";
+import Dobro from "../assets/Dobro.jpeg";
 
 
 
@@ -98,14 +100,23 @@ export const slider = {
             title: {
                 english: "KAR LLC (RUS)",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
             description: {
-                english: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The ",
+                english: "“KAR” LLC is located in Russia and the main activity of the company is the export of sugar to other countries. The high quality of transportation allows you to deliver sugar without losing the quality of the product. Our highly qualified team will take care of all the necessary documentation for the transportation of the goods. We have many satisfied clients. Ready for cooperation.",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
             readMore: {
                 english: "Read more",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
         },
         {
@@ -114,14 +125,23 @@ export const slider = {
             title: {
                 english: "KAR PETROLEUM DMCC (UAE)",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
             description: {
-                english: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The ",
+                english: "KAR PETROLEUM DMCC is based in the United Arab Emirates. The main activity is the sale of oil and oil products. We entrust this difficult task to true professionals. Documentation, loading and delivery is fully handled by our company. We value our reputation and want our customers to be satisfied with the quality.",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
             readMore: {
                 english: "Read more",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
         },
         {
@@ -130,14 +150,23 @@ export const slider = {
             title: {
                 english: "KAR EMLAK PETROLEUM (TUR)",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
             description: {
-                english: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The ",
+                english: "The main activity of the Kar Petroleum LLC is petroleum products. We deliver from all over the world. Our customers have trusted the quality of our products for many years. Kar Petroleum LLC (Turkey) is engaged in the wholesale supply of food products. We guarantee excellent quality and fast delivery. We are interested in our customers receiving high quality products in a short time and at a good price.",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
             readMore: {
                 english: "Read more",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
         },
         {
@@ -146,14 +175,23 @@ export const slider = {
             title: {
                 english: "KAR PETROLEUM OU (ESTONIA)",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
             description: {
-                english: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The ",
+                english: "The company is located in Estonia and sells engine oil and fuel. We have reliable suppliers, a large assortment and excellent product quality. It is important for us that every time you choose.",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
             readMore: {
                 english: "Read more",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
         },
         {
@@ -162,14 +200,98 @@ export const slider = {
             title: {
                 english: "KAR LLC (RUS)",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
             description: {
-                english: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The",
+                english: "Production of building materials is the main activity of the company. We use quality wood (pine) for processing. Our factory employs highly experienced specialists who monitor the progress of wood processing. We have purchased high-tech machines that cut wood with high precision. The sawdust that remains after processing the wood is pressed and briquettes are obtained. Our product will be exported to other countries. Houses built from our materials will serve for a long time. You and your family will appreciate the high quality.",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
             readMore: {
                 english: "Read more",
                 arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
+            },
+        },
+        {
+            id: uuidv4(),
+            image: Tourism,
+            title: {
+                english: "Celine Tourism LLC (RUS)",
+                arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
+            },
+            description: {
+                english: "If you want to take a break from the daily bustle, visit new countries, learn the culture of the peoples of the world or just have a great time, then our travel agency ‘’CELINE TOURISM’’ will always help you with this! Our company is always ready to suggest any information on the direction you are interested in (most often confirmed by personal experience). We also offer assistance in choosing a tour at a special price, assistance in obtaining a visa, finding hotels and simply unloading you from these worries and allowing you to enjoy your vacation. We care about our customers.",
+                arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
+            },
+            readMore: {
+                english: "Read more",
+                arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
+            },
+        },
+        {
+            id: uuidv4(),
+            image: ToleranceBg,
+            title: {
+                english: "Tolerance Real Estate (TUR)",
+                arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
+            },
+            description: {
+                english: "It is a Turkish company specializing in real estate and legal advice in modern residential complexes (apartments and villas) and commercial real estate (offices and shops) and has branches in many Turkish provinces, we are proud of our multinational professional staff scattered inside and outside Turkey with years of experience in the field, qualified and authorized to provide professional real estate advice to our valued clients K.A.",
+                arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
+            },
+            readMore: {
+                english: "Read more",
+                arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
+            },
+        },
+        {
+            id: uuidv4(),
+            image: Dobro,
+            title: {
+                english: "DOBRO LLC (RUS)",
+                arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
+            },
+            description: {
+                english: "Our company is engaged in the production and sale of halal meat of the highest quality. We also produce wheat flour and dairy products such as cheese, yogurt, cottage cheese. Eco-friendly products will delight you and your family every day.",
+                arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
+            },
+            readMore: {
+                english: "Read more",
+                arabic: "عربي",
+                russian: "rus",
+                turkish: "tur",
+                chineese: "chi",
             },
         },
     ]

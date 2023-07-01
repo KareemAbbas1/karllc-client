@@ -13,6 +13,7 @@ module.exports = {
         "dark": "#0C1118",
       },
       screens: {
+        'xmd': '1280px',
         'large': '1680px',
         'midLarge': '1440px',
       }

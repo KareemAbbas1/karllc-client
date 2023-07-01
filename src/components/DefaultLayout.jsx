@@ -130,12 +130,19 @@ export default function DefaultLayout() {
       } else {
         const navbar = document.getElementById("navbar")
         navbar.style.background = "transparent";
-        currentLocation.pathname === "/trade" && Array.from(document.getElementsByClassName('navLinks')).map(el => el.style.color = "#000")
+        currentLocation.pathname === "/trade" && Array.from(document.getElementsByClassName('navLinks')).map(
+          el => el.style.color = "#000"
+        );
+        (currentLocation.pathname === "/about-us") && Array.from(document.getElementsByClassName('navLinks')).map(
+          el => {
+            if (el.innerHTML !== "About us") { el.style.color = "#000" }
+          }
+        )
         navbar.style.paddingBlock = '2rem'
         navbar.style.top = '0'
         navbar.style.border = 'none'
         window.innerWidth > 1023 && (document.getElementById("languages-list").style.top = '50%')
-        window.innerWidth > 450 && (document.getElementById("scroll-down-right").style.display = 'flex')
+        window.innerWidth > 450 && currentLocation.pathname !== "/contact-us" && (document.getElementById("scroll-down-right").style.display = 'flex')
       }
     }
   }, [currentLocation.pathname])
@@ -192,13 +199,21 @@ export default function DefaultLayout() {
                                 href={item.to}
                                 key={item.name.english}
                                 to={item.to}
-                                style={{color: `${currentLocation.pathname === '/trade' ? "#000" : "#fff"}`}}
+                                style={{
+                                  color: `
+                                  ${item.to === currentLocation.pathname ? "#fff"
+                                      : (currentLocation.pathname === '/trade' || currentLocation.pathname === '/about-us')
+                                        ? "#000"
+                                        : "#fff"
+                                    }
+                                      `
+                                }}
                                 className={({ isActive }) => classNames(
                                   isActive && item.name.english !== "Home"
                                     ? 'bg-dark text-white'
                                     : 'text-dark hover:bg-blue hover:text-white',
-                                    'rounded-md px-2 md:px-1 xl:px-3 2xl:px-11 py-2 xl:text-lg font-medium text-white md:text-sm navLinks',
-                                    
+                                  'rounded-md px-2 md:px-1 xl:px-3 2xl:px-8 py-2 xl:text-lg font-medium text-white md:text-sm navLinks',
+
                                 )}
                               >
                                 {
@@ -211,21 +226,10 @@ export default function DefaultLayout() {
                               <a
                                 key={item.name.english}
                                 href={item.to}
-                                style={{color: `${currentLocation.pathname === '/trade' ? "#000" : "#fff"}`}}
+                                style={{ color: `${(currentLocation.pathname === '/trade' || currentLocation.pathname === '/about-us') ? "#000" : "#fff"}` }}
                                 className={
                                   `
-                                rounded-md 
-                                px-2 
-                                md:px-1 
-                                xl:px-3 
-                                2xl:px-6 
-                                py-2 
-                                xl:text-md 
-                                font-medium 
-                                md:text-sm 
-                                navLinks
-                                hover:bg-blue 
-                                hover:text-white
+                                  rounded-md px-2 md:px-1 xl:px-3 2xl:px-8 py-2 xl:text-lg font-medium text-white md:text-sm navLinks
                                 `
                                 }
                               >
@@ -241,7 +245,7 @@ export default function DefaultLayout() {
                     </div>
 
                     <div className="hidden md:flex items-center justify-between">
-                      <NavLink to="/login" id="login-btn" className="navLinks" style={{color: `${currentLocation.pathname === '/trade' ? "#000" : "#fff"}`}}>
+                      <NavLink to="/login" id="login-btn" className="navLinks" style={{ color: `${(currentLocation.pathname === '/trade' || currentLocation.pathname === '/about-us') ? "#000" : "#fff"}` }}>
                         {
                           language === "English"
                             ? "Login"
@@ -316,15 +320,15 @@ export default function DefaultLayout() {
         </Disclosure>
 
         {/* Language Icon */}
-        <LanguagesList 
-        language={language}
-        width={window.innerWidth}
-        className={`${currentLocation.pathname === "/trade" && "text-black"} text-gray-300`} id="languages-list" 
-        onClick={() => setOpenLangList(!openLangList)}
+        <LanguagesList
+          language={language}
+          width={window.innerWidth}
+          className={`${currentLocation.pathname === "/trade" && "text-black"} text-gray-300 hidden`} id="languages-list"
+          onClick={() => setOpenLangList(!openLangList)}
         >
 
-          <div>
-            <ChevronLeftIcon className='w-3' id='chvron-left' />
+          <div className={`${currentLocation.pathname === "/contact-us" && 'hidden'}`}>
+            <ChevronLeftIcon className={`w-3`} id='chvron-left' />
 
             <GlobeAltIcon
               className='
@@ -335,11 +339,14 @@ export default function DefaultLayout() {
 
           <ul className=
             {`
-            bg-gray-300
+            bg-dark
+            border
+            border-gray-700
+            border-t-0
+            border-b-0
             w-10
-            text-dark
-            py-3
-            rounded-lg
+            text-white
+            rounded-sm
             absolute
             top-[100%]
             right-[10%]
@@ -349,14 +356,29 @@ export default function DefaultLayout() {
           >
             {
               languages.map(lang => (
-                <li key={lang.text} className={`border-b border-dark w-full hover:opacity-70 ${language === lang.value && "bg-blue text-white"}`} onClick={() => setCurrentLanguage(lang.value)}>
+                <li key={lang.text} className={`border-b border-gray-700 py-1 w-full hover:opacity-70 ${language === lang.value && "bg-blue text-white"}`} onClick={() => setCurrentLanguage(lang.value)}>
                   {lang.text}
                 </li>
               ))
             }
           </ul>
 
-          <span className='hidden lg:flex items-center justify-center rotate-90 absolute w-[6rem] -bottom-16 -right-9 -z-10' id='scroll-down-right'>scroll down <ChevronRightIcon className='w-3' /> </span>
+          <span className={`
+          hidden 
+          ${currentLocation.pathname !== "/contact-us" && 'lg:flex'}
+          items-center 
+          justify-center 
+          rotate-90 
+          absolute 
+          w-[6rem] 
+          -bottom-16 
+          -right-9 
+          -z-10`}
+            id='scroll-down-right'
+          >
+            scroll down
+            <ChevronRightIcon className='w-3' />
+          </span>
         </LanguagesList>
         <Outlet />
 
@@ -371,7 +393,7 @@ export default function DefaultLayout() {
             items-center
             sticky
             top-[100vh]
-            ${currentLocation.pathname === "/trade" && "border-t border-gray-600"}
+            ${(currentLocation.pathname === "/trade" || currentLocation.pathname === "/about-us") && "border-t border-gray-600"}
           `}
         >
 

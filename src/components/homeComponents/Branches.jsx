@@ -63,7 +63,7 @@ const Branches = () => {
 
 
     return (
-        <Container className="w-screen min-h-screen pt-28 pb-20 bg-dark text-white px-4" id="branches">
+        <Container className="w-screen min-h-screen pt-28 pb-20 bg-dark text-white px-4 relative" id="branches">
             <header className="flex flex-col md:flex-row gap-12 md:gap-0 md:justify-between lg:px-8 xl:px-20 2xl:pe-28">
                 <div className="flex flex-col items-start gap-6 md:ps-10">
                     <p className="text-4xl w-[60%] md:w-[80%]">
@@ -84,8 +84,8 @@ const Branches = () => {
                         <span className="border border-blue rounded p-1">
                             {
                                 language === "English"
-                                ? <ChevronRightIcon className="w-4" />
-                                : <ChevronLeftIcon className="w-4" />
+                                    ? <ChevronRightIcon className="w-4" />
+                                    : <ChevronLeftIcon className="w-4" />
                             }
                         </span>
                         {
@@ -149,12 +149,19 @@ const Branches = () => {
                                     <p className="text-[16px] text-gray-400 mb-6 max-w-[85%] leading-5">
                                         {
                                             language === "English"
-                                                ? branch.description.english
-                                                : branch.description.arabic
+                                                ? branch.description.english.substring(0, 150)
+                                                : branch.description.arabic.substring(0, 150)
                                         }
                                     </p>
 
-                                    <button className="flex items-end gap-2">
+                                    <button className="flex items-end gap-2"
+                                        onClick={() => {
+                                            window.scrollTo({ top: document.getElementById("branches").offsetTop + 50 });
+                                            document.getElementById(branch.id).style.display = "flex";
+                                            // document.querySelector('body').style.overflow = "hidden";
+                                        }}
+
+                                    >
                                         <span className="border border-blue rounded p-1">
                                             {
                                                 language === "العربية"
@@ -174,6 +181,74 @@ const Branches = () => {
                     ))
                 }
             </Slider>
+
+
+            {/* Branch Details Modal */}
+            {
+                slider.branches.map(branch => (
+
+
+                    <div
+                        key={branch.id}
+                        id={branch.id}
+                        className={`
+                            hidden
+                            store-modal 
+                            w-[100vw] 
+                            h-[100vh] 
+                            absolute 
+                            top-0 
+                            left-0 
+                            bottom-0 
+                            right-0 
+                            m-auto 
+                            rounded-xl
+                            bg-dark/50 
+                            pt-32
+                            items-center
+                            justify-center
+                        `}
+                    >
+                        <div className="w-full h-full absolute" onClick={() => document.getElementById(branch.id).style.display = "none"} />
+                        <div
+                            className="
+                                w-[95%]
+                                lg:w-[70%] 
+                                h-[80%]
+                                py-2
+                                bg-dark
+                                border
+                                border-gray-800 
+                                rounded-3xl 
+                                px-4 
+                                flex
+                                flex-col
+                                lg:flex-row
+                                items-center
+                                justify-center 
+                                gap-6
+                                relative
+                                z-10
+                            "
+                        >
+                            <div style={{ backgroundImage: `url(${branch.image})` }} className="w-full h-[50%] lg:w-[50%] lg:h-[80%] rounded-2xl bg-cover bg-center bg-no-repeat opacity-50" />
+                            <div className="lg:w-[50%] lg:text-2xl large:text-3xl">
+
+                                <p>
+                                    {
+                                        language === "English"
+                                            ? branch.description.english
+                                            : branch.description.arabic
+                                    }
+                                </p>
+                            </div>
+                            <button
+                                onClick={() => document.getElementById(branch.id).style.display = "none"}
+                                className="absolute top-4 right-4 rounded-2xl cursor-pointer bg-blue border border-blue hover:bg-dark py-2 px-4 text-lg">x</button>
+                        </div>
+                    </div>
+                ))
+            }
         </Container>
     )
 }

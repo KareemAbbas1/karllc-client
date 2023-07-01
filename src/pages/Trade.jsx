@@ -126,7 +126,6 @@ const Trade = () => {
         flex-col 
         items-center 
         justify-between 
-        
         absolute
         top-0
         left-0
@@ -192,7 +191,6 @@ const Trade = () => {
                 large:py-4 
                 bg-blue
                 hover:bg-transparent
-                
                 cursor-pointer 
                 z-10 
                 transition-all 
