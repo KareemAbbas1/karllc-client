@@ -29,7 +29,7 @@ export const navigation = [
     },
     {
         name: {
-            english: "Contact",
+            english: "Contact us",
             arabic: "اتصل بنا",
         },
         to: "/contact-us"

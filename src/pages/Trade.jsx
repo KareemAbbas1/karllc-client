@@ -11,6 +11,8 @@ import LargeMap from '../assets/LargeMap.png'
 // import { useLocation } from "react-router-dom"
 
 import { UseStateContext } from '../context/ContextProvider'
+import Loader from "../components/Loader"
+import { useEffect } from "react"
 
 
 
@@ -108,11 +110,25 @@ const MapPin = styled.div`
 const Trade = () => {
 
   // const currentLocation = useLocation();
-  const { language } = UseStateContext();
+  const { language, loading, setLoading } = UseStateContext();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 500)
+  }, [])
 
 
   return (
     <PageComponent>
+      {
+        loading &&
+        <div className="bg-dark w-screen h-screen fixed top-0 left-0 z-50 flex flex-col items-center justify-center">
+          <div>
+            <Loader />
+          </div>
+        </div>
+      }
       <div className="w-screen min-h-[100vh] pt-32 md:pt-40 lg:pt-24 pb-12 lg:pb-32 large:pb-48 bg-dark text-white px-4 md:px-6 lg:px-4 lg:flex flex-col items-center snap-y-mandatory">
 
 

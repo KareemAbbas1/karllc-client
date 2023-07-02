@@ -8,6 +8,9 @@ import { UseStateContext } from "../context/ContextProvider"
 // import { useEffect } from "react"
 // import Loader from "../components/Loader"
 import { Facebook, Whatsapp, Instagram, Linkedin } from "react-bootstrap-icons"
+import Loader from "../components/Loader"
+import { useEffect } from "react"
+import ScrollToTop from "../components/ScrollToTop"
 // import { useForm, ValidationError } from '@formspree/react';
 
 
@@ -41,7 +44,13 @@ const OverLay = styled.div`
 const Contact = () => {
 
 
-  const { language } = UseStateContext();
+  const { language, loading, setLoading } = UseStateContext();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 500)
+  }, [])
 
 
 
@@ -66,6 +75,15 @@ const Contact = () => {
     bg-center
     "
     >
+      <ScrollToTop />
+      {
+        loading &&
+        <div className="bg-dark w-screen h-screen fixed top-0 left-0 z-50 flex flex-col items-center justify-center">
+          <div>
+            <Loader />
+          </div>
+        </div>
+      }
       {/* <ScrollToTop /> */}
 
       <OverLay />

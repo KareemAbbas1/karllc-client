@@ -1,6 +1,6 @@
 import { Disclosure } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon, MapPinIcon, PhoneIcon, EnvelopeIcon, GlobeAltIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
-import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { Bars3Icon, XMarkIcon, MapPinIcon, PhoneIcon, EnvelopeIcon, GlobeAltIcon, ChevronLeftIcon, ChevronRightIcon, ChevronDoubleUpIcon } from '@heroicons/react/24/outline'
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 // import Logo from '../assets/Logo.png'
 import Linkedin from '../assets/Linkedin.png'
 import Facebook from '../assets/Facebook.png'
@@ -32,7 +32,11 @@ const languages = [
     value: 'Russian',
   },
 ]
-
+const Button = styled.button`
+    /* display: none; */
+    z-index: 1000;
+    cursor: pointer;
+`
 const LanguagesList = styled.button`
   position: fixed; 
   right: ${props => props.language !== "العربية" && '16%'};
@@ -80,15 +84,6 @@ const LanguagesList = styled.button`
   }
 `
 
-// const navigation = [
-//   { name: 'Home', to: "/" },
-//   { name: 'Services', to: "" },
-//   { name: 'About us', to: "/about-us" },
-//   { name: 'Branches', to: "" },
-//   { name: 'Contact', to: "/contact-us" },
-// ]
-
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -96,27 +91,53 @@ function classNames(...classes) {
 export default function DefaultLayout() {
 
 
-  const { language, setLanguage } = UseStateContext();
+  const { language, setLanguage, setLoading, openMenu, setOpenMenu } = UseStateContext();
   const setCurrentLanguage = (lang) => {
     localStorage.setItem('LANG', lang);
     setLanguage(lang);
     location.reload();
     window.scrollTo(0, 0);
+    setLoading(true)
     // document.querySelector('body').scrollTop = 0;
   }
 
 
   const currentLocation = useLocation();
+  const navigate = useNavigate();
+
+  const scrollTo = (id) => {
+    window.scrollTo({ top: `${document.getElementById(id).offsetTop}` });
+  };
+
+  const onScrollableLinkClick = (id) => {
+    if (currentLocation.pathname !== "/") {
+      setLoading(true)
+      navigate("/");
+      setOpenMenu(false)
+      setTimeout(() => {
+        scrollTo(id)
+      }, 50)
+    } else {
+      setOpenMenu(false)
+      scrollTo(id)
+    }
+  }
 
 
 
-
+  function topFunction() {
+    document.querySelector('body').scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
 
   useEffect(() => {
+    let mybutton = document.getElementById("scrollTop");
+
     window.onscroll = function () { scrollFunction() };
 
     function scrollFunction() {
       if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        mybutton.style.display = "block";
         const navbar = document.getElementById("navbar")
         navbar.style.background = "#0C1118";
         navbar.style.paddingBlock = '1.5rem'
@@ -128,6 +149,7 @@ export default function DefaultLayout() {
         window.innerWidth > 1023 && (document.getElementById("languages-list").style.top = '15%')
         document.getElementById("scroll-down-right").style.display = 'none'
       } else {
+        mybutton.style.display = "none";
         const navbar = document.getElementById("navbar")
         navbar.style.background = "transparent";
         currentLocation.pathname === "/trade" && Array.from(document.getElementsByClassName('navLinks')).map(
@@ -145,9 +167,14 @@ export default function DefaultLayout() {
         window.innerWidth > 450 && currentLocation.pathname !== "/contact-us" && (document.getElementById("scroll-down-right").style.display = 'flex')
       }
     }
+
+    // handle scroll to top on mount
+    document.scrollTop = 0;
   }, [currentLocation.pathname])
 
   const [openLangList, setOpenLangList] = useState(false);
+
+
 
   return (
 
@@ -155,7 +182,7 @@ export default function DefaultLayout() {
     <>
       <div className="min-h-full bg-transparent" dir={language === "العربية" ? "rtl" : 'ltr'}>
         <Disclosure as="nav">
-          {({ open }) => (
+          {() => (
             <>
               <div
                 id="navbar"
@@ -184,7 +211,7 @@ export default function DefaultLayout() {
                 <div className="flex items-center justify-between text-white w-full max-w-[1680px] ">
                   <div className="w-full flex items-center justify-between">
                     <div className='flex items-center gap-3 xl:gap-20'>
-                      <NavLink to="/" className="flex-shrink-0">
+                      <NavLink to="/" className="flex-shrink-0" onClick={() => setLoading(true)}>
                         <img
                           className="h-6 xl:h-7 w-auto logos"
                           src={Logo}
@@ -199,6 +226,13 @@ export default function DefaultLayout() {
                                 href={item.to}
                                 key={item.name.english}
                                 to={item.to}
+                                onClick={() => {
+                                  if (item.to === "/services" || item.to === "/branches") {
+                                    onScrollableLinkClick
+                                  } else {
+                                    setLoading(true)
+                                  }
+                                }}
                                 style={{
                                   color: `
                                   ${item.to === currentLocation.pathname ? "#fff"
@@ -223,9 +257,10 @@ export default function DefaultLayout() {
                                 }
                               </NavLink>
                               :
-                              <a
+                              <button
                                 key={item.name.english}
-                                href={item.to}
+                                // href={item.to}
+                                onClick={() => onScrollableLinkClick(item.to.split("#")[1])}
                                 style={{ color: `${(currentLocation.pathname === '/trade' || currentLocation.pathname === '/about-us') ? "#000" : "#fff"}` }}
                                 className={
                                   `
@@ -238,7 +273,7 @@ export default function DefaultLayout() {
                                     ? item.name.english
                                     : item.name.arabic
                                 }
-                              </a>
+                              </button>
                           ))}
                         </div>
                       </div>
@@ -253,10 +288,10 @@ export default function DefaultLayout() {
                         }
                       </NavLink>
                       <div className='bg-blue h-6 w-[2px] rounded mx-5' />
-                      <button className='bg-blue text-white 2xl:text-sm font-semibold pb-2 pt-3 px-5 rounded-md hover:opacity-80'>
+                      <button className='bg-blue text-white 2xl:text-sm font-semibold pb-2 pt-3 px-5 rounded-md hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers")}>
                         {
                           language === "English"
-                            ? "Get Quote"
+                            ? "Get a Quote"
                             : "احصل على عرض"
                         }
                       </button>
@@ -277,9 +312,9 @@ export default function DefaultLayout() {
                   }
                     id="menu-btn"
                   >
-                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Disclosure.Button onClick={() => setOpenMenu(!openMenu)} className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open main menu</span>
-                      {open ? (
+                      {openMenu ? (
                         <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                       ) : (
                         <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
@@ -289,32 +324,55 @@ export default function DefaultLayout() {
                 </div>
               </div>
 
-              <Disclosure.Panel className="md:hidden bg-[#fff] pb-2 fixed top-0 z-10 w-full pt-20" >
-                <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3" >
-                  {navigation.map((item) => (
-                    <NavLink
-                      key={item.name.arabic}
-                      to={item.to}
-                      className={({ isActive }) => classNames(
-                        isActive && item.name.english !== "Home" && item.name.english !== "Services" && item.name.english !== "Branches"
-                          ? 'bg-gray-900 text-white' : 'text-dark hover:bg-gray-700 hover:text-white',
-                        'block rounded-md px-3 py-2 text-base font-medium'
-                      )}
-                    >
-                      {
-                        language === "English"
-                          ? item.name.english
-                          : item.name.arabic
-                      }
-                    </NavLink>
-                  ))}
+              {/* <Disclosure.Panel className="md:hidden bg-[#fff] pb-2 fixed top-0 z-10 w-full pt-20" > */}
+              {
+                openMenu &&
+                < div className="lg:hidden bg-[#fff] pb-2 fixed top-0 z-10 w-full pt-20">
+                  <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3" >
+                    {navigation.map((item) => (
+                      item.name.english !== "Branches" && item.name.english !== "Services" ?
+                        <NavLink
+                          key={item.name.arabic}
+                          to={item.to}
+                          onClick={() => { setLoading(true); setOpenMenu(false) }}
+                          className={({ isActive }) => classNames(
+                            isActive && item.name.english !== "Home" && item.name.english !== "Services" && item.name.english !== "Branches"
+                              ? 'bg-gray-900 text-white' : 'text-dark hover:bg-gray-700 hover:text-white',
+                            'block rounded-md px-3 py-2 text-base font-medium'
+                          )}
+                        >
+                          {
+                            language === "English"
+                              ? item.name.english
+                              : item.name.arabic
+                          }
+                        </NavLink>
+                        :
+                        <button
+                          key={item.name.english}
+                          onClick={() => onScrollableLinkClick(item.to.split("#")[1])}
+                          className={
+                            `
+                          rounded-md px-3 md:px-1 xl:px-3 2xl:px-8 py-2 xl:text-lg font-medium md:text-sm navLinks
+                        `
+                          }
+                        >
+                          {
+                            language === "English"
+                              ? item.name.english
+                              : item.name.arabic
+                          }
+                        </button>
+                    ))}
+                  </div>
+                  <div className="px-2 sm:px-3">
+                    <button className='bg-blue text-white font-semibold py-2 px-5 rounded-xl hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers")}>
+                      Get a Quote
+                    </button>
+                  </div>
                 </div>
-                <div className="px-2 sm:px-3">
-                  <button className='bg-blue text-white font-semibold py-2 px-5 rounded-xl hover:opacity-80'>
-                    Subscribe
-                  </button>
-                </div>
-              </Disclosure.Panel>
+              }
+              {/* </Disclosure.Panel> */}
             </>
           )}
         </Disclosure>
@@ -380,6 +438,27 @@ export default function DefaultLayout() {
             <ChevronRightIcon className='w-3' />
           </span>
         </LanguagesList>
+
+        <Button
+          id="scrollTop"
+          // title="Go to top"
+          onClick={topFunction}
+          className="
+                            hidden
+                            p-4
+                            bg-blue
+                            fixed
+                            bottom-[40px]
+                            right-[20px]
+                            rounded-full
+                            text-white
+                            hover:opacity-50
+                            hover-effect
+                        "
+        >
+          <ChevronDoubleUpIcon className="w-6" />
+        </Button>
+
         <Outlet />
 
 
@@ -441,10 +520,10 @@ export default function DefaultLayout() {
               <h1 className='font-bold'>Quick Links</h1>
 
               <div className='my-4'>
-                <h3>Partners</h3>
-                <h3>About</h3>
-                <h3>Jobs</h3>
-                <h3>Finance</h3>
+                <NavLink onClick={() => setLoading(true)} className="block cursor-pointer hover:text-blue" to="/trade">Trade</NavLink>
+                <NavLink onClick={() => setLoading(true)} className="block cursor-pointer hover:text-blue" to="/logistics">Logistics</NavLink>
+                <NavLink onClick={() => setLoading(true)} className="block cursor-pointer hover:text-blue" to="/about-us">About</NavLink>
+                <NavLink onClick={() => setLoading(true)} className="block cursor-pointer hover:text-blue" to="/contact-us">Contact us</NavLink>
               </div>
             </div>
 

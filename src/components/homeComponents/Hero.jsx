@@ -56,7 +56,7 @@ const Hero = () => {
         <Container className="-z-20">
             <OverLay />
             <Video autoPlay loop muted>
-                <source src={BackgroundVideo} type="video/mp4" />
+                <source src={`${BackgroundVideo}`} type="video/mp4" />
             </Video>
             <div className="hero-text w-full max-w-screen-xl h-[40%] px-4 text-white absolute flex flex-col items-start md:items-center justify-center lg:justify-end top-0 left-0 right-0 m-auto">
                 <div rows={4} className="bg-transparent border-none p-0 text-4xl md:text-5xl lg:text-6xl 2xl:text-[6rem] font-semibold 2xl:font-normal w-full md:w-[68%] lg:w-[63%] xl:w-[50%] 2xl:w-[80%]">

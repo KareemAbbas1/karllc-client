@@ -69,7 +69,7 @@ const KarInNumbers = () => {
     const { language } = UseStateContext();
 
     return (
-        <Container className="relative">
+        <Container className="relative" id="kar-in-numbers">
             <OverLay />
             <Video autoPlay loop muted className="h-[180vh] min-h-[1630px] md:h-[100vh]">
                 <source src={BackgroundVideo} type="video/mp4" />
@@ -191,7 +191,9 @@ const KarInNumbers = () => {
                             </div>
                         </div>
 
-                        <form className="flex flex-col lg:justify-center lg:text-white px-2 lg:px-6 py-3 rounded-xl h-full lg:w-full lg:shadow-lg">
+                        <form
+                        id="get-a-quote" 
+                        className="flex flex-col lg:justify-center lg:text-white px-2 lg:px-6 py-3 rounded-xl h-full lg:w-full lg:shadow-lg">
                             <div className="w-full flex flex-col">
                                 <label className="mb-1">
                                     {

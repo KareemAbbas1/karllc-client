@@ -28,7 +28,7 @@ export const cards = [
         id: uuidv4(),
         icon: TradeIcon,
         title: {
-            english: "Trade & Stocks",
+            english: "Trade",
             arabic: "عربي",
         },
         description: {

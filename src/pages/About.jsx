@@ -5,6 +5,9 @@ import styled from "styled-components"
 import { UseStateContext } from "../context/ContextProvider"
 import { v4 as uuidv4 } from 'uuid';
 import { BuildingOffice2Icon, MapPinIcon, PhoneIcon } from '@heroicons/react/24/outline'
+import { useEffect } from "react"
+import Loader from '../components/Loader'
+import ScrollToTop from "../components/ScrollToTop"
 
 
 
@@ -129,11 +132,42 @@ const Slider = styled.div`
 const About = () => {
 
 
-  const { language } = UseStateContext();
+  const { language, loading, setLoading } = UseStateContext();
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 500)
+  }, [])
 
   return (
     <PageComponent>
+      <ScrollToTop />
+      {
+        loading &&
+        <div className="bg-dark w-screen h-screen fixed top-0 left-0 z-50 flex flex-col items-center justify-center">
+          <div>
+            <Loader />
+          </div>
+        </div>
+      }
+
+      <div className="hidden  lg:flex w-full h-[330vh] px-8 bg-dark absolute top-0 z-0 left-0 items-center" >
+        <div className="w-[20%] h-full border-x border-gray-900" />
+        <div className="w-[20%] h-full border-x border-gray-900" />
+        <div className="w-[20%] h-full border-x border-gray-900" />
+        <div className="w-[20%] h-full border-x border-gray-900" />
+        <div className="w-[20%] h-full border-x border-gray-900" />
+        <div className="w-[20%] h-full border-x border-gray-900" />
+        <div className="w-[20%] h-full border-x border-gray-900" />
+        <div className="w-[20%] h-full border-x border-gray-900" />
+        <div className="w-[20%] h-full border-x border-gray-900" />
+        <div className="w-[20%] h-full border-x border-gray-900" />
+        <div className="w-[20%] h-full border-x border-gray-900" />
+        <div className="w-[20%] h-full border-x border-gray-900" />
+        <div className="w-[20%] h-full border-x border-gray-900" />
+      </div>
+
       <Container className="
       w-screen 
       min-h-[100vh] 
@@ -179,12 +213,12 @@ const About = () => {
         </div>
 
 
-        <div className="w-full h-fit xl:h-[90vh] px-4 pt-12 md:pt-24 md:px-12 xl:px-24 large:px-52 xl:flex items-center gap-20 ">
+        <div className="w-full h-fit xl:h-[90vh] px-4 pt-12 md:pt-24 md:px-12 xl:px-24 large:px-52 lg:flex items-center gap-20 ">
           <div style={{ backgroundImage: `url(${AboutSubHero})` }} className="hidden xl:block h-[600px] w-[50%] rounded-lg relative bg-no-repeat bg-cover">
             {/* <div className="absolute top-0 left-0 w-full h-full" style={{ background: 'rgba(12,17, 24, 0.5)' }} /> */}
           </div>
 
-          <div className="text-white xl:flex flex-col items-start justify-center xl:w-[50%]">
+          <div className="text-white xl:flex flex-col items-start justify-center xl:w-[50%] z-10">
             <h2 className="text-xl font-bold mb-12 ps-1 text-blue border-s-2 border-blue">About us</h2>
             <p className=" pb-4 xl:text-xl large:text-2xl">
               {
