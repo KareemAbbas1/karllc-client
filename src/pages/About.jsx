@@ -8,6 +8,7 @@ import { BuildingOffice2Icon, MapPinIcon, PhoneIcon } from '@heroicons/react/24/
 import { useEffect } from "react"
 import Loader from '../components/Loader'
 import ScrollToTop from "../components/ScrollToTop"
+import { NavLink } from "react-router-dom"
 
 
 
@@ -205,9 +206,21 @@ const About = () => {
         "
         >
           <div className=" text-center py-3 px-4 rounded-lg bg-black/75 xl:bg-transparent xl:text-dark">
-            <h2 className="text-2xl xl:text-4xl mb-4">Know More About</h2>
+            <h2 className="text-2xl xl:text-4xl mb-4">
+              {
+                language === "English" ? "Know More About"
+                  : language === "العربية" ? "معرفة المزيد عن"
+                    : language === "Russian" ? "Узнайте больше о"
+                      : "了解更多"
+              }
+            </h2>
             <h1 className="text-5xl xl:text-6xl font-semibold xl:font-bold">
-              KarLLC Group
+              {
+                language === "English" ? "KarLLC Group"
+                  : language === "العربية" ? "مجموعة شركات كار"
+                    : language === "Russian" ? "КарООО Групп"
+                      : "卡尔有限责任公司集团"
+              }
             </h1>
           </div>
         </div>
@@ -219,15 +232,31 @@ const About = () => {
           </div>
 
           <div className="text-white xl:flex flex-col items-start justify-center xl:w-[50%] z-10">
-            <h2 className="text-xl font-bold mb-12 ps-1 text-blue border-s-2 border-blue">About us</h2>
+            <h2 className="text-xl font-bold mb-12 ps-1 text-blue border-s-2 border-blue">
+              {
+                language === "English" ? "About us"
+                  : language === "العربية" ? "عن الشركة"
+                    : language === "Russian" ? "О нас"
+                      : "关于我们"
+              }
+            </h2>
             <p className=" pb-4 xl:text-xl large:text-2xl">
               {
                 language === "English"
                   ? "We are proud to be one of the world's leading companies in the fields of IT, tourism, real estate, etc. It is also planned to open new areas that will provide good opportunities for cooperation. Our team is always in touch and at any time ready to answer any questions and solve any problems. We are always interested in our customers receiving good products and services of excellent quality and at a good price. Our clients are not only residents of the countries in which the companies are located, we also cooperate with clients all over the world. We look forward to collaborating."
-                  : "عربي"
+                  : language === "العربية" ? "نحن فخورون بأن نكون إحدى الشركات العالمية الرائدة في مجالات تكنولوجيا المعلومات ، السياحة ، العقارات ، إلخ. ومن المخطط أيضًا فتح مجالات جديدة توفر فرصًا جيدة للتعاون. فريقنا على اتصال دائم ومستعد في أي وقت للإجابة على أي أسئلة وحل أي مشاكل. نحن مهتمون دائمًا بتلقي عملائنا منتجات وخدمات جيدة ذات جودة ممتازة وبسعر جيد. عملاؤنا ليسوا فقط مقيمين في البلدان التي توجد بها الشركات ، بل نتعاون أيضًا مع العملاء في جميع أنحاء العالم. نحن نتطلع إلى التعاون."
+                    : language === "Russian" ? "Мы гордимся тем, что являемся одной из ведущих мировых компаний в сфере IT, туризма, недвижимости и т. д. Также планируется открытие новых направлений, которые предоставят хорошие возможности для сотрудничества. Наша команда всегда на связи и в любое время готова ответить на любые вопросы и решить любые проблемы. Мы всегда заинтересованы в том, чтобы наши клиенты получали хорошие товары и услуги отличного качества и по хорошей цене. Нашими клиентами являются не только жители стран, в которых расположены компании, мы также сотрудничаем с клиентами по всему миру. Будем рады сотрудничеству."
+                      : "我们很自豪能够成为IT、旅游、房地产等领域的世界领先公司之一。我们还计划开辟新的领域，为合作提供良好的机会。 我们的团队始终保持联系，随时准备回答任何问题并解决任何问题。 我们始终希望我们的客户能够以优惠的价格获得优质的产品和服务。 我们的客户不仅是公司所在国家的居民，我们还与世界各地的客户合作。 我们期待合作。"
               }
             </p>
-            <button className="bg-blue border border-blue py-2 px-4 xl:px-12 text-lg large:text-2xl large:py-4 rounded-md font-semibold mt-6 hover:bg-transparent">Contact Us</button>
+            <NavLink onClick={() => setLoading(true)} to="/contact-us" className="bg-blue border border-blue py-2 px-4 xl:px-12 text-lg large:text-2xl large:py-4 rounded-md font-semibold mt-6 hover:bg-transparent">
+              {
+                language === "English" ? "Contact us"
+                  : language === "العربية" ? "اتصل بنا"
+                    : language === "Russina" ? "связаться с нами"
+                      : "联系我们"
+              }
+            </NavLink>
           </div>
         </div>
 

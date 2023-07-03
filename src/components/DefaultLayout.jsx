@@ -1,10 +1,10 @@
 import { Disclosure } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon, MapPinIcon, PhoneIcon, EnvelopeIcon, GlobeAltIcon, ChevronLeftIcon, ChevronRightIcon, ChevronDoubleUpIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, MapPinIcon, PhoneIcon, EnvelopeIcon, GlobeAltIcon, ChevronRightIcon, ChevronDoubleUpIcon } from '@heroicons/react/24/outline'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 // import Logo from '../assets/Logo.png'
-import Linkedin from '../assets/Linkedin.png'
-import Facebook from '../assets/Facebook.png'
-import Twitter from '../assets/Twitter.png'
+// import Linkedin from '../assets/Linkedin.png'
+// import Facebook from '../assets/Facebook.png'
+// import Twitter from '../assets/Twitter.png'
 import Logo from '../assets/Logo.png'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
@@ -33,30 +33,18 @@ const languages = [
   },
 ]
 const Button = styled.button`
-    /* display: none; */
     z-index: 1000;
     cursor: pointer;
 `
 const LanguagesList = styled.button`
-  position: fixed; 
-  right: ${props => props.language !== "العربية" && '16%'};
-  left: ${props => props.language === "العربية" && props.width < 450 && '16%'};
-  top: 4.9%;
+  position: relative; 
   z-index: 20;
   display: flex;
-  align-items: end;
 
 
-  #chvron-left {
-    position: absolute;
-    transform: rotate(-50deg);
-    right: 68%;
-    bottom: -10%;
-  }
 
   ul.closed {
     color: transparent;
-    height: 0;
     padding: 0;
     transition: all 0.4s ease-in-out;
 
@@ -65,23 +53,6 @@ const LanguagesList = styled.button`
     }
   }
 
-  @media(min-width: 360px) and (max-width: 375px) {
-    top: 6%;
-  }
-
-  @media(min-width: 768px) and (max-width: 1023px) {
-    top: 10%;
-    right: 4%;
-  }
-
-  @media(min-width: 1024px) {
-    top: 50%;
-    right: 4%;
-  }
-
-  @media(min-width: 1920px) {
-    right: 8%;
-  }
 `
 
 function classNames(...classes) {
@@ -98,7 +69,6 @@ export default function DefaultLayout() {
     location.reload();
     window.scrollTo(0, 0);
     setLoading(true)
-    // document.querySelector('body').scrollTop = 0;
   }
 
 
@@ -136,34 +106,34 @@ export default function DefaultLayout() {
     window.onscroll = function () { scrollFunction() };
 
     function scrollFunction() {
+
       if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
         mybutton.style.display = "block";
         const navbar = document.getElementById("navbar")
         navbar.style.background = "#0C1118";
         navbar.style.paddingBlock = '1.5rem'
         Array.from(document.getElementsByClassName('navLinks')).map(el => el.style.color = "#fff")
-        // navbar.style.top = '1rem'
-        // navbar.style.border = '1px solid #1869FE'
-        document.getElementById("menu-btn").style.top = '1rem'
-        window.innerWidth < 450 && (document.getElementById("languages-list").style.top = '2.6%')
-        window.innerWidth > 1023 && (document.getElementById("languages-list").style.top = '15%')
+        currentLocation.pathname === "/trade" || currentLocation.pathname === "/about-us" ? (document.getElementById("languages-list").style.color = '#fff') : document.getElementById("languages-list").style.color = '#fff'
         document.getElementById("scroll-down-right").style.display = 'none'
+      
       } else {
+
         mybutton.style.display = "none";
+        document.getElementById("menu-btn").style.top = 'unset'
         const navbar = document.getElementById("navbar")
         navbar.style.background = "transparent";
         currentLocation.pathname === "/trade" && Array.from(document.getElementsByClassName('navLinks')).map(
           el => el.style.color = "#000"
-        );
-        (currentLocation.pathname === "/about-us") && Array.from(document.getElementsByClassName('navLinks')).map(
+          );
+          (currentLocation.pathname === "/about-us") && Array.from(document.getElementsByClassName('navLinks')).map(
           el => {
             if (el.innerHTML !== "About us") { el.style.color = "#000" }
           }
         )
         navbar.style.paddingBlock = '2rem'
         navbar.style.top = '0'
-        navbar.style.border = 'none'
-        window.innerWidth > 1023 && (document.getElementById("languages-list").style.top = '50%')
+        navbar.style.border = 'none';
+        (currentLocation.pathname === "/trade" || currentLocation.pathname === "/about-us") && (document.getElementById("languages-list").style.color = 'black')
         window.innerWidth > 450 && currentLocation.pathname !== "/contact-us" && (document.getElementById("scroll-down-right").style.display = 'flex')
       }
     }
@@ -283,16 +253,69 @@ export default function DefaultLayout() {
                       </div>
                     </div>
 
-                    <div className="hidden md:flex items-center justify-between">
-                      <NavLink to="/login" id="login-btn" className="navLinks" style={{ color: `${(currentLocation.pathname === '/trade' || currentLocation.pathname === '/about-us') ? "#000" : "#fff"}` }}>
+                    <div className="flex items-center justify-between">
+
+                      {/* Language Icon */}
+                      <LanguagesList
+                        language={language}
+                        width={window.innerWidth}
+                        className={`${currentLocation.pathname === "/trade" || currentLocation.pathname === "/about-us" ? "text-black" : "text-gray-300"}`} id="languages-list"
+                        onClick={() => setOpenLangList(!openLangList)}
+                      >
+                        {/* ${currentLocation.pathname === "/contact-us" && 'hidden'} */}
+                        <div className={`flex items-center `}>
+                          {/* <ChevronLeftIcon className={`w-3`} id='chvron-left' /> */}
+
+                          <p className='pt-1'>
+                            {
+                              language === "العربية" ? "ع"
+                                : language.substring(0, 2)
+                            }
+                          </p>
+
+                          <GlobeAltIcon
+                            className='
+                            w-6     
+                            '
+                          />
+                        </div>
+
+                        <ul className=
+                          {`
+                          bg-dark
+                          border
+                          border-gray-700
+                          border-t-0
+                          border-b-0
+                          w-10
+                          text-white
+                          rounded-sm
+                          absolute
+                          top-10
+                          md:top-6
+                          right-0
+                          ${!openLangList && 'closed'}
+                        `}
+                        >
+                          {
+                            languages.map(lang => (
+                              <li key={lang.text} className={`border-b border-gray-700 py-1 w-full hover:opacity-70 ${language === lang.value && "bg-blue text-white"}`} onClick={() => setCurrentLanguage(lang.value)}>
+                                {lang.text}
+                              </li>
+                            ))
+                          }
+                        </ul>
+
+                      </LanguagesList>
+                      {/* <NavLink to="/login" id="login-btn" className="navLinks" style={{ color: `${(currentLocation.pathname === '/trade' || currentLocation.pathname === '/about-us') ? "#000" : "#fff"}` }}>
                         {
                           language === "English"
                             ? "Login"
                             : "تسجيل الدخول"
                         }
-                      </NavLink>
+                      </NavLink> */}
                       <div className='bg-blue h-6 w-[2px] rounded mx-5' />
-                      <button className='bg-blue text-white 2xl:text-sm font-semibold pb-2 pt-3 px-5 rounded-md hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers")}>
+                      <button className='hidden md:block bg-blue text-white 2xl:text-sm font-semibold pb-2 pt-3 px-5 rounded-md hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers")}>
                         {
                           language === "English"
                             ? "Get a Quote"
@@ -387,67 +410,24 @@ export default function DefaultLayout() {
           )}
         </Disclosure>
 
-        {/* Language Icon */}
-        <LanguagesList
-          language={language}
-          width={window.innerWidth}
-          className={`${currentLocation.pathname === "/trade" && "text-black"} text-gray-300 hidden`} id="languages-list"
-          onClick={() => setOpenLangList(!openLangList)}
-        >
 
-          <div className={`${currentLocation.pathname === "/contact-us" && 'hidden'}`}>
-            <ChevronLeftIcon className={`w-3`} id='chvron-left' />
-
-            <GlobeAltIcon
-              className='
-            w-6     
-            '
-            />
-          </div>
-
-          <ul className=
-            {`
-            bg-dark
-            border
-            border-gray-700
-            border-t-0
-            border-b-0
-            w-10
-            text-white
-            rounded-sm
-            absolute
-            top-[100%]
-            right-[10%]
-            ${!openLangList && 'closed'}
-          `
-            }
-          >
-            {
-              languages.map(lang => (
-                <li key={lang.text} className={`border-b border-gray-700 py-1 w-full hover:opacity-70 ${language === lang.value && "bg-blue text-white"}`} onClick={() => setCurrentLanguage(lang.value)}>
-                  {lang.text}
-                </li>
-              ))
-            }
-          </ul>
-
-          <span className={`
+        <span className={`
           hidden 
+          text-white
           ${currentLocation.pathname !== "/contact-us" && 'lg:flex'}
           items-center 
           justify-center 
-          rotate-90 
-          absolute 
-          w-[6rem] 
-          -bottom-16 
-          -right-9 
-          -z-10`}
-            id='scroll-down-right'
-          >
-            scroll down
-            <ChevronRightIcon className='w-3' />
-          </span>
-        </LanguagesList>
+          rotate-90
+          absolute
+          right-28
+          top-[60%]
+          w-[6rem]  
+          `}
+          id='scroll-down-right'
+        >
+          scroll down
+          <ChevronRightIcon className='w-3' />
+        </span>
 
         <Button
           id="scrollTop"
@@ -518,11 +498,11 @@ export default function DefaultLayout() {
                   <EnvelopeIcon className='w-6 h-auto' />
                   <p>info@karllc-group.com</p>
                 </div>
-                <div className='flex items-center gap-3'>
+                {/* <div className='flex items-center gap-3'>
                   <img src={Facebook} alt='Facebook' />
                   <img src={Twitter} alt='Twitter' />
                   <img src={Linkedin} alt='Linkedin' />
-                </div>
+                </div> */}
               </div>
             </div>
 

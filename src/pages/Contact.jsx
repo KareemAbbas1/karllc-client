@@ -1,13 +1,8 @@
 import styled from "styled-components"
 import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline"
 import ContactUsBG from "../assets/ContactUsBG.jpg"
-// import Facebook from '../assets/Facebook.png'
-// import Twitter from '../assets/Twitter.png'
-// import ScrollToTop from "../components/ScrollToTop"
 import { UseStateContext } from "../context/ContextProvider"
-// import { useEffect } from "react"
-// import Loader from "../components/Loader"
-import { Facebook, Whatsapp, Instagram, Linkedin } from "react-bootstrap-icons"
+// import { Facebook, Whatsapp, Instagram, Linkedin } from "react-bootstrap-icons"
 import Loader from "../components/Loader"
 import { useEffect } from "react"
 import ScrollToTop from "../components/ScrollToTop"
@@ -116,14 +111,18 @@ const Contact = () => {
             {
               language === "English"
                 ? "Contact Us"
-                : "تواصل معنا"
+                : language === "العربية" ? "تواصل معنا"
+                  : language === "Russian" ? "связаться с нами"
+                    : "联系我们"
             }
           </h1>
           <p className="lg:bg-transparent text-sm px-2 py-3 rounded-lg mb-2 xl:mb-8">
             {
               language === "English"
-                ? "Lorem ipum for Test to b Wirtten Today so we don’t. Also you don’t know if lorem ipsum back. Either ways do for yet still just to, but in order to iptum sor. Lorem ipum for Test to b Wirtten Today so we don’t. Also you don’t know if lorem ipsum back. Either ways do for yet still just to, but in order to iptum sor."
-                : "عربي"
+                ? " The ‘’KAR’’ group of companies multilaterally captures many areas of life. We are located in several countries in the world, such as the United Arab Emirates, Turkey, Estonia, Russia, Syria, etc. Our team is ready to cooperate."
+                : language === "العربية" ? "تلتقط مجموعة شركات \"KAR\" بشكل متعدد الجوانب العديد من مجالات الحياة. نحن موجودون في عدة دول في العالم ، مثل الإمارات العربية المتحدة وتركيا وإستونيا وروسيا وسوريا ، إلخ. فريقنا جاهز للتعاون."
+                  : language === "Russian" ? "Группа компаний «КАР» многосторонне охватывает многие сферы жизни. Мы находимся в нескольких странах мира, таких как Объединенные Арабские Эмираты, Турция, Эстония, Россия, Сирия и др. Наша команда готова к сотрудничеству."
+                    : "“KAR”公司集团涉足生活的许多领域。 我们遍布世界多个国家，如阿联酋、土耳其、爱沙尼亚、俄罗斯、叙利亚等。我们的团队已准备好合作。"
             }
           </p>
           <div>
@@ -153,14 +152,14 @@ const Contact = () => {
                   <EnvelopeIcon className='w-8 h-auto text-white' />
                   <p>info@karllc-group.com</p>
                 </div>
-                <div className='flex items-center gap-3'>
+                {/* <div className='flex items-center gap-3'>
                   <Facebook size={30} className='text-white hover:text-[#0165E1] hover-effect cursor-pointer' />
                   <Instagram size={30} className='text-white hover:text-[#833AB4] hover-effect cursor-pointer' />
                   <Linkedin size={30} className='text-white hover:text-[#0A66C2] hover-effect cursor-pointer' />
                   <Whatsapp
                     className='text-white hover:text-[#25D366] hover-effect cursor-pointer'
                     size={30} />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -173,7 +172,9 @@ const Contact = () => {
               {
                 language === "English"
                   ? "Name"
-                  : "الأسم"
+                  : language === "العربية" ? "الأسم"
+                    : language === "Russina" ? "имя"
+                      : "姓名"
               }
               <span className="text-[red]">*</span></label>
 
@@ -188,8 +189,10 @@ const Contact = () => {
             <label className="mb-1">
               {
                 language === "English"
-                  ? "Email"
-                  : "البريد الإلكتروني"
+                  ? "Email Address"
+                  : language === "العربية" ? "البريد الإلكتروني"
+                    : language === "Russina" ? "Адрес электронной почты"
+                      : "电子邮件地址"
               }
               <span className="text-[red]">*</span></label>
 
@@ -205,7 +208,9 @@ const Contact = () => {
               {
                 language === "English"
                   ? "Subject"
-                  : "الموضوع"
+                  : language === "العربية" ? "الموضوع"
+                    : language === "Russian" ? "Предмет"
+                      : "主题"
               }
             </label>
 
@@ -221,7 +226,9 @@ const Contact = () => {
             {
               language === "English"
                 ? "Message"
-                : "الرسالة"
+                : language === "العربية" ? "الرسالة"
+                  : language === "Russina" ? "Сообщение"
+                    : "信息"
             }
             <span className="text-[red]">*</span></label>
 
@@ -240,7 +247,9 @@ const Contact = () => {
             {
               language === "English"
                 ? "Send Message"
-                : "إرسل"
+                : language === "العربية" ? "إرسال"
+                  : language === "Russina" ? "Отправить сообщение"
+                    : "发信息"
             }
           </button>
         </form>

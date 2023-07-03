@@ -6,16 +6,16 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 
 const Section = styled.div`
-    @media (min-width: 768px) and (max-width: 992px) {
+    /* @media (min-width: 768px) and (max-width: 992px) {
         top: 40%
-    }
+    } */
 `
 
 const Slider = styled.div`
     display: grid;
     grid-auto-flow: column;
     gap: 1rem;
-    height: 110%;
+    height: 100%;
     align-items: center;
     overflow-y: auto;
     overscroll-behavior-x: contain;
@@ -79,7 +79,18 @@ const Cards = () => {
 
     // h-[85vh] from shehab's responsiveness
     return (
-        <Section className="h-[62vh] w-screen flex justify-center absolute top-[40%] md:top-[68%]" id="services">
+        <Section className="
+        h-[80vh]
+        md:h-[50vh] 
+        w-screen 
+        flex 
+        justify-center 
+        absolute 
+        top-[20rem]
+        md:top-[30rem]
+        " 
+        id="services"
+        >
             <Slider ref={ref} className="horizontal-snap snap-proximity" id="scroll-slider">
                 {
                     cards.map((card) => (
@@ -109,7 +120,7 @@ const Cards = () => {
                                         ? card.title.english
                                         : language === "العربية" ? card.title.arabic
                                         : language === "Russian" ? card.title.russian
-                                        : card.title.chineese
+                                        : card.title.chinese
                                 }
                                 <span className="inline">
                                     <ArrowRightIcon className="w-5" />
@@ -121,7 +132,7 @@ const Cards = () => {
                                         ? card.description.english
                                         : language === "العربية" ? card.description.arabic
                                         : language === "Russian" ? card.description.russian
-                                        : card.description.chineese
+                                        : card.description.chinese
                                 }
                             </p>
                         </a>

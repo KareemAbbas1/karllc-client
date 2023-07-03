@@ -70,14 +70,18 @@ const Branches = () => {
                         {
                             language === "English"
                                 ? slider.headline.english
-                                : slider.headline.arabic
+                                : language === "العربية" ? slider.headline.arabic
+                                : language === "Russian" ? slider.headline.russian
+                                : slider.headline.chinese
                         }
                     </p>
                     <p className="text-sm text-gray-300 md:w-[80%]">
                         {
                             language === "English"
                                 ? slider.secondaryParagraph.english
-                                : slider.secondaryParagraph.arabic
+                                : language === "العربية" ? slider.secondaryParagraph.arabic
+                                : language === "Russian" ? slider.secondaryParagraph.russian
+                                : slider.secondaryParagraph.chinese
                         }
                     </p>
                     <button className="flex items-end gap-2">
@@ -91,7 +95,9 @@ const Branches = () => {
                         {
                             language === "English"
                                 ? slider.whyKar.english
-                                : slider.whyKar.arabic
+                                : language === "العربية" ? slider.whyKar.arabic
+                                : language === "Russian" ? slider.whyKar.russian
+                                : slider.whyKar.chinese
                         }
                     </button>
                 </div>
@@ -101,13 +107,15 @@ const Branches = () => {
                     <div className="text-white flex flex-col items-start md:items-end gap-2 text-sm ">
                         {
                             slider.filters.map((filter) => (
-                                <button key={filter.english} className={`border-l md:border-r md:border-l-0 px-2 md:w-[100%] py-[3px] md:text-right ${filter.english === "LOGISTICS & SHIPPING" && 'border-blue text-blue'}`}>
+                                <a href={filter.to} key={filter.english} className={`border-l md:border-r md:border-l-0 px-2 md:w-[100%] py-[3px] md:text-right ${filter.english === "LOGISTICS & SHIPPING" && 'border-blue text-blue'}`}>
                                     {
                                         language === "English"
                                             ? filter.english
-                                            : filter.arabic
+                                            : language === "العربية" ? filter.arabic
+                                            : language === "Russian" ? filter.russian
+                                            : filter.chinese
                                     }
-                                </button>
+                                </a>
                             ))
                         }
                     </div>

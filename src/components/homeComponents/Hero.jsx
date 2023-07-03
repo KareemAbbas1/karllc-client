@@ -25,16 +25,16 @@ const Container = styled.div`
   
 `
 
-const Video = styled.video`
-    width: auto;
-    height: 130vh;
-    object-fit: cover;
+const Video = styled.div`
+    /* width: auto; */
+    /* height: 130vh; */
+    /* object-fit: cover; */
     /* position: absolute; */
-    top: 0;
-    left: 0;
+    /* top: 0; */
+    /* left: 0; */
 
     @media(min-width: 1024px) {
-        height: 150vh;
+        /* height: 150vh; */
     }
 `
 const OverLay = styled.div`
@@ -55,17 +55,56 @@ const Hero = () => {
     return (
         <Container className="-z-20">
             <OverLay />
-            <Video autoPlay loop muted>
-                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" type="video/mp4" />
+            <Video
+                className="w-[1700px] md:w-[2000px] boject-cover"
+                
+                dangerouslySetInnerHTML={{
+                    __html: `
+            <video
+              loop
+              muted
+              autoPlay
+              playsInline
+              src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4"
+              className=" "
+            />,
+          ` }}
+            // src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" 
+            // autoPlay 
+            // loop 
+            // muted
+            >
+                {/* <source  type="video/mp4" /> */}
             </Video>
-            <div className="hero-text w-full max-w-screen-xl h-[40%] px-4 text-white absolute flex flex-col items-start md:items-center justify-center lg:justify-end top-0 left-0 right-0 m-auto">
+            <div className="
+            hero-text 
+            w-full 
+            max-w-screen-xl 
+            h-fit 
+            px-4 
+            text-white 
+            absolute 
+            flex 
+            flex-col 
+            items-start 
+            md:items-center 
+            justify-center 
+            lg:justify-end 
+            top-[20%]
+            md:top-[25%]
+            left-0 
+            right-0 
+            m-auto
+            pb-6
+            ">
+
                 <pre rows={4} className="bg-transparent border-none pb-2 p-0 text-4xl md:text-5xl lg:text-6xl 2xl:text-[6rem] font-semibold 2xl:font-normal w-full md:w-[68%] lg:w-[63%] xl:w-[50%] 2xl:w-[80%]">
                     {
                         language === "English"
-                            ? hero.english.split("\n")[0]+"\n"+hero.english.split("\n")[1]+"\n"+hero.english.split("\n")[2]
+                            ? hero.english.split("\n")[0] + "\n" + hero.english.split("\n")[1] + "\n" + hero.english.split("\n")[2]
                             : language === "العربية" ? hero.arabic
-                            : language === "Russian" ? hero.russian
-                            : hero.chinese
+                                : language === "Russian" ? hero.russian
+                                    : hero.chinese
                     }
                 </pre>
 

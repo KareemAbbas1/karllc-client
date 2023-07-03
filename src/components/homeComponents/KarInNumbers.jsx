@@ -3,9 +3,9 @@ import styled from "styled-components"
 import Logo from "../../assets/logo.png";
 import { karInNumbers } from "../../lib/home";
 import { UseStateContext } from "../../context/ContextProvider";
-import Linkedin from '../../assets/Linkedin.png'
-import Facebook from '../../assets/Facebook.png'
-import Twitter from '../../assets/Twitter.png'
+// import Linkedin from '../../assets/Linkedin.png'
+// import Facebook from '../../assets/Facebook.png'
+// import Twitter from '../../assets/Twitter.png'
 
 const Container = styled.div`
     width: 100vw;
@@ -71,8 +71,14 @@ const KarInNumbers = () => {
     return (
         <Container className="relative" id="kar-in-numbers">
             <OverLay />
-            <Video autoPlay loop muted className="h-[180vh] min-h-[1630px] md:h-[100vh]">
-                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" type="video/mp4" />
+            <Video 
+            src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" 
+            autoPlay 
+            loop 
+            muted 
+            className="h-[180vh] min-h-[1630px] md:h-[100vh]"
+            >
+                {/* <source  type="video/mp4" /> */}
             </Video>
 
             <div>
@@ -100,21 +106,25 @@ const KarInNumbers = () => {
                     "
                     id="kar-in-numbers"
                 >
-                    <div className="flex flex-col gap-20 xl:scale-105 2xl:scale-125">
+                    <div className="flex flex-col items-center gap-20 xl:scale-105 2xl:scale-125">
                         <div className="text-center flex flex-col items-center gap-6">
                             <h1 className="text-4xl font-semibold flex items-start justify-center gap-3">
                                 <img src={Logo} alt="company logo" />
                                 {
                                     language === "English"
                                         ? karInNumbers.title.english
-                                        : karInNumbers.title.arabic
+                                        : language === "العربية" ? karInNumbers.title.arabic
+                                            : language === "Russian" ? karInNumbers.title.russian
+                                                : karInNumbers.title.chinese
                                 }
                             </h1>
                             <p className="text-[1rem] text-gray-300 px-5">
                                 {
                                     language === "English"
                                         ? karInNumbers.secondaryParagraph.english
-                                        : karInNumbers.secondaryParagraph.arabic
+                                        : language === "العربية" ? karInNumbers.secondaryParagraph.arabic
+                                            : language === "Russian" ? karInNumbers.secondaryParagraph.russian
+                                                : karInNumbers.secondaryParagraph.chinese
                                 }
                             </p>
                         </div>
@@ -127,13 +137,15 @@ const KarInNumbers = () => {
                                             {item.number}
                                             <span className="text-blue">+</span>
                                         </p>
-                                        <p className="text-lg max-w-37">
+                                        <pre className="text-lg max-w-37">
                                             {
                                                 language === "English"
                                                     ? item.title.english
-                                                    : item.title.arabic
+                                                    : language === "العربية" ? item.title.arabic
+                                                        : language === "Russian" ? item.title.russian
+                                                            : item.title.chinese
                                             }
-                                        </p>
+                                        </pre>
                                     </div>
                                 ))
                             }
@@ -170,36 +182,52 @@ const KarInNumbers = () => {
                                 {
                                     language === "English"
                                         ? "Get a Quote"
-                                        : "عربي"
+                                        : language === "العربية" ? "احصل على عرض"
+                                            : language === "Russian" ? "получить цитату"
+                                                : "获取报价"
                                 }
                             </h1>
                             <p className="text-sm px-2 py-3 rounded-lg mb-2 xl:mb-10">
                                 {
                                     language === "English"
-                                        ? "Lorem ipum for Test to b Wirtten Today so we don’t. Also you don’t know if lorem ipsum back. Either ways do for yet still just to, but in order to iptum sor. Lorem ipum for Test to b Wirtten Today so we don’t. Also you don’t know if lorem ipsum back. Either ways do for yet still just to, but in order to iptum sor."
-                                        : "عربي"
+                                        ? " The ‘’KAR’’ group of companies multilaterally captures many areas of life. We are located in several countries in the world, such as the United Arab Emirates, Turkey, Estonia, Russia, Syria, etc. Our team is ready to cooperate."
+                                        : language === "العربية" ? "تلتقط مجموعة شركات \"KAR\" بشكل متعدد الجوانب العديد من مجالات الحياة. نحن موجودون في عدة دول في العالم ، مثل الإمارات العربية المتحدة وتركيا وإستونيا وروسيا وسوريا ، إلخ. فريقنا جاهز للتعاون."
+                                        : language === "Russian" ? "Группа компаний «КАР» многосторонне охватывает многие сферы жизни. Мы находимся в нескольких странах мира, таких как Объединенные Арабские Эмираты, Турция, Эстония, Россия, Сирия и др. Наша команда готова к сотрудничеству."
+                                        : "“KAR”公司集团涉足生活的许多领域。 我们遍布世界多个国家，如阿联酋、土耳其、爱沙尼亚、俄罗斯、叙利亚等。我们的团队已准备好合作。"
                                 }
                             </p>
                             <div className="hidden lg:flex flex-col gap-12 h-full">
                                 {/* <p className="text-3xl text-blue font-bold">Estimate your project&apos;s cost right now!</p> */}
-                                <p className="text-3xl font-semibold">Send us a quote request, and we&apos;ll get back to you.</p>
-                                <div className='flex items-center gap-3'>
+                                <p className="text-3xl font-semibold">
+                                    {
+                                        language === "English"
+                                            ? "Send us a quote request, and we&apos;ll get back to you."
+                                            : language === "العربية" ? "أرسل إلينا طلب عرض أسعار وسنرد عليك في خلال ثلاثة أيام عمل."
+                                                : language === "Russian" ? "Отправьте нам запрос на расценки, и мы свяжемся с вами."
+                                                    : "向我们发送报价请求，您将得到回复。"
+                                    }
+                                </p>
+                                {/* <div className='flex items-center gap-3'>
                                     <img src={Facebook} alt='Facebook' className="bg-dark lg:bg-transparent rounded-full" />
                                     <img src={Twitter} alt='Twitter' className="bg-dark lg:bg-transparent rounded-full" />
                                     <img src={Linkedin} alt='Linkedin' className="bg-dark lg:bg-transparent rounded-full" />
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 
                         <form
-                        id="get-a-quote" 
-                        className="flex flex-col lg:justify-center lg:text-white px-2 lg:px-6 py-3 rounded-xl h-full lg:w-full lg:shadow-lg">
+                            id="get-a-quote"
+                            className="flex flex-col lg:justify-center lg:text-white px-2 lg:px-6 py-3 rounded-xl h-full lg:w-full lg:shadow-lg"
+                            dir={language === "العربية" ? "rtl" : "ltr"}
+                        >
                             <div className="w-full flex flex-col">
                                 <label className="mb-1">
                                     {
                                         language === "English"
                                             ? "Name"
-                                            : "الأسم"
+                                            : language === "العربية" ? "الأسم"
+                                            : language === "Russina" ? "имя"
+                                            : "姓名"
                                     }
                                     <span className="text-[red]">*</span></label>
                                 <input className="bg-transparent h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-b border-gray-400" />
@@ -207,8 +235,10 @@ const KarInNumbers = () => {
                                 <label className="mb-1">
                                     {
                                         language === "English"
-                                            ? "Email"
-                                            : "البريد الإلكتروني"
+                                            ? "Email Address"
+                                            : language === "العربية" ? "البريد الإلكتروني"
+                                            : language === "Russina" ? "Адрес электронной почты"
+                                            : "电子邮件地址"
                                     }
                                     <span className="text-[red]">*</span></label>
                                 <input className="bg-transparent h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-b border-gray-400" />
@@ -217,7 +247,9 @@ const KarInNumbers = () => {
                                     {
                                         language === "English"
                                             ? "Phone Number"
-                                            : "رقم الهاتف"
+                                            : language === "العربية" ? "رقم التليفون"
+                                            : language === "Russina" ? "Номер телефона"
+                                            : "电话号码"
                                     }
                                     <span className="text-[red]">*</span></label>
                                 <input className="bg-transparent h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-b border-gray-400" />
@@ -227,7 +259,9 @@ const KarInNumbers = () => {
                                 {
                                     language === "English"
                                         ? "Message"
-                                        : "الرسالة"
+                                        : language === "العربية" ? "الرسالة"
+                                        : language === "Russina" ? "Сообщение"
+                                        : "信息"
                                 }
                                 <span className="text-[red]">*</span></label>
                             <textarea rows="4" className="bg-transparent border-0 border-b border-gray-400 lg:h-48" />
@@ -235,7 +269,9 @@ const KarInNumbers = () => {
                                 {
                                     language === "English"
                                         ? "Send Message"
-                                        : "إرسل"
+                                        : language === "العربية" ? "إرسال"
+                                        : language === "Russina" ? "Отправить сообщение"
+                                        : "发信息"
                                 }
                             </button>
                         </form>
