@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import BackgroundVideo from "../../assets/background.mp4";
+// import BackgroundVideo from "../../assets/background.mp4";
 import Logo from "../../assets/logo.png";
 import { karInNumbers } from "../../lib/home";
 import { UseStateContext } from "../../context/ContextProvider";
@@ -72,7 +72,7 @@ const KarInNumbers = () => {
         <Container className="relative" id="kar-in-numbers">
             <OverLay />
             <Video autoPlay loop muted className="h-[180vh] min-h-[1630px] md:h-[100vh]">
-                <source src={BackgroundVideo} type="video/mp4" />
+                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" type="video/mp4" />
             </Video>
 
             <div>

@@ -2,7 +2,9 @@ export const navigation = [
     {
         name: {
             english: "Home",
-            arabic: "الرئيسية"
+            arabic: "الرئيسية",
+            russian: "Главная страница",
+            chinese: "主页",
         },
         to: "/"
     },
@@ -10,13 +12,17 @@ export const navigation = [
         name: {
             english: "Services",
             arabic: "الخدمات",
+            russian: "Сервисы",
+            chinese: "服务"
         },
         to: "/#services"
     },
     {
         name: {
             english: "About us",
-            arabic: "عن الشركة"
+            arabic: "عن الشركة",
+            russian: "О компании",
+            chinese: "关于公司"
         },
         to: "/about-us"
     },
@@ -24,6 +30,8 @@ export const navigation = [
         name: {
             english: "Branches",
             arabic: "الأفرع",
+            russian: "Франшизы",
+            chinese: "特许经营"
         },
         to: "/#branches"
     },
@@ -31,6 +39,8 @@ export const navigation = [
         name: {
             english: "Contact us",
             arabic: "اتصل بنا",
+            russian: "Контакты",
+            chinese: "联系方式"
         },
         to: "/contact-us"
     },

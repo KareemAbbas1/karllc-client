@@ -24,8 +24,8 @@ const languages = [
     value: 'العربية',
   },
   {
-    text: 'Tur',
-    value: 'Turkish',
+    text: 'Chi',
+    value: 'Chinese',
   },
   {
     text: 'Rus',
@@ -253,7 +253,9 @@ export default function DefaultLayout() {
                                 {
                                   language === "English"
                                     ? item.name.english
-                                    : item.name.arabic
+                                    : language === "العربية" ? item.name.arabic
+                                      : language === "Russian" ? item.name.russian
+                                        : item.name.chinese
                                 }
                               </NavLink>
                               :
@@ -271,7 +273,9 @@ export default function DefaultLayout() {
                                 {
                                   language === "English"
                                     ? item.name.english
-                                    : item.name.arabic
+                                    : language === "العربية" ? item.name.arabic
+                                      : language === "Russian" ? item.name.russian
+                                        : item.name.chinese
                                 }
                               </button>
                           ))}
@@ -292,7 +296,9 @@ export default function DefaultLayout() {
                         {
                           language === "English"
                             ? "Get a Quote"
-                            : "احصل على عرض"
+                            : language === "العربية" ? "احصل على عرض"
+                              : language === "Russian" ? "получить цитату"
+                                : "获取报价"
                         }
                       </button>
                     </div>
@@ -344,7 +350,9 @@ export default function DefaultLayout() {
                           {
                             language === "English"
                               ? item.name.english
-                              : item.name.arabic
+                              : language === "العربية" ? item.name.arabic
+                                : language === "Russian" ? item.name.russian
+                                  : item.name.chinese
                           }
                         </NavLink>
                         :
@@ -360,7 +368,9 @@ export default function DefaultLayout() {
                           {
                             language === "English"
                               ? item.name.english
-                              : item.name.arabic
+                              : language === "العربية" ? item.name.arabic
+                                : language === "Russian" ? item.name.russian
+                                  : item.name.chinese
                           }
                         </button>
                     ))}

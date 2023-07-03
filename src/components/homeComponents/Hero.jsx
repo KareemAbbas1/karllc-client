@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BackgroundVideo from "../../assets/background.mp4";
+// import BackgroundVideo from "../../assets/background.mp4";
 import { hero } from "../../lib/home";
 import { UseStateContext } from "../../context/ContextProvider"
 
@@ -56,16 +56,18 @@ const Hero = () => {
         <Container className="-z-20">
             <OverLay />
             <Video autoPlay loop muted>
-                <source src={`${BackgroundVideo}`} type="video/mp4" />
+                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" type="video/mp4" />
             </Video>
             <div className="hero-text w-full max-w-screen-xl h-[40%] px-4 text-white absolute flex flex-col items-start md:items-center justify-center lg:justify-end top-0 left-0 right-0 m-auto">
-                <div rows={4} className="bg-transparent border-none p-0 text-4xl md:text-5xl lg:text-6xl 2xl:text-[6rem] font-semibold 2xl:font-normal w-full md:w-[68%] lg:w-[63%] xl:w-[50%] 2xl:w-[80%]">
+                <pre rows={4} className="bg-transparent border-none pb-2 p-0 text-4xl md:text-5xl lg:text-6xl 2xl:text-[6rem] font-semibold 2xl:font-normal w-full md:w-[68%] lg:w-[63%] xl:w-[50%] 2xl:w-[80%]">
                     {
                         language === "English"
-                            ? hero.english
-                            : hero.arabic
+                            ? hero.english.split("\n")[0]+"\n"+hero.english.split("\n")[1]+"\n"+hero.english.split("\n")[2]
+                            : language === "العربية" ? hero.arabic
+                            : language === "Russian" ? hero.russian
+                            : hero.chinese
                     }
-                </div>
+                </pre>
 
                 <div className="h-1 w-full md:w-[70%] xl:w-[53%] 2xl:w-[80%] bg-blue" />
 

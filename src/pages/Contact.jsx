@@ -35,7 +35,7 @@ const Container = styled.div`
 `
 const OverLay = styled.div`
     width: 100%;
-    height: 100%;
+    height: 110%;
     position: absolute;
     background: #0C1118;
     opacity: 0.5;
@@ -61,7 +61,7 @@ const Contact = () => {
     <Container className="
     w-screen 
     h-[110%] 
-    lg:h-screen 
+    lg:h-[120vh] 
     bg-dark 
     pt-28 
     pb-2 
@@ -92,7 +92,7 @@ const Contact = () => {
             max-w-screen-xl 
             w-full 
             h-full
-            midLarge:h-[700px] 
+            lg:h-[700px] 
             text-dark 
             bg-white 
             lg:bg-transparent

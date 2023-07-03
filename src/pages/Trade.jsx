@@ -16,6 +16,18 @@ import { useEffect } from "react"
 
 
 
+const MapContent = styled.div`
+  @media(min-height: 625px) and (max-height: 657px) {
+    height: 110vh;
+  }
+
+  @media(height: 900px) {
+    height: 110vh;
+  }
+  @media(height: 757px) {
+    height: 110vh;
+  }
+`
 
 const MapPin = styled.div`
   transition: all 300ms ease-in-out;
@@ -221,17 +233,16 @@ const Trade = () => {
 
 
         {/* MAP */}
-        <div className={`
+        <MapContent className={`
         w-screen 
         min-h-[90vh] 
         flex 
         flex-col 
         pt-24 
         lg:ps-48 
-        
         relative
-        
-        `} style={{ right: `${language === "العربية" && '-4.5%'}` }} dir="ltr">
+        `} style={{ right: `${language === "العربية" && '-4.5%'}` }} dir="ltr"
+        >
 
           {/* mobile header */}
           <h1 className={`lg:hidden text-white text-6xl font-semibold mb-10 ${language === "العربية" && "px-6"}`}>Export.<span className="text-blue"><br />Sugar.</span><br />World Wide.</h1>
@@ -355,9 +366,10 @@ const Trade = () => {
           `}
             dir={language === "English" ? "ltr" : "rtl"}
           >
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution.</p>
+            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution.
+          </p>
 
-          <div className={`flex flex-col items-cneter gap-4 mt-4 md:absolute lg:bottom-10 midLarge:bottom-48 lg:w-[25%]  ${language === "العربية" ? "px-6 bottom-0 2xl:w-[23%]" : "bottom-40"}`}>
+          <div className={`flex flex-col items-cneter gap-4 mt-4 md:absolute lg:bottom-0 midLarge:bottom-48 lg:w-[25%]  ${language === "العربية" ? "px-6 bottom-0 2xl:w-[23%]" : "bottom-40"}`}>
             <p className="text-gray-400 pe-6 md:w-[50%] lg:w-full " dir={language === "English" ? "ltr" : "rtl"}>Request a Quote and we&apos;ll get back to you within three business days.</p>
             <button className={`
                 border-2 
@@ -386,132 +398,132 @@ const Trade = () => {
             </button>
           </div>
 
-        </div>
+      </MapContent>
 
 
-        {/* FAQs */}
-        <div className="w-full max-w-[1040px] min-h-[88vh] large:scale-125 large:mt-24 flex flex-col lg:flex-row gap-12 snap-start md:px-10 lg:px-0 lg:h-fit lg:min-h-[400px] pt-24 lg:gap-3 lg:pt-3 relative mt-72">
-          <h2 className="text-3xl font-bold text-blue lg:absolute">FAQs</h2>
+      {/* FAQs */}
+      <div className="w-full max-w-[1040px] min-h-[88vh] large:scale-125 large:mt-24 flex flex-col lg:flex-row gap-12 snap-start md:px-10 lg:px-0 lg:h-fit lg:min-h-[400px] pt-24 lg:gap-3 lg:pt-3 relative mt-72">
+        <h2 className="text-3xl font-bold text-blue lg:absolute">FAQs</h2>
 
-          <p className="text-gray-400 md:text-xl lg:w-[70%] lg:pt-8">Lorem ipum for Test to b Wirtten Today so we don’t. Also you don’t know if lorem ipsum back. Either ways do for yet still just to, but in order to iptum sor. Lorem ipum for Test to b Wirtten Today so we don’t. Also you don’t know if lorem ipsum back. Either ways do for yet still just to, but in order to iptum sor.</p>
+        <p className="text-gray-400 md:text-xl lg:w-[70%] lg:pt-8">Lorem ipum for Test to b Wirtten Today so we don’t. Also you don’t know if lorem ipsum back. Either ways do for yet still just to, but in order to iptum sor. Lorem ipum for Test to b Wirtten Today so we don’t. Also you don’t know if lorem ipsum back. Either ways do for yet still just to, but in order to iptum sor.</p>
 
-          <img className="h-full lg:absolute lg:w-[68%] lg:h-auto lg:bottom-0" src={LogisticsFAQ} />
+        <img className="h-full lg:absolute lg:w-[68%] lg:h-auto lg:bottom-0" src={LogisticsFAQ} />
 
-          <div className="flex flex-col gap-6 lg:gap-0 lg:justify-between lg:w-[30%] lg:pt-8">
-            <Menu as="div" className="relative inline-block text-left w-full">
-              <div>
-                <Menu.Button className="inline-flex w-full h-16 justify-between items-center gap-x-1.5 rounded-lg border border-gray-600 px-3 py-2 font-semibold text-gray-200">
-                  FAQ quesiton one?
-                  <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-                </Menu.Button>
-              </div>
+        <div className="flex flex-col gap-6 lg:gap-0 lg:justify-between lg:w-[30%] lg:pt-8">
+          <Menu as="div" className="relative inline-block text-left w-full">
+            <div>
+              <Menu.Button className="inline-flex w-full h-16 justify-between items-center gap-x-1.5 rounded-lg border border-gray-600 px-3 py-2 font-semibold text-gray-200">
+                FAQ quesiton one?
+                <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+              </Menu.Button>
+            </div>
 
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-gray-400">
-                  <div className="py-1">
-                    <Menu.Item>
-                      <p className="text-dark text-lg px-3">answerr</p>
-                    </Menu.Item>
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
-
-
-            <Menu as="div" className="relative inline-block text-left w-full">
-              <div>
-                <Menu.Button className="inline-flex w-full h-16 justify-between items-center gap-x-1.5 rounded-lg border border-gray-600 px-3 py-2 font-semibold text-gray-200">
-                  FAQ quesiton one?
-                  <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-                </Menu.Button>
-              </div>
-
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-gray-400">
-                  <div className="py-1">
-                    <Menu.Item>
-                      <p className="text-dark text-lg px-3">answerr</p>
-                    </Menu.Item>
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-gray-400">
+                <div className="py-1">
+                  <Menu.Item>
+                    <p className="text-dark text-lg px-3">answerr</p>
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>
 
 
-            <Menu as="div" className="relative inline-block text-left w-full">
-              <div>
-                <Menu.Button className="inline-flex w-full h-16 justify-between items-center gap-x-1.5 rounded-lg border border-gray-600 px-3 py-2 font-semibold text-gray-200">
-                  FAQ quesiton one?
-                  <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-                </Menu.Button>
-              </div>
+          <Menu as="div" className="relative inline-block text-left w-full">
+            <div>
+              <Menu.Button className="inline-flex w-full h-16 justify-between items-center gap-x-1.5 rounded-lg border border-gray-600 px-3 py-2 font-semibold text-gray-200">
+                FAQ quesiton one?
+                <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+              </Menu.Button>
+            </div>
 
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-gray-400">
-                  <div className="py-1">
-                    <Menu.Item>
-                      <p className="text-dark text-lg px-3">answerr</p>
-                    </Menu.Item>
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-gray-400">
+                <div className="py-1">
+                  <Menu.Item>
+                    <p className="text-dark text-lg px-3">answerr</p>
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>
 
 
-            <Menu as="div" className="relative inline-block text-left w-full">
-              <div>
-                <Menu.Button className="inline-flex w-full h-16 justify-between items-center gap-x-1.5 rounded-lg border border-gray-600 px-3 py-2 font-semibold text-gray-200">
-                  FAQ quesiton one?
-                  <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-                </Menu.Button>
-              </div>
+          <Menu as="div" className="relative inline-block text-left w-full">
+            <div>
+              <Menu.Button className="inline-flex w-full h-16 justify-between items-center gap-x-1.5 rounded-lg border border-gray-600 px-3 py-2 font-semibold text-gray-200">
+                FAQ quesiton one?
+                <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+              </Menu.Button>
+            </div>
 
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-gray-400">
-                  <div className="py-1">
-                    <Menu.Item>
-                      <p className="text-dark text-lg px-3">answerr</p>
-                    </Menu.Item>
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
-          </div>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-gray-400">
+                <div className="py-1">
+                  <Menu.Item>
+                    <p className="text-dark text-lg px-3">answerr</p>
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>
+
+
+          <Menu as="div" className="relative inline-block text-left w-full">
+            <div>
+              <Menu.Button className="inline-flex w-full h-16 justify-between items-center gap-x-1.5 rounded-lg border border-gray-600 px-3 py-2 font-semibold text-gray-200">
+                FAQ quesiton one?
+                <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+              </Menu.Button>
+            </div>
+
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-gray-400">
+                <div className="py-1">
+                  <Menu.Item>
+                    <p className="text-dark text-lg px-3">answerr</p>
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>
         </div>
       </div>
-    </PageComponent>
+    </div>
+    </PageComponent >
   )
 }
 

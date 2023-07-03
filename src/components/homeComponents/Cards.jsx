@@ -77,6 +77,7 @@ const Cards = () => {
 
     const { language } = UseStateContext();
 
+    // h-[85vh] from shehab's responsiveness
     return (
         <Section className="h-[62vh] w-screen flex justify-center absolute top-[40%] md:top-[68%]" id="services">
             <Slider ref={ref} className="horizontal-snap snap-proximity" id="scroll-slider">
@@ -106,7 +107,9 @@ const Cards = () => {
                                 {
                                     language === "English"
                                         ? card.title.english
-                                        : card.title.arabic
+                                        : language === "العربية" ? card.title.arabic
+                                        : language === "Russian" ? card.title.russian
+                                        : card.title.chineese
                                 }
                                 <span className="inline">
                                     <ArrowRightIcon className="w-5" />
@@ -116,7 +119,9 @@ const Cards = () => {
                                 {
                                     language === "English"
                                         ? card.description.english
-                                        : card.description.arabic
+                                        : language === "العربية" ? card.description.arabic
+                                        : language === "Russian" ? card.description.russian
+                                        : card.description.chineese
                                 }
                             </p>
                         </a>

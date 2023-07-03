@@ -14,8 +14,10 @@ import Dobro from "../assets/Dobro.jpeg";
 
 
 export const hero = {
-    english: "AOCTABNM \n BONPEKN OACTORTEABCTBAM",
-    arabic: "شركة تجارة وشحن واسثمار عقاري"
+    english: "KAR LLC \nGROUP\nBUSSINES INCLUDES",
+    arabic: "بعض الأعمال\nالتي تشملها\nمجموعة شركات كار",
+    russian: "Деятельность\nгрупп\nкомпаний \"K.A.R\"",
+    chinese: "“K.A.R”\n公司集团的活动"
 }
 
 export const scrollDown = {
@@ -29,11 +31,15 @@ export const cards = [
         icon: TradeIcon,
         title: {
             english: "Trade",
-            arabic: "عربي",
+            arabic: "التجارة",
+            russian: "Торговля",
+            chineese: "贸易"
         },
         description: {
-            english: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution.",
-            arabic: "عربي",
+            english: "we will be happy to help you organize your activities in the field of trade. ",
+            arabic: "يسعدنا مساعدتك في تنظيم أنشطتك في مجال التجارة.",
+            russian: "мы с радостью поможем вам организовать вашу деятельность в сфере торговли.",
+            chineese: "我们很乐意帮助您组织您在贸易领域的活动"
         },
         to: "/trade",
     },
@@ -42,11 +48,15 @@ export const cards = [
         icon: LogisticsIcon,
         title: {
             english: "Logistics",
-            arabic: "عربي",
+            arabic: "الخدمات اللوجستية",
+            russian: "логистика.",
+            chineese: "后勤。"
         },
         description: {
-            english: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution.",
-            arabic: "عربي",
+            english: "Our highly qualified team will prepare the best ship for your cargo and offer the best price on the market.",
+            arabic: "سيقوم فريقنا المؤهل تأهيلا عاليا بإعداد أفضل سفينة لشحنتك وتقديم أفضل سعر في السوق.",
+            russian: "Наша высококвалифицированная команда подготовит для вашего груза оптимальный корабль и предложит лучшую цену на рынке.",
+            chineese: "我们高素质的团队将为您的货物准备最好的船，并提供市场上最优惠的价格。"
         },
         to: "/logistics",
     },
@@ -55,11 +65,15 @@ export const cards = [
         icon: RealEstateIcon,
         title: {
             english: "Real Estate",
-            arabic: "عربي",
+            arabic: "التطوير العقاري",
+            russian: "недвижимость. ",
+            chineese: "房地产。"
         },
         description: {
-            english: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution.",
-            arabic: "عربي",
+            english: "Our Turkish office will help you organize the purchase of housing at the best prices, as well as assistance in paperwork",
+            arabic: "سيساعدك مكتبنا في تركيا في تنظيم شراء المساكن بأفضل الأسعار ، بالإضافة إلى المساعدة في الأعمال الورقية",
+            russian: "Наш Турецкий офис поможет вам организовать покупку жилья по лучшим ценам, также помощь в оформлении документов",
+            chineese: "我们的土耳其办事处将帮助您以最优惠的价格安排购买住房，并协助办理文书工作"
         },
         to: "https://www.facebook.com",
     },
