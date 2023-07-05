@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { UseStateContext } from "../../context/ContextProvider";
 import { slider } from "../../lib/home";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { NavLink } from "react-router-dom";
 
 
 const Container = styled.div``
@@ -54,7 +55,7 @@ const Slider = styled.div`
 `
 const Branches = () => {
 
-    const { language } = UseStateContext();
+    const { language, setLoading } = UseStateContext();
 
     const ref = useRef(null);
     const handleClick = (scrollOffset) => {
@@ -84,7 +85,7 @@ const Branches = () => {
                                 : slider.secondaryParagraph.chinese
                         }
                     </p>
-                    <button className="flex items-end gap-2">
+                    <NavLink to="/about-us" onClick={() => setLoading(true)} className="flex items-end gap-2">
                         <span className="border border-blue rounded p-1">
                             {
                                 language === "English"
@@ -99,7 +100,7 @@ const Branches = () => {
                                 : language === "Russian" ? slider.whyKar.russian
                                 : slider.whyKar.chinese
                         }
-                    </button>
+                    </NavLink>
                 </div>
 
                 {/* Filters */}

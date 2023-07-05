@@ -77,13 +77,13 @@ const KarInNumbers = () => {
                 dangerouslySetInnerHTML={{
                     __html: `
             <video
-              loop
-              defaultMuted
-              autoPlay
-              playsInline
-              className=" "
+            loop="true"
+            defaultmuted="true"
+            muted="true"
+            autoplay="true"
+            playsinline="true"
             >
-              <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" type="video/mp4"  />
+            <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.webm"  type="video/webm"/>
             </video>
           ` }}
             // src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" 
@@ -103,7 +103,7 @@ const KarInNumbers = () => {
             </Video> */}
 
             <div>
-            <div className="
+                <div className="
             hero-text 
             w-full 
             max-w-screen-xl 
@@ -125,7 +125,7 @@ const KarInNumbers = () => {
             m-auto
             pb-6
             ">
-                {/* <div
+                    {/* <div
                     className="
                         w-full 
                         max-w-[1100px] 

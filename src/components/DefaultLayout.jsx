@@ -86,7 +86,7 @@ export default function DefaultLayout() {
       setOpenMenu(false)
       setTimeout(() => {
         scrollTo(id)
-      }, 50)
+      }, 150)
     } else {
       setOpenMenu(false)
       scrollTo(id)
@@ -115,7 +115,7 @@ export default function DefaultLayout() {
         Array.from(document.getElementsByClassName('navLinks')).map(el => el.style.color = "#fff")
         currentLocation.pathname === "/trade" || currentLocation.pathname === "/about-us" ? (document.getElementById("languages-list").style.color = '#fff') : document.getElementById("languages-list").style.color = '#fff'
         document.getElementById("scroll-down-right").style.display = 'none'
-      
+
       } else {
 
         mybutton.style.display = "none";
@@ -124,10 +124,11 @@ export default function DefaultLayout() {
         navbar.style.background = "transparent";
         currentLocation.pathname === "/trade" && Array.from(document.getElementsByClassName('navLinks')).map(
           el => el.style.color = "#000"
-          );
-          (currentLocation.pathname === "/about-us") && Array.from(document.getElementsByClassName('navLinks')).map(
-          el => {
-            if (el.innerHTML !== "About us") { el.style.color = "#000" }
+        );
+        (currentLocation.pathname === "/about-us") && Array.from(document.getElementsByClassName('navLinks')).map(
+          (el, i) => {
+            if (i !== 2) { el.style.color = "#000" }
+            // if (el.href !== "/about-us") { el.style.color = "#000" }
           }
         )
         navbar.style.paddingBlock = '2rem'
@@ -181,7 +182,7 @@ export default function DefaultLayout() {
                 <div className="flex items-center justify-between text-white w-full max-w-[1680px] ">
                   <div className="w-full flex items-center justify-between">
                     <div className='flex items-center gap-3 xl:gap-20'>
-                      <NavLink to="/" className="flex-shrink-0" onClick={() => setLoading(true)}>
+                      <NavLink to="/" className="flex-shrink-0" onClick={() => {setLoading(true); setTimeout(() => {location.reload()}, 100)}}>
                         <img
                           className="h-6 xl:h-7 w-auto logos"
                           src={Logo}
@@ -198,8 +199,11 @@ export default function DefaultLayout() {
                                 to={item.to}
                                 onClick={() => {
                                   if (item.to === "/services" || item.to === "/branches") {
-                                    onScrollableLinkClick
+                                    onScrollableLinkClick(item.to.split("#")[1])
                                   } else {
+                                    setTimeout(() => {
+                                      location.reload();
+                                    }, 100)
                                     setLoading(true)
                                   }
                                 }}

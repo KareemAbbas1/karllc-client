@@ -61,12 +61,13 @@ const Hero = () => {
                 dangerouslySetInnerHTML={{
                     __html: `
             <video
-              loop
-              defaultMuted
-              autoPlay
-              playsInline
+              loop="true"
+              defaultmuted="true"
+              muted="true"
+              autoplay="true"
+              playsinline="true"
               >
-              <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4"  type="video/mp4"/>
+              <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688559175/pexels-kelly-lacy-6618026_2160p_wynkrp.webm"  type="video/webm"/>
             </video>
           ` }}
             // src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" 
