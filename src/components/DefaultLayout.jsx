@@ -419,7 +419,7 @@ export default function DefaultLayout() {
           justify-center 
           rotate-90
           absolute
-          right-28
+          right-20
           top-[60%]
           w-[6rem]  
           `}

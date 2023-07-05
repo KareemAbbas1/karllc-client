@@ -96,7 +96,7 @@ export const slider = {
     whyKar: {
         english: "Why KarLLC",
         arabic: "لماذا كار",
-        russian: "почему кар ооо",
+        russian: "почему ООО \"К.А.Р.\"",
         chinese: "为什么选择卡尔有限责任公司"
     },
     filters: [
@@ -110,14 +110,14 @@ export const slider = {
         {
             english: "LOGISTICS & SHIPPING",
             arabic: "الخدمات اللوجيستية",
-            russian: "логистика.",
+            russian: "логистика",
             chinese: "后勤。",
             to: "/logistics"
         },
         {
             english: "REAL ESTATE",
             arabic: "التطوير العقاري",
-            russian: "недвижимость. ",
+            russian: "недвижимость",
             chinese: "房地产。",
             to: "https://www.facebook.com"
         },
@@ -337,7 +337,7 @@ export const karInNumbers = {
     },
     secondaryParagraph: {
         english: "Like out impact, KAR LLc ability to meet your goals continues to grow.",
-        arabic: "مثل التأثير الخارجي ، تستمر قدرة مجوعة شركات على تحقيق أهدافك في النمو.",
+        arabic: "مثل التأثير الخارجي ، تستمر قدرة مجوعة شركات كار على تحقيق أهدافك في النمو.",
         russian: "Как и наше влияние, способность ООО «КАР» достигать поставленных целей продолжает расти.",
         chinese: "与我们的影响力一样，KAR LLc 实现您目标的能力也在不断增强。"
     },

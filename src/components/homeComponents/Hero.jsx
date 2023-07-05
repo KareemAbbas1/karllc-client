@@ -19,7 +19,7 @@ const Container = styled.div`
 
     .hero-text {
         @media(width: 1366px) {
-            top: -4%;
+            /* top: -4%; */
         }
     }
   
@@ -56,18 +56,18 @@ const Hero = () => {
         <Container className="-z-20">
             <OverLay />
             <Video
-                className="w-[1700px] md:w-[2000px] boject-cover"
+                className="w-[1700px] md:w-[2000px] lmd:w-[2200px] large:w-[2520px] boject-cover"
                 
                 dangerouslySetInnerHTML={{
                     __html: `
             <video
               loop
-              muted
+              defaultMuted
               autoPlay
               playsInline
-              src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4"
-              className=" "
-            />,
+              >
+              <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4"  type="video/mp4"/>
+            </video>
           ` }}
             // src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" 
             // autoPlay 
@@ -91,7 +91,9 @@ const Hero = () => {
             justify-center 
             lg:justify-end 
             top-[20%]
-            md:top-[25%]
+            md:top-[23%]
+            midLarge:top-[28%]
+            large:top-[25%]
             left-0 
             right-0 
             m-auto

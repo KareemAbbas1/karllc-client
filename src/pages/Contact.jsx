@@ -112,7 +112,7 @@ const Contact = () => {
               language === "English"
                 ? "Contact Us"
                 : language === "العربية" ? "تواصل معنا"
-                  : language === "Russian" ? "связаться с нами"
+                  : language === "Russian" ? "Контакты"
                     : "联系我们"
             }
           </h1>

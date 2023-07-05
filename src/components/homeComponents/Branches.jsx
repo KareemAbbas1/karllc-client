@@ -138,7 +138,7 @@ const Branches = () => {
                 {
                     slider.branches.map((branch) => (
                         <div key={branch.id} className="snap-center">
-                            <div className="card w-[360px] h-[553px] flex flex-col items-start gap-5 rounded-3xl">
+                            <div className="card w-[340px] h-[553px] flex flex-col items-start gap-5 rounded-3xl">
                                 <div
                                     style={{ backgroundImage: `url(${branch.image})` }}
                                     className="image w-full h-[393px] rounded-3xl">

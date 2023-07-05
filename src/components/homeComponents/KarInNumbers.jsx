@@ -22,7 +22,7 @@ const Container = styled.div`
 
     .hero-text {
         @media(width: 1366px) {
-            top: -4%;
+            /* top: -4%; */
         }
     }
 
@@ -39,13 +39,13 @@ const Container = styled.div`
   
 `
 
-const Video = styled.video`
-    width: auto;
+const Video = styled.div`
+    /* width: auto; */
     /* height: 195vh; */
-    object-fit: cover;
+    /* object-fit: cover; */
     /* position: absolute; */
-    top: 0;
-    left: 0;
+    /* top: 0; */
+    /* left: 0; */
 
     @media(min-width: 1024px) and (max-width: 1439px) {
         /* height: 180vh; */
@@ -71,18 +71,61 @@ const KarInNumbers = () => {
     return (
         <Container className="relative" id="kar-in-numbers">
             <OverLay />
-            <Video 
+            <Video
+                className="w-[2910px] md:w-[2500px] large:w-[2520px] boject-cover"
+
+                dangerouslySetInnerHTML={{
+                    __html: `
+            <video
+              loop
+              defaultMuted
+              autoPlay
+              playsInline
+              className=" "
+            >
+              <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" type="video/mp4"  />
+            </video>
+          ` }}
+            // src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" 
+            // autoPlay 
+            // loop 
+            // muted
+            >
+                {/* <source  type="video/mp4" /> */}
+            </Video>
+            {/* <Video 
             src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" 
             autoPlay 
             loop 
             muted 
             className="h-[180vh] min-h-[1630px] md:h-[100vh]"
             >
-                {/* <source  type="video/mp4" /> */}
-            </Video>
+            </Video> */}
 
             <div>
-                <div
+            <div className="
+            hero-text 
+            w-full 
+            max-w-screen-xl 
+            h-fit 
+            px-4 
+            text-white 
+            absolute 
+            flex 
+            flex-col 
+            items-start 
+            md:items-center 
+            justify-center 
+            lg:justify-end 
+            top-[10%]
+            md:top-[10%]
+            large:top-[15%]
+            left-0 
+            right-0 
+            m-auto
+            pb-6
+            ">
+                {/* <div
                     className="
                         w-full 
                         max-w-[1100px] 
@@ -105,7 +148,7 @@ const KarInNumbers = () => {
                         md:gap-28
                     "
                     id="kar-in-numbers"
-                >
+                > */}
                     <div className="flex flex-col items-center gap-20 xl:scale-105 2xl:scale-125">
                         <div className="text-center flex flex-col items-center gap-6">
                             <h1 className="text-4xl font-semibold flex items-start justify-center gap-3">
@@ -183,7 +226,7 @@ const KarInNumbers = () => {
                                     language === "English"
                                         ? "Get a Quote"
                                         : language === "العربية" ? "احصل على عرض"
-                                            : language === "Russian" ? "получить цитату"
+                                            : language === "Russian" ? "получить цитату О нас"
                                                 : "获取报价"
                                 }
                             </h1>
@@ -192,8 +235,8 @@ const KarInNumbers = () => {
                                     language === "English"
                                         ? " The ‘’KAR’’ group of companies multilaterally captures many areas of life. We are located in several countries in the world, such as the United Arab Emirates, Turkey, Estonia, Russia, Syria, etc. Our team is ready to cooperate."
                                         : language === "العربية" ? "تلتقط مجموعة شركات \"KAR\" بشكل متعدد الجوانب العديد من مجالات الحياة. نحن موجودون في عدة دول في العالم ، مثل الإمارات العربية المتحدة وتركيا وإستونيا وروسيا وسوريا ، إلخ. فريقنا جاهز للتعاون."
-                                        : language === "Russian" ? "Группа компаний «КАР» многосторонне охватывает многие сферы жизни. Мы находимся в нескольких странах мира, таких как Объединенные Арабские Эмираты, Турция, Эстония, Россия, Сирия и др. Наша команда готова к сотрудничеству."
-                                        : "“KAR”公司集团涉足生活的许多领域。 我们遍布世界多个国家，如阿联酋、土耳其、爱沙尼亚、俄罗斯、叙利亚等。我们的团队已准备好合作。"
+                                            : language === "Russian" ? "Группа компаний «КАР» многосторонне охватывает многие сферы жизни. Мы находимся в нескольких странах мира, таких как Объединенные Арабские Эмираты, Турция, Эстония, Россия, Сирия и др. Наша команда готова к сотрудничеству."
+                                                : "“KAR”公司集团涉足生活的许多领域。 我们遍布世界多个国家，如阿联酋、土耳其、爱沙尼亚、俄罗斯、叙利亚等。我们的团队已准备好合作。"
                                 }
                             </p>
                             <div className="hidden lg:flex flex-col gap-12 h-full">
@@ -221,57 +264,57 @@ const KarInNumbers = () => {
                             dir={language === "العربية" ? "rtl" : "ltr"}
                         >
                             <div className="w-full flex flex-col">
-                                <label className="mb-1">
+                                <label className="mb-1 text-[16px]">
                                     {
                                         language === "English"
                                             ? "Name"
                                             : language === "العربية" ? "الأسم"
-                                            : language === "Russina" ? "имя"
-                                            : "姓名"
+                                                : language === "Russian" ? "имя"
+                                                    : "姓名"
                                     }
                                     <span className="text-[red]">*</span></label>
-                                <input className="bg-transparent h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-b border-gray-400" />
+                                <input className="bg-transparent text-[16px] h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-b border-gray-400" />
 
-                                <label className="mb-1">
+                                <label className="mb-1 text-[16px]">
                                     {
                                         language === "English"
                                             ? "Email Address"
                                             : language === "العربية" ? "البريد الإلكتروني"
-                                            : language === "Russina" ? "Адрес электронной почты"
-                                            : "电子邮件地址"
+                                                : language === "Russian" ? "Адрес электронной почты"
+                                                    : "电子邮件地址"
                                     }
                                     <span className="text-[red]">*</span></label>
-                                <input className="bg-transparent h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-b border-gray-400" />
+                                <input className="bg-transparent text-[16px] h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-b border-gray-400" />
 
-                                <label className="mb-1">
+                                <label className="mb-1 text-[16px]">
                                     {
                                         language === "English"
                                             ? "Phone Number"
                                             : language === "العربية" ? "رقم التليفون"
-                                            : language === "Russina" ? "Номер телефона"
-                                            : "电话号码"
+                                                : language === "Russian" ? "Номер телефона"
+                                                    : "电话号码"
                                     }
                                     <span className="text-[red]">*</span></label>
-                                <input className="bg-transparent h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-b border-gray-400" />
+                                <input className="bg-transparent text-[16px] h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-b border-gray-400" />
                             </div>
 
-                            <label className="mb-1">
+                            <label className="mb-1 text-[16px]">
                                 {
                                     language === "English"
                                         ? "Message"
                                         : language === "العربية" ? "الرسالة"
-                                        : language === "Russina" ? "Сообщение"
-                                        : "信息"
+                                            : language === "Russian" ? "Сообщение"
+                                                : "信息"
                                 }
                                 <span className="text-[red]">*</span></label>
-                            <textarea rows="4" className="bg-transparent border-0 border-b border-gray-400 lg:h-48" />
+                            <textarea rows="4" className="bg-transparent text-[16px] border-0 border-b border-gray-400 lg:h-48" />
                             <button className="bg-blue text-white text-xl mt-4 py-2 rounded-lg font-semibold lg:w-[30%] lg:self-end hover:opacity-75">
                                 {
                                     language === "English"
                                         ? "Send Message"
                                         : language === "العربية" ? "إرسال"
-                                        : language === "Russina" ? "Отправить сообщение"
-                                        : "发信息"
+                                            : language === "Russian" ? "Отправить сообщение"
+                                                : "发信息"
                                 }
                             </button>
                         </form>

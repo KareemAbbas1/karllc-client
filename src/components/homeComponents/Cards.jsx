@@ -80,14 +80,19 @@ const Cards = () => {
     // h-[85vh] from shehab's responsiveness
     return (
         <Section className="
+        min-h-fit
         h-[80vh]
-        md:h-[50vh] 
+        md:h-[50vh]
+        lg:h-[85vh]
         w-screen 
         flex 
         justify-center 
         absolute 
         top-[20rem]
         md:top-[30rem]
+        lmd:top-[29rem]
+        midLarge:top-[32rem]
+        large:top-[34rem]
         " 
         id="services"
         >

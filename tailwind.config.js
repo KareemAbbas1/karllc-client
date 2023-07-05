@@ -14,6 +14,7 @@ module.exports = {
       },
       screens: {
         'xmd': '1280px',
+        'lmd':'1366px',
         'large': '1680px',
         'midLarge': '1440px',
       }
