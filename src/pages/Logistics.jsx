@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import PageComponent from "../components/PageComponent"
 import LogistictsHero from "../assets/LogistictsHero.png"
 import LogisticsFAQ from "../assets/LogisticsFAQ.png"
@@ -5,60 +6,61 @@ import styled from "styled-components"
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-
-
 import { UseStateContext } from '../context/ContextProvider'
 import Loader from "../components/Loader"
 import { useEffect } from "react"
 
+import { hero, cardsSection, faqs } from "../lib/logistics"
+import { useLocation, useNavigate } from "react-router-dom"
 
-const cards = [
-  {
-    id: 1,
-    title: {
-      english: "By Land",
-      arabic: "بري"
-    },
-    cost: {
-      english: "From $2.5 per lbs",
-      arabic: ""
-    },
-    weight: {
-      english: "Up to 44,000 lbs",
-      arabic: ""
-    }
-  },
-  {
-    id: 2,
-    title: {
-      english: "By Air",
-      arabic: "بري"
-    },
-    cost: {
-      english: "From $9 per lbs",
-      arabic: ""
-    },
-    weight: {
-      english: "Up to 20,000 lbs",
-      arabic: ""
-    }
-  },
-  {
-    id: 3,
-    title: {
-      english: "By Sea",
-      arabic: "بري"
-    },
-    cost: {
-      english: "From $2.5 per lbs",
-      arabic: ""
-    },
-    weight: {
-      english: "&infin;",
-      arabic: "&infin;"
-    }
-  },
-]
+
+// const cards = [
+//   {
+//     id: 1,
+//     title: {
+//       english: "By Land",
+//       arabic: "بري"
+//     },
+//     cost: {
+//       english: "From $2.5 per lbs",
+//       arabic: ""
+//     },
+//     weight: {
+//       english: "Up to 44,000 lbs",
+//       arabic: ""
+//     }
+//   },
+//   {
+//     id: 2,
+//     title: {
+//       english: "By Air",
+//       arabic: "بري"
+//     },
+//     cost: {
+//       english: "From $9 per lbs",
+//       arabic: ""
+//     },
+//     weight: {
+//       english: "Up to 20,000 lbs",
+//       arabic: ""
+//     }
+//   },
+//   {
+//     id: 3,
+//     title: {
+//       english: "By Sea",
+//       arabic: "بري"
+//     },
+//     cost: {
+//       english: "From $2.5 per lbs",
+//       arabic: ""
+//     },
+//     weight: {
+//       english: "&infin;",
+//       arabic: "&infin;"
+//     }
+//   },
+// ]
 
 const Slider = styled.div`
     display: grid;
@@ -89,15 +91,20 @@ const Slider = styled.div`
 
 const Logistics = () => {
 
-
-  const { language, loading, setLoading } = UseStateContext();
+  const { language, loading, setLoading, onScrollableLinkClick } = UseStateContext();
+  const currentLocation = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
     }, 500)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
+  
+  // Extract data
+  const { bulletPoints } = hero;
+  const { cards } = cardsSection;
 
   return (
     <PageComponent>
@@ -131,33 +138,66 @@ const Logistics = () => {
         max-w-screen-2xl
         large:mt-32
         large:px-24
+        
         ">
 
-          <h1 className="text-6xl md:text-7xl large:text-8xl font-semibold large:-mt-28 ">Cargo. Delivery. WorldWide.</h1>
+          <h1 className="text-6xl md:text-7xl large:text-8xl font-semibold large:-mt-28">
+            {
+              language === "English"
+                ? hero.headline.english
+                : language === "العربية" ? hero.headline.arabic
+                  : language === "Russian" ? hero.headline.russian
+                    : hero.headline.chinese
+            }
+          </h1>
 
-          <img src={LogistictsHero} className="md:scale-125 md:px-20 lg:scale-100 lg:px-0 large:scale-125" />
+          <img src={LogistictsHero} className="md:scale-125 md:px-20 lg:scale-100 lg:px-0 lg:py-4 large:scale-125" />
 
           <div className="cta w-full flex flex-col gap-6 lg:absolute lg:bottom-10 large:-bottom-5 lg:w-[50%] large:w-[50%] lg:gap-8 ">
 
-            <p className="hidden large:block text-gray-300 w-[70%]">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout</p>
+            <p className="hidden large:block text-gray-300 w-[70%]">
+              {
+                language === "English"
+                  ? hero.secondaryParagraph.english
+                  : language === "العربية" ? hero.secondaryParagraph.arabic
+                    : language === "Russian" ? hero.secondaryParagraph.russian
+                      : hero.secondaryParagraph.chinese
+              }
+            </p>
 
             <ol className="list-disc px-4 md:text-xl lg:text-large lg:text-gray-400">
               <li className="lg:mb-4 large:mb-8">
-                Freight Transportation
+                {
+                  language === "English"
+                    ? bulletPoints[0].english
+                    : language === "العربية" ? bulletPoints[0].arabic
+                      : language === "Russian" ? bulletPoints[0].russian
+                        : bulletPoints[0].chinese
+                }
               </li>
               <li className="lg:mb-4 large:mb-8">
-                Warehousing and Distribution
+                {
+                  language === "English"
+                    ? bulletPoints[1].english
+                    : language === "العربية" ? bulletPoints[1].arabic
+                      : language === "Russian" ? bulletPoints[1].russian
+                        : bulletPoints[1].chinese
+                }
               </li>
               <li className="lg:mb-4 large:mb-8">
-                Customs Clearance
+                {
+                  language === "English"
+                    ? bulletPoints[2].english
+                    : language === "العربية" ? bulletPoints[2].arabic
+                      : language === "Russian" ? bulletPoints[2].russian
+                        : bulletPoints[2].chinese
+                }
               </li>
             </ol>
-            {/* <div className='flex items-center gap-3'>
-              <img src={Facebook} alt='Facebook' />
-              <img src={Twitter} alt='Twitter' />
-              <img src={Linkedin} alt='Linkedin' />
-            </div> */}
-            <button className="
+
+            <button 
+            onClick={() => onScrollableLinkClick("kar-in-numbers",  currentLocation, navigate)} 
+            className="
             border-2 
             border-blue 
             w-full 
@@ -175,7 +215,15 @@ const Logistics = () => {
             z-10 
             transition-all 
             ease-in-out
-            ">Get a Quote</button>
+            ">
+              {
+                language === "English"
+                  ? hero.getQuote.english
+                  : language === "العربية" ? hero.getQuote.arabic
+                    : language === "Russian" ? hero.getQuote.russian
+                      : hero.getQuote.chinese
+              }
+            </button>
           </div>
         </div>
 
@@ -183,7 +231,14 @@ const Logistics = () => {
         {/* Delivery */}
         <div className="h-[700px] flex flex-col justify-center lg:mt-12 large:mt-36 gap-10 snap-start md:scale-125 lg:scale-100 large:scale-125 md:px-20 ">
 
-          <h1 className="text-white text-4xl ">Customized solutions for your business</h1>
+          <h1 className="text-white text-4xl ">
+            {
+              language === "English" ? cardsSection.paragraph.english
+                : language === "العربية" ? cardsSection.paragraph.arabic
+                  : language === "Russian" ? cardsSection.paragraph.russian
+                    : cardsSection.paragraph.chinese
+            }
+          </h1>
           <Slider className="horizontal-snap snap-proximity h-[300px]">
             {
               cards.map(card => (
@@ -204,7 +259,10 @@ const Logistics = () => {
                 ">
                   <h2 className="bg-dark text-blue text-5xl font-semibold absolute -top-5 px-2 ">
                     {
-                      card.title.english
+                      language === "English" ? card.title.english
+                        : language === "العربية" ? card.title.arabic
+                          : language === "Russian" ? card.title.russian
+                            : card.title.chinese
                     }
                   </h2>
 
@@ -233,125 +291,88 @@ const Logistics = () => {
         <div className="w-full max-w-[1040px] min-h-[88vh] large:scale-125 large:mt-24 flex flex-col lg:flex-row gap-12 snap-start md:px-10 lg:px-0 lg:h-fit lg:min-h-[400px] lg:gap-3 lg:pt-3 relative ">
           <h2 className="text-3xl font-bold text-blue lg:absolute">FAQs</h2>
 
-          <p className="text-gray-400 md:text-xl lg:w-[70%] lg:pt-8">Lorem ipum for Test to b Wirtten Today so we don’t. Also you don’t know if lorem ipsum back. Either ways do for yet still just to, but in order to iptum sor. Lorem ipum for Test to b Wirtten Today so we don’t. Also you don’t know if lorem ipsum back. Either ways do for yet still just to, but in order to iptum sor.</p>
+          <p className="text-gray-400 md:text-xl lg:w-[70%] lg:pt-8">
+            {
+              language === "English" ? faqs.paragraph.english
+                : language === "العربية" ? faqs.paragraph.arabic
+                  : language === "Russian" ? faqs.paragraph.russian
+                    : faqs.paragraph.chinese
+            }
+          </p>
 
           <img className="h-full lg:absolute lg:w-[68%] lg:h-auto lg:bottom-0" src={LogisticsFAQ} />
 
           <div className="flex flex-col gap-6 lg:gap-0 lg:justify-between lg:w-[30%] lg:pt-8">
-            <Menu as="div" className="relative inline-block text-left w-full">
-              <div>
-                <Menu.Button className="inline-flex w-full h-16 justify-between items-center gap-x-1.5 rounded-lg border border-gray-600 px-3 py-2 font-semibold text-gray-200">
-                  FAQ quesiton one?
-                  <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-                </Menu.Button>
-              </div>
-
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-gray-400">
-                  <div className="py-1">
-                    <Menu.Item>
-                      <p className="text-dark text-lg px-3">answerr</p>
-                    </Menu.Item>
+            {
+              faqs.questions.map(question => (
+                <Menu as="div" className="relative inline-block text-left w-full" key={question.id}>
+                  <div>
+                    <Menu.Button className={`
+                    inline-flex 
+                    w-full 
+                    h-16 
+                    justify-between 
+                    items-center 
+                    gap-x-1.5 
+                    rounded-lg 
+                    border 
+                    border-gray-600 
+                    px-3 
+                    py-2 
+                    font-semibold 
+                    text-gray-200
+                    ${language === "العربية"
+                        ? "text-right"
+                        : "text-left"
+                      }
+                    `}>
+                      {
+                        language === "English" ? question.q.english
+                          : language === "العربية" ? question.q.arabic
+                            : language === "Russian" ? question.q.russian
+                              : question.q.chinese
+                      }
+                      <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+                    </Menu.Button>
                   </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
 
-
-            <Menu as="div" className="relative inline-block text-left w-full">
-              <div>
-                <Menu.Button className="inline-flex w-full h-16 justify-between items-center gap-x-1.5 rounded-lg border border-gray-600 px-3 py-2 font-semibold text-gray-200">
-                  FAQ quesiton one?
-                  <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-                </Menu.Button>
-              </div>
-
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-gray-400">
-                  <div className="py-1">
-                    <Menu.Item>
-                      <p className="text-dark text-lg px-3">answerr</p>
-                    </Menu.Item>
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
-
-
-            <Menu as="div" className="relative inline-block text-left w-full">
-              <div>
-                <Menu.Button className="inline-flex w-full h-16 justify-between items-center gap-x-1.5 rounded-lg border border-gray-600 px-3 py-2 font-semibold text-gray-200">
-                  FAQ quesiton one?
-                  <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-                </Menu.Button>
-              </div>
-
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-gray-400">
-                  <div className="py-1">
-                    <Menu.Item>
-                      <p className="text-dark text-lg px-3">answerr</p>
-                    </Menu.Item>
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
-
-
-            <Menu as="div" className="relative inline-block text-left w-full">
-              <div>
-                <Menu.Button className="inline-flex w-full h-16 justify-between items-center gap-x-1.5 rounded-lg border border-gray-600 px-3 py-2 font-semibold text-gray-200">
-                  FAQ quesiton one?
-                  <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-                </Menu.Button>
-              </div>
-
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-gray-400">
-                  <div className="py-1">
-                    <Menu.Item>
-                      <p className="text-dark text-lg px-3">answerr</p>
-                    </Menu.Item>
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-gray-400">
+                      <div className="py-1">
+                        <Menu.Item>
+                          <p className={`
+                          text-dark 
+                          text-lg 
+                          px-3 ${language === "العربية"
+                              ? "text-right"
+                              : "text-left"
+                            }`}>
+                            {
+                              language === "English" ? question.a.english
+                                : language === "العربية" ? question.a.arabic
+                                  : language === "Russian" ? question.a.russian
+                                    : question.a.chinese
+                            }
+                          </p>
+                        </Menu.Item>
+                      </div>
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
+              ))
+            }
           </div>
         </div>
-      </div>
-    </PageComponent>
+      </div >
+    </PageComponent >
   )
 }
 

@@ -253,7 +253,7 @@ const About = () => {
               {
                 language === "English" ? "Contact us"
                   : language === "العربية" ? "اتصل بنا"
-                    : language === "Russina" ? "связаться с нами"
+                    : language === "Russian" ? "связаться с нами"
                       : "联系我们"
               }
             </NavLink>

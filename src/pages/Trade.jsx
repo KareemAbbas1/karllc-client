@@ -13,6 +13,7 @@ import LargeMap from '../assets/LargeMap.png'
 import { UseStateContext } from '../context/ContextProvider'
 import Loader from "../components/Loader"
 import { useEffect } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
 
 
 
@@ -44,85 +45,15 @@ const MapPin = styled.div`
     }
   }
 `
-// const cards = [
-//   {
-//     id: 1,
-//     title: {
-//       english: "By Land",
-//       arabic: "بري"
-//     },
-//     cost: {
-//       english: "From $2.5 per lbs",
-//       arabic: ""
-//     },
-//     weight: {
-//       english: "Up to 44,000 lbs",
-//       arabic: ""
-//     }
-//   },
-//   {
-//     id: 2,
-//     title: {
-//       english: "By Air",
-//       arabic: "بري"
-//     },
-//     cost: {
-//       english: "From $9 per lbs",
-//       arabic: ""
-//     },
-//     weight: {
-//       english: "Up to 20,000 lbs",
-//       arabic: ""
-//     }
-//   },
-//   {
-//     id: 3,
-//     title: {
-//       english: "By Sea",
-//       arabic: "بري"
-//     },
-//     cost: {
-//       english: "From $2.5 per lbs",
-//       arabic: ""
-//     },
-//     weight: {
-//       english: "&infin;",
-//       arabic: "&infin;"
-//     }
-//   },
-// ]
-
-// const Slider = styled.div`
-//     display: grid;
-//     grid-auto-flow: column;
-//     gap: 1rem;
-//     align-items: center;
-//     overflow-y: auto;
-//     overscroll-behavior-x: contain;
-//     scroll-snap-type: x mandatory;
-//     scroll-behavior: smooth;
-//     padding-inline: 1rem;
-
-//     /* Hide scrollbar for Chrome, Safari and Opera */
-//     ::-webkit-scrollbar {
-//     display: none;
-//     }
-
-//     /* Hide scrollbar for IE, Edge and Firefox */
-//      {
-//     -ms-overflow-style: none;  /* IE and Edge */
-//     scrollbar-width: none;  /* Firefox */
-//     }
-
-//     .horizontal-snap > a {
-//         scroll-snap-align: center;
-//     }
-// `
 
 const Trade = () => {
 
   // const currentLocation = useLocation();
-  const { language, loading, setLoading } = UseStateContext();
+  const { language, loading, setLoading, onScrollableLinkClick } = UseStateContext();
+  
+  const currentLocation = useLocation();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -204,7 +135,9 @@ const Trade = () => {
                 </li>
               </ol>
 
-              <button className="
+              <button
+              onClick={() => onScrollableLinkClick("kar-in-numbers",  currentLocation, navigate)}
+               className="
                 border-2 
                 border-blue 
                 text-lg 
@@ -352,8 +285,6 @@ const Trade = () => {
                 <div className="hidden lg:block w-3 h-3 bg-blue rounded-full" />
               </div>
             </MapPin>
-
-
           </div>
 
 
@@ -366,7 +297,7 @@ const Trade = () => {
           `}
             dir={language === "English" ? "ltr" : "rtl"}
           >
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution.
+            We work with the largest sugar distributors worldwide. Based on our many years of experience in this field, you can entrust your goods to us and we will deliver them to their destination
           </p>
 
           <div className={`flex flex-col items-cneter gap-4 mt-4 md:absolute lg:bottom-0 midLarge:bottom-48 lg:w-[25%]  ${language === "العربية" ? "px-6 bottom-0 2xl:w-[23%]" : "bottom-40"}`}>

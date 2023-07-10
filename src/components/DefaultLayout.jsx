@@ -62,7 +62,7 @@ function classNames(...classes) {
 export default function DefaultLayout() {
 
 
-  const { language, setLanguage, setLoading, openMenu, setOpenMenu } = UseStateContext();
+  const { language, setLanguage, setLoading, openMenu, setOpenMenu, onScrollableLinkClick } = UseStateContext();
   const setCurrentLanguage = (lang) => {
     localStorage.setItem('LANG', lang);
     setLanguage(lang);
@@ -75,23 +75,23 @@ export default function DefaultLayout() {
   const currentLocation = useLocation();
   const navigate = useNavigate();
 
-  const scrollTo = (id) => {
-    window.scrollTo({ top: `${document.getElementById(id).offsetTop}` });
-  };
+  // const scrollTo = (id) => {
+  //   window.scrollTo({ top: `${document.getElementById(id).offsetTop}` });
+  // };
 
-  const onScrollableLinkClick = (id) => {
-    if (currentLocation.pathname !== "/") {
-      setLoading(true)
-      navigate("/");
-      setOpenMenu(false)
-      setTimeout(() => {
-        scrollTo(id)
-      }, 150)
-    } else {
-      setOpenMenu(false)
-      scrollTo(id)
-    }
-  }
+  // const onScrollableLinkClick = (id) => {
+  //   if (currentLocation.pathname !== "/") {
+  //     setLoading(true)
+  //     navigate("/");
+  //     setOpenMenu(false)
+  //     setTimeout(() => {
+  //       scrollTo(id)
+  //     }, 150)
+  //   } else {
+  //     setOpenMenu(false)
+  //     scrollTo(id)
+  //   }
+  // }
 
 
 
@@ -199,7 +199,7 @@ export default function DefaultLayout() {
                                 to={item.to}
                                 onClick={() => {
                                   if (item.to === "/services" || item.to === "/branches") {
-                                    onScrollableLinkClick(item.to.split("#")[1])
+                                    onScrollableLinkClick(item.to.split("#")[1], currentLocation, navigate)
                                   } else {
                                     setTimeout(() => {
                                       location.reload();
@@ -236,7 +236,7 @@ export default function DefaultLayout() {
                               <button
                                 key={item.name.english}
                                 // href={item.to}
-                                onClick={() => onScrollableLinkClick(item.to.split("#")[1])}
+                                onClick={() => onScrollableLinkClick(item.to.split("#")[1], currentLocation, navigate)}
                                 style={{ color: `${(currentLocation.pathname === '/trade' || currentLocation.pathname === '/about-us') ? "#000" : "#fff"}` }}
                                 className={
                                   `
@@ -319,7 +319,7 @@ export default function DefaultLayout() {
                         }
                       </NavLink> */}
                       <div className='bg-blue h-6 w-[2px] rounded mx-5' />
-                      <button className='hidden md:block bg-blue text-white 2xl:text-sm font-semibold pb-2 pt-3 px-5 rounded-md hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers")}>
+                      <button className='hidden md:block bg-blue text-white 2xl:text-sm font-semibold pb-2 pt-3 px-5 rounded-md hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers",  currentLocation, navigate)}>
                         {
                           language === "English"
                             ? "Get a Quote"
@@ -385,7 +385,7 @@ export default function DefaultLayout() {
                         :
                         <button
                           key={item.name.english}
-                          onClick={() => onScrollableLinkClick(item.to.split("#")[1])}
+                          onClick={() => onScrollableLinkClick(item.to.split("#")[1],  currentLocation, navigate)}
                           className={
                             `
                           rounded-md px-3 md:px-1 xl:px-3 2xl:px-8 py-2 xl:text-lg font-medium md:text-sm navLinks
@@ -403,7 +403,7 @@ export default function DefaultLayout() {
                     ))}
                   </div>
                   <div className="px-2 sm:px-3">
-                    <button className='bg-blue text-white font-semibold py-2 px-5 rounded-xl hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers")}>
+                    <button className='bg-blue text-white font-semibold py-2 px-5 rounded-xl hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers",  currentLocation, navigate)}>
                       Get a Quote
                     </button>
                   </div>
