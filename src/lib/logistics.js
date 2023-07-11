@@ -131,46 +131,46 @@ export const faqs = {
         {
             id: uuidv4(),
             q: {
-                english: "How do you define logistics and transport?",
-                arabic: "كيف تُّعرف الخدمات اللوجستية والنقل؟",
-                russian: "Как вы определяете логистику и транспорт?",
-                chinese: "如何定义物流和运输?",
+                english: "What is international logistics?",
+                arabic: "ما هي الخدمات اللوجستية الدولية؟",
+                russian: "Что такое международная логистика?",
+                chinese: "什么是国际物流？",
             },
             a: {
-                english: "Transportation - moving goods from one place to another - is part of logistics. Logistics also includes product packaging for storage, shipping, and distribution networks that move products inside and outside the company to its customers.",
-                arabic: "يعد نقل البضائع من مكان إلى آخر جزءًا من الخدمات اللوجستية. تشمل الخدمات اللوجستية أيضًا تغليف المنتجات لشبكات التخزين والشحن والتوزيع التي تنقل المنتجات داخل الشركة وخارجها إلى عملائها.",
-                russian: "Транспортировка - перемещение товаров из одного места в другое - является частью логистики. Логистика также включает в себя упаковку продукции для хранения, отгрузку и распределительные сети, которые перемещают продукцию внутри компании и снаружи к ее клиентам.",
-                chinese: "运输-将货物从一个地方移动到另一个地方-是物流的一部分。 物流还包括用于存储，运输和分销网络的产品包装，这些网络将产品在公司内外移动给客户。",
+                english: "International logistics is the organization and management of the movement of goods and information across borders of different countries.",
+                arabic: "اللوجستيات الدولية هي تنظيم وإدارة حركة البضائع والمعلومات عبر حدود البلدان المختلفة.",
+                russian: ": Международная логистика - это организация и управление перемещением товаров и информации через границы разных стран.",
+                chinese: "国际物流是指通过管理及组织不同国家之间的货物和信息流动。",
             }
         },
         {
             id: uuidv4(),
             q: {
-                english: "How do you define logistics and transport?",
-                arabic: "كيف تُّعرف الخدمات اللوجستية والنقل؟",
-                russian: "Как вы определяете логистику и транспорт?",
-                chinese: "如何定义物流和运输?",
+                english: "What are the key advantages of international logistics?",
+                arabic: "ما هي المزايا الرئيسية للخدمات اللوجستية الدولية؟",
+                russian: "Какие основные преимущества международной логистики?",
+                chinese: "国际物流有哪些主要优势？",
             },
             a: {
-                english: "Transportation - moving goods from one place to another - is part of logistics. Logistics also includes product packaging for storage, shipping, and distribution networks that move products inside and outside the company to its customers.",
-                arabic: "يعد نقل البضائع من مكان إلى آخر جزءًا من الخدمات اللوجستية. تشمل الخدمات اللوجستية أيضًا تغليف المنتجات لشبكات التخزين والشحن والتوزيع التي تنقل المنتجات داخل الشركة وخارجها إلى عملائها.",
-                russian: "Транспортировка - перемещение товаров из одного места в другое - является частью логистики. Логистика также включает в себя упаковку продукции для хранения, отгрузку и распределительные сети, которые перемещают продукцию внутри компании и снаружи к ее клиентам.",
-                chinese: "运输-将货物从一个地方移动到另一个地方-是物流的一部分。 物流还包括用于存储，运输和分销网络的产品包装，这些网络将产品在公司内外移动给客户。",
+                english: "International logistics allows companies to expand their market reach, gain access to new customers and resources, and improve the efficiency of product delivery.",
+                arabic: "تسمح الخدمات اللوجستية الدولية للشركات بتوسيع نطاق وصولها إلى الأسواق ، والوصول إلى عملاء وموارد جديدة ، وتحسين كفاءة توصيل المنتج.",
+                russian: "Международная логистика позволяет компании расширить свой рынок сбыта, получить доступ к новым клиентам и ресурсам, а также улучшить эффективность поставок товаров.",
+                chinese: "国际物流使得公司能够拓展市场，获得新的客户和资源，并提高产品交付的效率。",
             }
         },
         {
             id: uuidv4(),
             q: {
-                english: "How do you define logistics and transport?",
-                arabic: "كيف تُّعرف الخدمات اللوجستية والنقل؟",
-                russian: "Как вы определяете логистику и транспорт?",
-                chinese: "如何定义物流和运输?",
+                english: "What challenges and difficulties can arise in international logistics?",
+                arabic: "ما هي التحديات والصعوبات التي يمكن أن تنشأ في مجال الخدمات اللوجستية الدولية؟",
+                russian: "Какие вызовы и трудности могут возникнуть в сфере международной логистики?",
+                chinese: "国际物流可能会遇到哪些挑战和困难？",
             },
             a: {
-                english: "Transportation - moving goods from one place to another - is part of logistics. Logistics also includes product packaging for storage, shipping, and distribution networks that move products inside and outside the company to its customers.",
-                arabic: "يعد نقل البضائع من مكان إلى آخر جزءًا من الخدمات اللوجستية. تشمل الخدمات اللوجستية أيضًا تغليف المنتجات لشبكات التخزين والشحن والتوزيع التي تنقل المنتجات داخل الشركة وخارجها إلى عملائها.",
-                russian: "Транспортировка - перемещение товаров из одного места в другое - является частью логистики. Логистика также включает в себя упаковку продукции для хранения, отгрузку и распределительные сети, которые перемещают продукцию внутри компании и снаружи к ее клиентам.",
-                chinese: "运输-将货物从一个地方移动到另一个地方-是物流的一部分。 物流还包括用于存储，运输和分销网络的产品包装，这些网络将产品在公司内外移动给客户。",
+                english: "Some of the main challenges include complexities in customs clearance, differences in rules and regulations between countries, language and cultural barriers, as well as managing the lengthy delivery process.",
+                arabic: "تشمل بعض التحديات الرئيسية التعقيدات في التخليص الجمركي ، والاختلافات في القواعد واللوائح بين البلدان ، والحواجز اللغوية والثقافية ، فضلاً عن إدارة عملية التسليم المطولة.",
+                russian: "Некоторые из основных трудностей включают сложности в таможенном оформлении, различия в правилах и нормах между странами, языковые и культурные барьеры, а также управление длинным процессом доставки.",
+                chinese: "一些主要挑战包括复杂的海关清关过程，不同国家之间的规则和法规的差异，语言和文化障碍，以及管理漫长的交货过程。",
             }
         },
     ]

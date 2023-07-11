@@ -244,7 +244,7 @@ const KarInNumbers = () => {
                                 <p className="text-3xl font-semibold">
                                     {
                                         language === "English"
-                                            ? "Send us a quote request, and we&apos;ll get back to you."
+                                            ? "Send us a quote request, and we'll get back to you."
                                             : language === "العربية" ? "أرسل إلينا طلب عرض أسعار وسنرد عليك في خلال ثلاثة أيام عمل."
                                                 : language === "Russian" ? "Отправьте нам запрос на расценки, и мы свяжемся с вами."
                                                     : "向我们发送报价请求，您将得到回复。"

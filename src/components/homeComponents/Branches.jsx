@@ -151,7 +151,9 @@ const Branches = () => {
                                         {
                                             language === "English"
                                                 ? branch.title.english
-                                                : branch.title.arabic
+                                                : language === "العربية" ? branch.title.english
+                                                : language === "Russian" ? branch.title.russian
+                                                : branch.title.chinese
                                         }
                                     </p>
 
@@ -159,7 +161,9 @@ const Branches = () => {
                                         {
                                             language === "English"
                                                 ? branch.description.english.substring(0, 150)
-                                                : branch.description.arabic.substring(0, 150)
+                                                : language === "العربية" ? branch.description.arabic.substring(0, 150)
+                                                : language === "Russian" ? branch.description.russian.substring(0, 150)
+                                                : branch.description.chinese.substring(0, 150)
                                         }
                                     </p>
 
@@ -181,7 +185,9 @@ const Branches = () => {
                                         {
                                             language === "English"
                                                 ? branch.readMore.english
-                                                : branch.readMore.arabic
+                                                : language === "العربية" ? branch.readMore.arabic
+                                                : language === "Russian" ? branch.readMore.russian
+                                                :  branch.readMore.chinese
                                         }
                                     </button>
                                 </div>
@@ -241,13 +247,15 @@ const Branches = () => {
                             "
                         >
                             <div style={{ backgroundImage: `url(${branch.image})` }} className="w-full h-[50%] lg:w-[50%] lg:h-[80%] rounded-2xl bg-cover bg-center bg-no-repeat opacity-50" />
-                            <div className="lg:w-[50%] lg:text-2xl large:text-3xl">
+                            <div className="lg:w-[50%] lg:text-xl large:text-3xl">
 
                                 <p>
                                     {
                                         language === "English"
                                             ? branch.description.english
-                                            : branch.description.arabic
+                                            : language === "العربية" ? branch.description.arabic
+                                            : language === "Russian" ? branch.description.russian
+                                            : branch.description.chinese
                                     }
                                 </p>
                             </div>
