@@ -75,7 +75,7 @@ export const cards = [
             russian: "Наш Турецкий офис поможет вам организовать покупку жилья по лучшим ценам, также помощь в оформлении документов",
             chinese: "我们的土耳其办事处将帮助您以最优惠的价格安排购买住房，并协助办理文书工作"
         },
-        to: "https://www.facebook.com",
+        to: "https://tolerance-realestate.com/",
     },
 ]
 

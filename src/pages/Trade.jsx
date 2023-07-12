@@ -29,7 +29,7 @@ const Hero = styled.div`
 
   .headline {
     @media(min-width: 1600px) and (max-width: 1919px) {
-      font-size: 7.5rem;
+      font-size: 110px;
     }
 
     @media(width: 1366px) and (height: 625px) {
@@ -47,7 +47,12 @@ const Hero = styled.div`
 
 
   .cta {
+    
     @media(min-width: 1600px) and (max-width: 1919px) {
+      bottom: 1%;
+    }
+    
+    @media(height: 1050px) {
       bottom: 10%;
     }
 

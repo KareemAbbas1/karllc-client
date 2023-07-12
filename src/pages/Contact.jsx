@@ -87,7 +87,8 @@ const Contact = () => {
             max-w-screen-xl 
             w-full 
             h-full
-            lg:h-[700px] 
+            lg:h-[700px]
+            lmd:scale-[0.9]
             text-dark 
             bg-white 
             lg:bg-transparent
