@@ -28,13 +28,13 @@ const Container = styled.div`
         }
     }
 `
-const OverLay = styled.div`
-    width: 100%;
-    height: 110%;
-    position: absolute;
-    background: #0C1118;
-    opacity: 0.5;
-`
+// const OverLay = styled.div`
+//     width: 100%;
+//     height: 110%;
+//     position: absolute;
+//     background: #0C1118;
+//     opacity: 0.5;
+// `
 
 const Contact = () => {
 
@@ -124,8 +124,8 @@ const Contact = () => {
                 <p>
                   {
                     language === "English"
-                      ? "+793 855 09782"
-                      : "793 855 09782+"
+                      ? "+0238364610"
+                      : "0238364610+"
                   }
                 </p>
               </div>

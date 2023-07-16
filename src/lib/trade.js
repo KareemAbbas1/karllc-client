@@ -42,7 +42,7 @@ export const hero = {
         {
             title: {
 
-                english: "quarries and mines",
+                english: "Quarries and mines",
                 arabic: "المحاجر والمعادن",
                 russian: "Kарьеры и шахты",
                 chinese: "采石场和矿山",

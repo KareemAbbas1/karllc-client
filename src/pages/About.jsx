@@ -32,8 +32,8 @@ const cards = [
     building: "K.A.R. Petroleum LLC (reg. 2311296918) K.A.R. LLC (reg. 0105073983) Celine Tourism LLC (reg. 0105079640) Dobro LLC (reg. 0105080317) KASLA LLC (reg. 0105074722)",
     location: "385020, Maykop, Proletarskaya, 334, office 316",
     phone: {
-      arabic: "793 855 09782+",
-      else: "+793 855 09782"
+      arabic: "0238364610+",
+      else: "+0238364610"
     }
   },
   {
@@ -47,8 +47,8 @@ const cards = [
     building: "KAR EMLAK GAYRIMENKUL DANISMALIK PETROL INSAAT A.S. (reg. 4991254125)",
     location: "BARBAROS MAH. AL ZAMBAK SK. VARYAP MERIDIAN A BLOK GRAND TOWER NO: 2 İÇ KAPI NO: 355 ATAŞEHİR/ İSTANBUL",
     phone: {
-      arabic: "905 322 904789+",
-      else: "+905 322 904789"
+      arabic: "0238364610+",
+      else: "+0238364610"
     }
   },
   {
@@ -62,8 +62,8 @@ const cards = [
     building: "HDS Business Centre - Office 3605 - Jumeirah Lake Towers",
     location: "Dubai - United Arab Emirates",
     phone: {
-      arabic: "905 3229 04789+",
-      else: "+905 3229 04789"
+      arabic: "0238364610+",
+      else: "+0238364610"
     }
   },
   {
@@ -74,11 +74,11 @@ const cards = [
       russian: "rus",
       turkish: "tur",
     },
-    building: "6 october city the doctors towers. building 21, office no:9 in second floor",
-    location: "Egypt, Cairo",
+    building: "The doctors towers. building 21, office no:9 in second floor",
+    location: "6 October City, Cairo, Egypt",
     phone: {
-      arabic: "905 3229 04789+",
-      else: "+905 3229 04789"
+      arabic: "0238364610+",
+      else: "+0238364610"
     }
   },
 ]

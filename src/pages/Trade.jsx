@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import TradeHero from '../assets/TradeHero.jpg'
+// import TradeHero from '../assets/TradeHero.jpg'
 import MiniMap from '../assets/MiniMap.png'
 import LargeMap from '../assets/LargeMap.png'
 import { hero, mapSection, faqs } from "../lib/trade"
@@ -16,14 +16,8 @@ import { useLocation, useNavigate } from "react-router-dom"
 
 
 
-const Hero = styled.div`
-  .over-lay {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    bottom: 0;
-    background: linear-gradient(0deg, #0C1118 0%, rgba(12, 17, 24, 0.00) 100%);
-  } 
+const Hero = styled.div` 
+  z-index: 2;
 
   .headline {
     @media(min-width: 1600px) and (max-width: 1919px) {
@@ -64,6 +58,8 @@ const Hero = styled.div`
         .item-content {
           display: block;
           transition: all 300ms ease-in-out;
+          color: white;
+          z-index: 100;
         }   
       }
     }
@@ -90,6 +86,17 @@ const Hero = styled.div`
   }
 `
 
+const OverLay = styled.div`
+    width: 100%;
+    height: 100%;
+    min-height: 810px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(180deg, rgba(12, 17, 24, 0.32) 0%, rgba(12, 17, 24, 0) 100%);
+    /* background: linear-gradient(0deg, #0C1118 0%, rgba(12, 17, 24, 0.00) 100%); */
+    z-index: 1;
+`
 
 const MapContent = styled.div`
   @media(min-height: 625px) and (max-height: 657px) {
@@ -122,7 +129,7 @@ const MapPin = styled.div`
 
 const Trade = () => {
 
-  // const currentLocation = useLocation();
+  // const currentLo  cation = useLocation();
   const { language, loading, setLoading, onScrollableLinkClick } = UseStateContext();
 
   const currentLocation = useLocation();
@@ -148,8 +155,11 @@ const Trade = () => {
       }
       <div className="w-screen min-h-[100vh] pt-32 md:pt-40 lg:pt-24 pb-12 lg:pb-32 large:pb-48 bg-dark text-white px-4 md:px-6 lg:px-4 lg:flex flex-col items-center snap-y-mandatory">
 
+        <OverLay />
 
-        <div className="w-screen h-screen" />
+        <div className="w-screen h-screen">
+          {/* <div className="w-full h-full bg-dark absolute top-0 left-0 z-[1000]" /> */}
+        </div>
 
         {/* Desktop video */}
         <div
@@ -239,7 +249,6 @@ const Trade = () => {
         // style={{ backgroundImage: `url(${TradeHero})` }}
         >
 
-          {/* <div className="over-lay" /> */}
 
           <div className="
           hero-content 
@@ -368,7 +377,7 @@ const Trade = () => {
                         : language === "Russian" ? hero.bulletPoints[3].title.russian
                           : hero.bulletPoints[3].title.chinese
                   }
-                  <img className="item-content absolute -bottom-[80px] -right-10 rounded-lg z-[1000] w-[300px]" src="https://res.cloudinary.com/dqmqc0uaa/image/upload/v1689269318/pexels-engin-akyurt-1435904_adt4gi.jpg" />
+                  <img className="item-content absolute -bottom-[1%] rounded-lg w-[300px]" src="https://res.cloudinary.com/dqmqc0uaa/image/upload/v1689269318/pexels-engin-akyurt-1435904_adt4gi.jpg" />
                 </li>
               </ol>
 
@@ -592,7 +601,9 @@ const Trade = () => {
                       : mapSection.secondParagraph.chinese
               }
             </p>
-            <button className={`
+            <button
+              onClick={() => onScrollableLinkClick("kar-in-numbers", currentLocation, navigate)}
+              className={`
                 border-2 
                 border-blue 
                 text-lg 

@@ -181,7 +181,7 @@ export default function DefaultLayout() {
                 <div className="flex items-center justify-between text-white w-full max-w-[1680px] ">
                   <div className="w-full flex items-center justify-between">
                     <div className='flex items-center gap-3 xl:gap-20'>
-                      <NavLink to="/" className="flex-shrink-0" onClick={() => {setLoading(true); setTimeout(() => {location.reload()}, 100)}}>
+                      <NavLink to="/" className="flex-shrink-0" onClick={() => { setLoading(true); setTimeout(() => { location.reload() }, 100) }}>
                         <img
                           className="h-8 xl:h-10 w-auto logos"
                           src={Logo}
@@ -318,7 +318,16 @@ export default function DefaultLayout() {
                         }
                       </NavLink> */}
                       <div className='bg-blue h-6 w-[2px] rounded mx-5' />
-                      <button className='hidden md:block bg-blue text-white 2xl:text-sm font-semibold pb-2 pt-3 px-5 rounded-md hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers",  currentLocation, navigate)}>
+
+                      <NavLink
+                        to="https://dev.karllc-group.com/"
+                        target="_blank"
+                        className="hidden lg:block me-6"
+                      >
+                        Login
+                      </NavLink>
+
+                      <button className='hidden md:block bg-blue text-white 2xl:text-sm font-semibold pb-2 pt-3 px-5 rounded-md hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers", currentLocation, navigate)}>
                         {
                           language === "English"
                             ? "Get a Quote"
@@ -384,7 +393,7 @@ export default function DefaultLayout() {
                         :
                         <button
                           key={item.name.english}
-                          onClick={() => onScrollableLinkClick(item.to.split("#")[1],  currentLocation, navigate)}
+                          onClick={() => onScrollableLinkClick(item.to.split("#")[1], currentLocation, navigate)}
                           className={
                             `
                           rounded-md px-3 md:px-1 xl:px-3 2xl:px-8 py-2 xl:text-lg font-medium md:text-sm navLinks
@@ -402,7 +411,7 @@ export default function DefaultLayout() {
                     ))}
                   </div>
                   <div className="px-2 sm:px-3">
-                    <button className='bg-blue text-white font-semibold py-2 px-5 rounded-xl hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers",  currentLocation, navigate)}>
+                    <button className='bg-blue text-white font-semibold py-2 px-5 rounded-xl hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers", currentLocation, navigate)}>
                       Get a Quote
                     </button>
                   </div>
@@ -495,7 +504,7 @@ export default function DefaultLayout() {
                 </div>
                 <div className='flex items-center gap-3'>
                   <PhoneIcon className='w-6 h-auto' />
-                  <p>+793 855 09782</p>
+                  <p>+0238364610</p>
                 </div>
                 <div className='flex items-center gap-3'>
                   <EnvelopeIcon className='w-6 h-auto' />
