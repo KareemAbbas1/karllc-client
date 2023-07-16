@@ -5,28 +5,63 @@ import { v4 as uuidv4 } from 'uuid';
 export const hero = {
     headline: {
         english: "Kar LLC For Export & Import",
-        arabic: "مجومعة كار للإستيراد والتصدير",
+        arabic: "مجموعة كار للإستيراد والتصدير",
         russian: "ООО 《Кар》Экспорт-Импорт»",
         chinese: "KarLLC进出口",
     },
     bulletPoints: [
         {
-            english: "Petroleum",
-            arabic: "بتروكيماويات",
-            russian: "Нефть",
-            chinese: "石油",
+            title: {
+                english: "Petroleum",
+                arabic: "بتروكيماويات",
+                russian: "Нефть",
+                chinese: "石油",
+            },
+            paragraph: {
+                english: "Trading of petroleum derivatives for fuel and fuel. Mediation in crude oil trade between countries and companies. Securing petroleum derivatives used in industries and fertilizers",
+                arabic: "تجارة المشتقات النفطية للمحروقات و الوقود . الوساطة في تجارة البترول الخام بين الدول و الشركات. تامين مواد المشتقات البترولية التي تدخل في الصناعات و السماد",
+                russian: "Торговля нефтепродуктами на топливо и горючее. Посредничество в торговле сырой нефтью между странами и компаниями. Защита нефтепродуктов, используемых в промышленности, и удобрений",
+                chinese: "燃料和燃料的石油衍生品交易。国家和公司之间原油贸易的调解。确保工业和化肥中使用的石油衍生物的安全"
+            }
         },
         {
-            english: "Foods",
-            arabic: "أغذية",
-            russian: "Еда",
-            chinese: "食品",
+            title: {
+
+                english: "Foods and meat from South America",
+                arabic: "أغذية",
+                russian: "Еда",
+                chinese: "食品",
+            },
+            paragraph: {
+                english: "Trading in grains, wheat, fodder and other essential trades for food security. Frozen, canned meat and food. Trading of fresh and frozen fruits and vegetables. Food supplement trade.",
+                arabic: "تجارة الحبوب و القمح و االعلف و غيره من التجارات الأساسية للأمن الغذائي. المجمدات و المعلبات اللحوم و االغذية. تجارة الفاكهة و الخضار الطازجة و المجمدة. تجارة المكمالت الغذائية .",
+                russian: "Торговля зерном, пшеницей, фуражом и другими товарами, необходимыми для обеспечения продовольственной безопасности. Замороженные, мясные и пищевые консервы. Торговля свежими и замороженными фруктами и овощами. Торговля пищевыми добавками.",
+                chinese: "谷物、小麦、饲料和其他粮食安全重要贸易的贸易。, 冷冻、罐头肉类和食品。, 新鲜和冷冻水果和蔬菜的贸易。, 食品补充剂贸易。"
+            }
         },
         {
-            english: "Heavy Equipment",
-            arabic: "معدات ثقيلة",
-            russian: "Тяжелое оборудование",
-            chinese: "重型设备",
+            title: {
+
+                english: "quarries and mines",
+                arabic: "المحاجر والمعادن",
+                russian: "Kарьеры и шахты",
+                chinese: "采石场和矿山",
+            },
+            paragraph: {
+                english: "Calcium carbonate, Red and yellow iron oxide, Sandy silica, Phosphates Quartz, All kinds of marble",
+                arabic: "كربونات الكالسيوم اوكسيد الحديد الأحمر و لأصفر, السيلكا الرملية, الفوسفات, الكوارتز, الرخام بانواعه,",
+                russian: "Карбонат кальция, Красный и желтый оксид железа, Песчаный кремнезем, Фосфаты, Кварц, Все виды мрамора",
+                chinese: "碳酸钙, 红色和黄色氧化铁, 砂质二氧化硅, 磷酸盐, 石英, 各类大理石"
+            }
+        },
+        {
+            title: {
+                english: "Food and meat from Africa",
+                arabic: "الغذاء واللحوم من أفريقيا",
+                russian: "Еда и мясо из Африки",
+                chinese: "来自非洲的食物和肉类"
+            },
+            paragraph: false
         },
     ],
     getQuote: {

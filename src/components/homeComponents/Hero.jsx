@@ -67,7 +67,7 @@ const Hero = () => {
               autoplay="true"
               playsinline="true"
               >
-              <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688559175/pexels-kelly-lacy-6618026_2160p_wynkrp.webm"  type="video/webm"/>
+              <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1689254439/pexels-henry-5396795_2160p_xqhudg.webm"  type="video/webm"/>
             </video>
           ` }}
             // src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" 

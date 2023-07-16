@@ -38,7 +38,7 @@ export const cards = [
         description: {
             english: "We will be happy to help you organize your activities in the field of trade. ",
             arabic: "يسعدنا مساعدتك في تنظيم أنشطتك في مجال التجارة.",
-            russian: "мы с радостью поможем вам организовать вашу деятельность в сфере торговли.",
+            russian: "Mы с радостью поможем вам организовать вашу деятельность в сфере торговли.",
             chinese: "我们很乐意帮助您组织您在贸易领域的活动"
         },
         to: "/trade",
@@ -49,7 +49,7 @@ export const cards = [
         title: {
             english: "Logistics",
             arabic: "الخدمات اللوجستية",
-            russian: "логистика.",
+            russian: "Логистика",
             chinese: "后勤。"
         },
         description: {
@@ -66,7 +66,7 @@ export const cards = [
         title: {
             english: "Real Estate",
             arabic: "التطوير العقاري",
-            russian: "недвижимость. ",
+            russian: "Недвижимость",
             chinese: "房地产。"
         },
         description: {
@@ -110,14 +110,14 @@ export const slider = {
         {
             english: "LOGISTICS & SHIPPING",
             arabic: "الخدمات اللوجيستية",
-            russian: "логистика",
+            russian: "Логистика",
             chinese: "后勤。",
             to: "/logistics"
         },
         {
             english: "REAL ESTATE",
             arabic: "التطوير العقاري",
-            russian: "недвижимость",
+            russian: "Недвижимость",
             chinese: "房地产。",
             to: "https://www.facebook.com"
         },

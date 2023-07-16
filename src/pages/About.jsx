@@ -59,8 +59,8 @@ const cards = [
       russian: "rus",
       turkish: "tur",
     },
-    building: "KAR EMLAK GAYRIMENKUL DANISMALIK PETROL INSAAT A.S. (reg. 4991254125)",
-    location: "BARBAROS MAH. AL ZAMBAK SK. VARYAP MERIDIAN A BLOK GRAND TOWER NO: 2 İÇ KAPI NO: 355 ATAŞEHİR/ İSTANBUL",
+    building: "HDS Business Centre - Office 3605 - Jumeirah Lake Towers",
+    location: "Dubai - United Arab Emirates",
     phone: {
       arabic: "905 3229 04789+",
       else: "+905 3229 04789"
@@ -69,28 +69,13 @@ const cards = [
   {
     id: uuidv4(),
     title: {
-      english: "Estonia Office",
-      arabic: "مكتب إستونيا",
-      russian: "rus",
-      turkish: "tur",
-    },
-    building: "KAR EMLAK GAYRIMENKUL DANISMALIK PETROL INSAAT A.S. (reg. 4991254125)",
-    location: "BARBAROS MAH. AL ZAMBAK SK. VARYAP MERIDIAN A BLOK GRAND TOWER NO: 2 İÇ KAPI NO: 355 ATAŞEHİR/ İSTANBUL",
-    phone: {
-      arabic: "905 3229 04789+",
-      else: "+905 3229 04789"
-    }
-  },
-  {
-    id: uuidv4(),
-    title: {
-      english: "Saudi Arabia Office",
+      english: "Egypt Office",
       arabic: "مكتب المملكة السعودية",
       russian: "rus",
       turkish: "tur",
     },
-    building: "KAR EMLAK GAYRIMENKUL DANISMALIK PETROL INSAAT A.S. (reg. 4991254125)",
-    location: "BARBAROS MAH. AL ZAMBAK SK. VARYAP MERIDIAN A BLOK GRAND TOWER NO: 2 İÇ KAPI NO: 355 ATAŞEHİR/ İSTANBUL",
+    building: "6 october city the doctors towers. building 21, office no:9 in second floor",
+    location: "Egypt, Cairo",
     phone: {
       arabic: "905 3229 04789+",
       else: "+905 3229 04789"

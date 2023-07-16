@@ -122,9 +122,9 @@ export default function DefaultLayout() {
         document.getElementById("menu-btn").style.top = 'unset'
         const navbar = document.getElementById("navbar")
         navbar.style.background = "transparent";
-        currentLocation.pathname === "/trade" && Array.from(document.getElementsByClassName('navLinks')).map(
-          el => el.style.color = "#000"
-        );
+        // currentLocation.pathname === "/trade" && Array.from(document.getElementsByClassName('navLinks')).map(
+        //   el => el.style.color = "#000"
+        // );
         (currentLocation.pathname === "/about-us") && Array.from(document.getElementsByClassName('navLinks')).map(
           (el, i) => {
             if (i !== 2) { el.style.color = "#000" }
@@ -134,7 +134,7 @@ export default function DefaultLayout() {
         navbar.style.paddingBlock = '2rem'
         navbar.style.top = '0'
         navbar.style.border = 'none';
-        (currentLocation.pathname === "/trade" || currentLocation.pathname === "/about-us") && (document.getElementById("languages-list").style.color = 'black')
+        (currentLocation.pathname === "/about-us") && (document.getElementById("languages-list").style.color = 'black')
         window.innerWidth > 450 && currentLocation.pathname !== "/contact-us" && (document.getElementById("scroll-down-right").style.display = 'flex')
       }
     }
@@ -173,7 +173,6 @@ export default function DefaultLayout() {
                   flex
                   items-center
                   justify-center
-                  ${currentLocation.pathname === '/trade' && "border-b border-gray-700"}
                 `}
                 style={{ transition: "all 500ms ease-in-out" }}
               >
@@ -184,7 +183,7 @@ export default function DefaultLayout() {
                     <div className='flex items-center gap-3 xl:gap-20'>
                       <NavLink to="/" className="flex-shrink-0" onClick={() => {setLoading(true); setTimeout(() => {location.reload()}, 100)}}>
                         <img
-                          className="h-6 xl:h-7 w-auto logos"
+                          className="h-8 xl:h-10 w-auto logos"
                           src={Logo}
                           alt="Your Company"
                         />
@@ -210,7 +209,7 @@ export default function DefaultLayout() {
                                 style={{
                                   color: `
                                   ${item.to === currentLocation.pathname ? "#fff"
-                                      : (currentLocation.pathname === '/trade' || currentLocation.pathname === '/about-us')
+                                      : (currentLocation.pathname === '/about-us')
                                         ? "#000"
                                         : "#fff"
                                     }
@@ -237,7 +236,7 @@ export default function DefaultLayout() {
                                 key={item.name.english}
                                 // href={item.to}
                                 onClick={() => onScrollableLinkClick(item.to.split("#")[1], currentLocation, navigate)}
-                                style={{ color: `${(currentLocation.pathname === '/trade' || currentLocation.pathname === '/about-us') ? "#000" : "#fff"}` }}
+                                style={{ color: `${(currentLocation.pathname === '/about-us') ? "#000" : "#fff"}` }}
                                 className={
                                   `
                                   rounded-md px-2 md:px-1 xl:px-3 2xl:px-8 py-2 xl:text-lg font-medium text-white md:text-sm navLinks
@@ -263,7 +262,7 @@ export default function DefaultLayout() {
                       <LanguagesList
                         language={language}
                         width={window.innerWidth}
-                        className={`${currentLocation.pathname === "/trade" || currentLocation.pathname === "/about-us" ? "text-black" : "text-gray-300"}`} id="languages-list"
+                        className={`${currentLocation.pathname === "/about-us" ? "text-black" : "text-gray-300"}`} id="languages-list"
                         onClick={() => setOpenLangList(!openLangList)}
                       >
                         {/* ${currentLocation.pathname === "/contact-us" && 'hidden'} */}
@@ -521,7 +520,7 @@ export default function DefaultLayout() {
               </div>
             </div>
 
-            <div className='w-36 py-2 px-6 border border-blue rounded-md'>
+            <div className='w-36 py-2 px-6 rounded-md'>
               <img src={Logo} />
             </div>
             <div className='border-b border-gray-500 w-[98%] absolute bottom-8 left-0 right-0 mx-auto xs:hidden' />

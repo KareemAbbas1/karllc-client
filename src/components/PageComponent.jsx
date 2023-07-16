@@ -25,7 +25,7 @@ const PageComponent = ({ children }) => {
             >
                 <ScrollToTop />
 
-                <div className="max-w-screen-xl flex flex-col items-center justify-center mx-auto px-2 xl:px-12 2xl:px-0 ">
+                <div className="max-w-screen-xl flex flex-col items-center justify-center mx-auto px-2 xl:px-12 2xl:px-0">
                     {children}
 
                     

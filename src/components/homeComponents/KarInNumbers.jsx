@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Logo from "../../assets/logo.png";
 import { karInNumbers } from "../../lib/home";
 import { UseStateContext } from "../../context/ContextProvider";
+import { useForm, ValidationError } from '@formspree/react';
 // import Linkedin from '../../assets/Linkedin.png'
 // import Facebook from '../../assets/Facebook.png'
 // import Twitter from '../../assets/Twitter.png'
@@ -67,6 +68,10 @@ const OverLay = styled.div`
 const KarInNumbers = () => {
 
     const { language } = UseStateContext();
+
+
+    // Form submititon
+    const [state, handleSubmit] = useForm("xnqkqoyb");
 
     return (
         <Container className="relative" id="kar-in-numbers">
@@ -221,12 +226,12 @@ const KarInNumbers = () => {
             "
                     >
                         <div className=" py-0 my-0 lg:pb-6 lg:px-4 lg:rounded-xl lg:w-[50%] lg:h-full xl:flex flex-col justify-center lg:justify-start">
-                            <h1 className="text-blue text-3xl pt-2 lg:text-2xl xl:text-4xl font-semibold border-s-4 border-blue px-2 mb-6 xl:mb-16">
+                            <h1 className="text-blue text-3xl pt-2 lg:text-2xl xl:text-4xl font-semibold border-s-4 border-0 border-blue px-2 mb-6 xl:mb-16">
                                 {
                                     language === "English"
                                         ? "Get a Quote"
                                         : language === "العربية" ? "احصل على عرض"
-                                            : language === "Russian" ? "получить цитату О нас"
+                                            : language === "Russian" ? "О нас"
                                                 : "获取报价"
                                 }
                             </h1>
@@ -259,64 +264,147 @@ const KarInNumbers = () => {
                         </div>
 
                         <form
+                            onSubmit={handleSubmit}
                             id="get-a-quote"
                             className="flex flex-col lg:justify-center lg:text-white px-2 lg:px-6 py-3 rounded-xl h-full lg:w-full lg:shadow-lg"
                             dir={language === "العربية" ? "rtl" : "ltr"}
                         >
-                            <div className="w-full flex flex-col">
-                                <label className="mb-1 text-[16px]">
-                                    {
-                                        language === "English"
-                                            ? "Name"
-                                            : language === "العربية" ? "الأسم"
-                                                : language === "Russian" ? "имя"
-                                                    : "姓名"
-                                    }
-                                    <span className="text-[red]">*</span></label>
-                                <input className="bg-transparent text-[16px] h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-b border-gray-400" />
+                            {
+                                state.succeeded
+                                    ?
+                                    <div className="w-full h-full flex justify-center items-center">
+                                        <div
+                                            className="
+                                    w-[300px] 
+                                    h-[300px] 
+                                    rounded-full 
+                                    bg-blue 
+                                    text-white 
+                                    flex 
+                                    flex-col 
+                                    justify-center 
+                                    items-center 
+                                    gap-2
+                                    border-2 
+                                    border-0 border-blue
+                                    "
+                                        >
+                                            <p className="text-[7rem]">
+                                                &#10003;
+                                            </p>
+                                            <p className="text-md font-semibold text-center w-[80%]">
+                                                {
+                                                    language === "العربية"
+                                                        ? "تم الاشتراك بنجاح. سيتم التواصل معك عن طريق احد موظفينا قريباً"
+                                                        : "Thanks for subscribing"
+                                                }
+                                            </p>
+                                        </div>
+                                    </div>
+                                    :
+                                    <>
+                                        <div className="w-full flex flex-col">
+                                            <label className="mb-1 text-[16px]">
+                                                {
+                                                    language === "English"
+                                                        ? "Name"
+                                                        : language === "العربية" ? "الأسم"
+                                                            : language === "Russian" ? "имя"
+                                                                : "姓名"
+                                                }
+                                                <span className="text-[red]">*</span></label>
+                                            <input
+                                                className="
+                                        bg-transparent 
+                                        text-[16px]
+                                        h-10 px-2 
+                                        lg:h-12 
+                                        mb-3 
+                                        lg:mb-8 
+                                        border-0 border-b
+                                        border-gray-400
+                                    "
+                                                required
+                                                id="get-quote-name"
+                                                type="text"
+                                                name="name"
+                                            />
 
-                                <label className="mb-1 text-[16px]">
-                                    {
-                                        language === "English"
-                                            ? "Email Address"
-                                            : language === "العربية" ? "البريد الإلكتروني"
-                                                : language === "Russian" ? "Адрес электронной почты"
-                                                    : "电子邮件地址"
-                                    }
-                                    <span className="text-[red]">*</span></label>
-                                <input className="bg-transparent text-[16px] h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-b border-gray-400" />
 
-                                <label className="mb-1 text-[16px]">
-                                    {
-                                        language === "English"
-                                            ? "Phone Number"
-                                            : language === "العربية" ? "رقم التليفون"
-                                                : language === "Russian" ? "Номер телефона"
-                                                    : "电话号码"
-                                    }
-                                    <span className="text-[red]">*</span></label>
-                                <input className="bg-transparent text-[16px] h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-b border-gray-400" />
-                            </div>
+                                            <label className="mb-1 text-[16px]">
+                                                {
+                                                    language === "English"
+                                                        ? "Email Address"
+                                                        : language === "العربية" ? "البريد الإلكتروني"
+                                                            : language === "Russian" ? "Адрес электронной почты"
+                                                                : "电子邮件地址"
+                                                }
+                                                <span className="text-[red]">*</span></label>
+                                            <input
+                                                className="bg-transparent text-[16px] h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-0 border-b border-gray-400"
+                                                id="get-quote-email"
+                                                type="email"
+                                                name="email"
+                                                required
+                                            />
 
-                            <label className="mb-1 text-[16px]">
-                                {
-                                    language === "English"
-                                        ? "Message"
-                                        : language === "العربية" ? "الرسالة"
-                                            : language === "Russian" ? "Сообщение"
-                                                : "信息"
-                                }
-                                <span className="text-[red]">*</span></label>
-                            <textarea rows="4" className="bg-transparent text-[16px] border-0 border-b border-gray-400 lg:h-48" />
-                            <button className="bg-blue text-white text-xl mt-4 py-2 rounded-lg font-semibold lg:w-[30%] lg:self-end hover:opacity-75">
-                                {
-                                    language === "English"
-                                        ? "Send Message"
-                                        : language === "العربية" ? "إرسال"
-                                            : language === "Russian" ? "Отправить сообщение"
-                                                : "发信息"
-                                }
-                            </button>
+                                            <label className="mb-1 text-[16px]">
+                                                {
+                                                    language === "English"
+                                                        ? "Phone Number"
+                                                        : language === "العربية" ? "رقم التليفون"
+                                                            : language === "Russian" ? "Номер телефона"
+                                                                : "电话号码"
+                                                }
+                                                <span className="text-[red]">*</span></label>
+                                            <input
+                                                className="bg-transparent text-[16px] h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-0 border-b border-gray-400"
+                                                id="get-quote-phone"
+                                                type="tel"
+                                                name="phone"
+                                                required
+                                            />
+                                        </div>
+
+
+                                        <label className="mb-1 text-[16px]">
+                                            {
+                                                language === "English"
+                                                    ? "Message"
+                                                    : language === "العربية" ? "الرسالة"
+                                                        : language === "Russian" ? "Сообщение"
+                                                            : "信息"
+                                            }
+                                            <span className="text-[red]">*</span></label>
+                                        <textarea
+                                            rows="4"
+                                            className="bg-transparent text-[16px] border-0 border-0 border-b border-gray-400 lg:h-48"
+                                            id="get-quote-message"
+                                            name="Quote Request"
+                                            required
+                                        />
+
+                                        <ValidationError
+                                            prefix="Message"
+                                            field="message"
+                                            errors={state.errors}
+                                        />
+
+                                        <button
+                                            type="submit"
+                                            disabled={state.submitting}
+                                            className="bg-blue text-white text-xl mt-4 py-2 rounded-lg font-semibold lg:w-[30%] lg:self-end hover:opacity-75"
+                                        >
+                                            {
+                                                language === "English"
+                                                    ? "Send Message"
+                                                    : language === "العربية" ? "إرسال"
+                                                        : language === "Russian" ? "Отправить сообщение"
+                                                            : "发信息"
+                                            }
+                                        </button>
+                                    </>
+                            }
                         </form>
                     </div>
 
@@ -336,32 +424,32 @@ const KarInNumbers = () => {
                     gap-6
                     lg:pt-28
                     ">
-                        <h1 className="text-2xl font-semibold text-center lg:absolute border-b top-8 left-0 right-0 mx-auto">Get a Quote</h1>
+                        <h1 className="text-2xl font-semibold text-center lg:absolute border-0 border-b top-8 left-0 right-0 mx-auto">Get a Quote</h1>
                         <div className="w-full lg:w-[48%]">
                             <label className="text-[1rem]">Name <span style={{ color: 'red' }}>*</span></label>
                             <input
-                                className="w-full bg-transparent text-lg py-2 px-2 border-b "
+                                className="w-full bg-transparent text-lg py-2 px-2 border-0 border-b "
                             />
                         </div>
 
                         <div className="w-full lg:w-[48%]">
                             <label className="text-[1rem]">Company <span style={{ color: 'red' }}>*</span></label>
                             <input
-                                className="w-full bg-transparent text-lg py-2 px-2 border-b "
+                                className="w-full bg-transparent text-lg py-2 px-2 border-0 border-b "
                             />
                         </div>
 
                         <div className="w-full lg:w-[48%]">
                             <label className="text-[1rem]">Email <span style={{ color: 'red' }}>*</span></label>
                             <input
-                                className="w-full bg-transparent text-lg py-2 px-2 border-b "
+                                className="w-full bg-transparent text-lg py-2 px-2 border-0 border-b "
                             />
                         </div>
 
                         <div className="w-full lg:w-[48%]">
                             <label className="text-[1rem]">Phone Number <span style={{ color: 'red' }}>*</span></label>
                             <input
-                                className="w-full bg-transparent text-lg py-2 px-2 border-b "
+                                className="w-full bg-transparent text-lg py-2 px-2 border-0 border-b "
                             />
                         </div>
 
@@ -369,7 +457,7 @@ const KarInNumbers = () => {
                             <label className="text-[1rem]">Your Request <span style={{ color: 'red' }}>*</span></label>
                             <textarea
                                 rows={4}
-                                className="w-full bg-transparent text-lg py-2 px-2 border-0 border-b border-gray-300 "
+                                className="w-full bg-transparent text-lg py-2 px-2 border-0 border-0 border-b border-gray-300 "
                             />
                         </div>
 

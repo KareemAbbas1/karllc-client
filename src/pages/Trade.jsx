@@ -9,8 +9,6 @@ import TradeHero from '../assets/TradeHero.jpg'
 import MiniMap from '../assets/MiniMap.png'
 import LargeMap from '../assets/LargeMap.png'
 import { hero, mapSection, faqs } from "../lib/trade"
-// import { useLocation } from "react-router-dom"
-
 import { UseStateContext } from '../context/ContextProvider'
 import Loader from "../components/Loader"
 import { useEffect } from "react"
@@ -21,7 +19,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 const Hero = styled.div`
   .over-lay {
     width: 100%;
-    height: 10%;
+    height: 100%;
     position: absolute;
     bottom: 0;
     background: linear-gradient(0deg, #0C1118 0%, rgba(12, 17, 24, 0.00) 100%);
@@ -47,30 +45,47 @@ const Hero = styled.div`
 
 
   .cta {
-    
-    @media(min-width: 1600px) and (max-width: 1919px) {
-      bottom: 1%;
-    }
-    
-    @media(height: 1050px) {
-      bottom: 10%;
-    }
 
-    @media(width: 1366px) and (height: 625px) {
-      bottom: 4px;
-
-      button {
-        padding-inline: 4rem;
+    .list-item {
+      transition: all 300ms ease-in-out;
+      
+      textarea {
+        display: none;
+        resize: none;
+        transition: all 300ms ease-in-out;
       }
-      /* margin-top: 3rem; */
+      
+      img {
+        display:none;
+        transition: all 300ms ease-in-out;
+      }
+      
+      &:hover {
+        .item-content {
+          display: block;
+          transition: all 300ms ease-in-out;
+        }   
+      }
     }
 
-    @media(width: 1280px) and (height: 800px) {
-      bottom: 12%;
+    @media(width: 1440px) and (height: 900px) {
+      bottom: 13%;
     }
 
-    @media(width: 1280px) and (height: 657px) {
-      bottom: 6%;
+    @media(width: 1440px) and (height: 1024px) {
+      bottom: 24%;
+    }
+    
+     @media(min-width: 1600px) and (max-width: 1919px) {
+      bottom: 17%;
+    }
+
+    @media(min-width: 1600px) and (height: 907px) {
+      bottom: 8%;
+    }
+
+    @media(min-height: 1200px) {
+      bottom: 20%;
     }
   }
 `
@@ -134,7 +149,76 @@ const Trade = () => {
       <div className="w-screen min-h-[100vh] pt-32 md:pt-40 lg:pt-24 pb-12 lg:pb-32 large:pb-48 bg-dark text-white px-4 md:px-6 lg:px-4 lg:flex flex-col items-center snap-y-mandatory">
 
 
-        <div className="w-screen h-screen " />
+        <div className="w-screen h-screen" />
+
+        {/* Desktop video */}
+        <div
+          className="hidden lg:block min-h-screen w-auto object-cover lg:w-screen lg:h-screen absolute top-0 left-0"
+          dangerouslySetInnerHTML={{
+            __html: `
+              <video
+                loop="true"
+                defaultmuted="true"
+                muted="true"
+                autoplay="true"
+                playsinline="true"
+                >
+                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1689266008/Inside_World_s_Biggest_Most_Advanced_Vertical_Farm_online-video-cutter.com_fb3x67.webm"  type="video/webm"/>
+              </video>
+            `
+          }}
+        >
+        </div>
+
+        {/* tablet video */}
+        <div
+          className="lg:hidden min-h-screen w-auto object-cover lg:w-screen lg:h-screen absolute top-0 left-0"
+          dangerouslySetInnerHTML={{
+            __html: `
+              <video
+                loop="true"
+                defaultmuted="true"
+                muted="true"
+                autoplay="true"
+                playsinline="true"
+                >
+                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_1600,w_1100/v1689266008/Inside_World_s_Biggest_Most_Advanced_Vertical_Farm_online-video-cutter.com_fb3x67.webm"  type="video/webm"/>
+              </video>
+            `
+          }}
+        >
+        </div>
+
+        {/* mobile video */}
+        <div
+          className="md:hidden min-h-screen w-auto object-cover lg:w-screen lg:h-screen absolute top-0 left-0"
+          dangerouslySetInnerHTML={{
+            __html: `
+              <video
+                loop="true"
+                defaultmuted="true"
+                muted="true"
+                autoplay="true"
+                playsinline="true"
+                >
+                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_1080,w_500/v1689266008/Inside_World_s_Biggest_Most_Advanced_Vertical_Farm_online-video-cutter.com_fb3x67.webm"  type="video/webm"/>
+              </video>
+            `
+          }}
+        >
+        </div>
+        {/* <video className="
+          h-screen
+          absolute
+          top-0
+          left-0
+          border
+        " 
+        loop muted autoPlay playsInline
+        >
+          <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1689266008/Inside_World_s_Biggest_Most_Advanced_Vertical_Farm_online-video-cutter.com_fb3x67.webm" type="video/webm" />
+        </video> */}
+
         {/* Hero */}
         <Hero className="
         hero 
@@ -152,7 +236,7 @@ const Trade = () => {
         bg-no-repeat
         lg:bg-top
         "
-          style={{ backgroundImage: `url(${TradeHero})` }}
+        // style={{ backgroundImage: `url(${TradeHero})` }}
         >
 
           {/* <div className="over-lay" /> */}
@@ -160,12 +244,11 @@ const Trade = () => {
           <div className="
           hero-content 
           w-screen 
-          h-screen 
+          h-screen
           pt-32 
-          md:pt-40 
+          md:pt-40
+          lmd:pt-32 
           px-4 
-          lg:h-[700px] 
-          large:h-[900px] 
           lg:pt-44 
           overflow-hidden 
           lg:px-56 
@@ -175,7 +258,7 @@ const Trade = () => {
           ">
             <h1 className={`
             headline 
-            text-black 
+            text-white
             text-6xl 
             md:text-8xl 
             lg:text-8xl 
@@ -211,6 +294,7 @@ const Trade = () => {
               bg-center 
               bg-no-repeat 
               lg:absolute 
+              lmd:top-48
               lg:top-72
               large:top-[40%]
               ${language === "العربية" ? "lg:-scale-x-100 left-20" : "right-20"}
@@ -225,33 +309,66 @@ const Trade = () => {
             flex-col 
             absolute 
             bottom-5 
-            md:px-4 
-            lg:bottom-10
+            md:px-4
+            lmd:bottom-1
             ">
-              <ol className="list-disc px-4 text-2xl md:text-4xl lg:text-xl lg:text-black font-semibold">
-                <li className="mb-6 lg:mb-2">
+              <ol className="list-disc px-4 text-2xl md:text-4xl lg:text-xl font-semibold">
+                <li className="mb-6 cursor-pointer hover:text-blue lg:mb-2 list-item">
                   {
-                    language === "English" ? hero.bulletPoints[0].english
-                      : language === "العربية" ? hero.bulletPoints[0].arabic
-                        : language === "Russian" ? hero.bulletPoints[0].russian
-                          : hero.bulletPoints[0].chinese
+                    language === "English" ? hero.bulletPoints[0].title.english
+                      : language === "العربية" ? hero.bulletPoints[0].title.arabic
+                        : language === "Russian" ? hero.bulletPoints[0].title.russian
+                          : hero.bulletPoints[0].title.chinese
                   }
+                  <textarea rows={4} className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg">
+                    {
+                      language === "English" ? hero.bulletPoints[0].paragraph.english
+                        : language === "العربية" ? hero.bulletPoints[0].paragraph.arabic
+                          : language === "Russian" ? hero.bulletPoints[0].paragraph.russian
+                            : hero.bulletPoints[0].paragraph.chinese
+                    }
+                  </textarea>
                 </li>
-                <li className="mb-6 lg:mb-2">
+                <li className="mb-6 cursor-pointer hover:text-blue lg:mb-2 list-item">
                   {
-                    language === "English" ? hero.bulletPoints[1].english
-                      : language === "العربية" ? hero.bulletPoints[1].arabic
-                        : language === "Russian" ? hero.bulletPoints[1].russian
-                          : hero.bulletPoints[1].chinese
+                    language === "English" ? hero.bulletPoints[1].title.english
+                      : language === "العربية" ? hero.bulletPoints[1].title.arabic
+                        : language === "Russian" ? hero.bulletPoints[1].title.russian
+                          : hero.bulletPoints[1].title.chinese
                   }
+                  <textarea rows={4} className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg">
+                    {
+                      language === "English" ? hero.bulletPoints[1].paragraph.english
+                        : language === "العربية" ? hero.bulletPoints[1].paragraph.arabic
+                          : language === "Russian" ? hero.bulletPoints[1].paragraph.russian
+                            : hero.bulletPoints[1].paragraph.chinese
+                    }
+                  </textarea>
                 </li>
-                <li className="mb-6 lg:mb-8">
+                <li className="mb-6 cursor-pointer hover:text-blue list-item">
                   {
-                    language === "English" ? hero.bulletPoints[2].english
-                      : language === "العربية" ? hero.bulletPoints[2].arabic
-                        : language === "Russian" ? hero.bulletPoints[2].russian
-                          : hero.bulletPoints[2].chinese
+                    language === "English" ? hero.bulletPoints[2].title.english
+                      : language === "العربية" ? hero.bulletPoints[2].title.arabic
+                        : language === "Russian" ? hero.bulletPoints[2].title.russian
+                          : hero.bulletPoints[2].title.chinese
                   }
+                  <textarea rows={4} className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg">
+                    {
+                      language === "English" ? hero.bulletPoints[2].paragraph.english
+                        : language === "العربية" ? hero.bulletPoints[2].paragraph.arabic
+                          : language === "Russian" ? hero.bulletPoints[2].paragraph.russian
+                            : hero.bulletPoints[2].paragraph.chinese
+                    }
+                  </textarea>
+                </li>
+                <li className="mb-6 cursor-pointer hover:text-blue lg:mb-8 list-item">
+                  {
+                    language === "English" ? hero.bulletPoints[3].title.english
+                      : language === "العربية" ? hero.bulletPoints[3].title.arabic
+                        : language === "Russian" ? hero.bulletPoints[3].title.russian
+                          : hero.bulletPoints[3].title.chinese
+                  }
+                  <img className="item-content absolute -bottom-[80px] -right-10 rounded-lg z-[1000] w-[300px]" src="https://res.cloudinary.com/dqmqc0uaa/image/upload/v1689269318/pexels-engin-akyurt-1435904_adt4gi.jpg" />
                 </li>
               </ol>
 

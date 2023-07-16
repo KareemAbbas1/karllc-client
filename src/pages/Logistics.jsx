@@ -14,53 +14,7 @@ import { hero, cardsSection, faqs } from "../lib/logistics"
 import { useLocation, useNavigate } from "react-router-dom"
 
 
-// const cards = [
-//   {
-//     id: 1,
-//     title: {
-//       english: "By Land",
-//       arabic: "بري"
-//     },
-//     cost: {
-//       english: "From $2.5 per lbs",
-//       arabic: ""
-//     },
-//     weight: {
-//       english: "Up to 44,000 lbs",
-//       arabic: ""
-//     }
-//   },
-//   {
-//     id: 2,
-//     title: {
-//       english: "By Air",
-//       arabic: "بري"
-//     },
-//     cost: {
-//       english: "From $9 per lbs",
-//       arabic: ""
-//     },
-//     weight: {
-//       english: "Up to 20,000 lbs",
-//       arabic: ""
-//     }
-//   },
-//   {
-//     id: 3,
-//     title: {
-//       english: "By Sea",
-//       arabic: "بري"
-//     },
-//     cost: {
-//       english: "From $2.5 per lbs",
-//       arabic: ""
-//     },
-//     weight: {
-//       english: "&infin;",
-//       arabic: "&infin;"
-//     }
-//   },
-// ]
+
 
 const Slider = styled.div`
     display: grid;
@@ -86,6 +40,22 @@ const Slider = styled.div`
 
     .horizontal-snap > a {
         scroll-snap-align: center;
+    }
+`
+
+const Ol = styled.ol`
+  .list-item {
+      
+      textarea {
+        display: none;
+        resize: none;
+      }
+
+      &:hover {
+        .item-content {
+          display: block;
+        }   
+      }
     }
 `
 
@@ -165,35 +135,59 @@ const Logistics = () => {
               }
             </p>
 
-            <ol className="list-disc px-4 md:text-xl lg:text-large lg:text-gray-400">
-              <li className="lg:mb-4 large:mb-8">
+            <Ol className="list-disc px-4 md:text-xl lg:text-large lg:text-gray-400">
+              <li className="mb-6 cursor-pointer hover:text-blue lg:mb-6 list-item">
                 {
                   language === "English"
-                    ? bulletPoints[0].english
-                    : language === "العربية" ? bulletPoints[0].arabic
-                      : language === "Russian" ? bulletPoints[0].russian
-                        : bulletPoints[0].chinese
+                    ? bulletPoints[0].title.english
+                    : language === "العربية" ? bulletPoints[0].title.arabic
+                      : language === "Russian" ? bulletPoints[0].title.russian
+                        : bulletPoints[0].title.chinese
                 }
+                <textarea rows={4} className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg">
+                  {
+                    language === "English" ? bulletPoints[0].paragraph.english
+                      : language === "العربية" ? bulletPoints[0].paragraph.arabic
+                        : language === "Russian" ? bulletPoints[0].paragraph.russian
+                          : bulletPoints[0].paragraph.chinese
+                  }
+                  </textarea>
               </li>
-              <li className="lg:mb-4 large:mb-8">
+              <li className="lmb-6 cursor-pointer hover:text-blue lg:mb-6 list-item">
                 {
                   language === "English"
-                    ? bulletPoints[1].english
-                    : language === "العربية" ? bulletPoints[1].arabic
-                      : language === "Russian" ? bulletPoints[1].russian
-                        : bulletPoints[1].chinese
+                    ? bulletPoints[1].title.english
+                    : language === "العربية" ? bulletPoints[1].title.arabic
+                      : language === "Russian" ? bulletPoints[1].title.russian
+                        : bulletPoints[1].title.chinese
                 }
+                <textarea rows={4} className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg">
+                  {
+                    language === "English" ? bulletPoints[1].paragraph.english
+                      : language === "العربية" ? bulletPoints[1].paragraph.arabic
+                        : language === "Russian" ? bulletPoints[1].paragraph.russian
+                          : bulletPoints[1].paragraph.chinese
+                  }
+                  </textarea>
               </li>
-              <li className="lg:mb-4 large:mb-8">
+              <li className="lg:mb-4 large:mb-8 cursor-pointer hover:text-blue list-item">
                 {
                   language === "English"
-                    ? bulletPoints[2].english
-                    : language === "العربية" ? bulletPoints[2].arabic
-                      : language === "Russian" ? bulletPoints[2].russian
-                        : bulletPoints[2].chinese
+                    ? bulletPoints[2].title.english
+                    : language === "العربية" ? bulletPoints[2].title.arabic
+                      : language === "Russian" ? bulletPoints[2].title.russian
+                        : bulletPoints[2].title.chinese
                 }
+                <textarea rows={4} className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg">
+                  {
+                    language === "English" ? bulletPoints[2].paragraph.english
+                      : language === "العربية" ? bulletPoints[2].paragraph.arabic
+                        : language === "Russian" ? bulletPoints[2].paragraph.russian
+                          : bulletPoints[2].paragraph.chinese
+                  }
+                  </textarea>
               </li>
-            </ol>
+            </Ol>
 
             <button 
             onClick={() => onScrollableLinkClick("kar-in-numbers",  currentLocation, navigate)} 

@@ -16,28 +16,52 @@ export const hero = {
     },
     bulletPoints: [
         {
-            english: "Freight Transportation",
-            arabic: "نقل الشحنات.",
-            russian: "Доставка грузов",
-            chinese: "货物交付",
+            title: {
+                english: "Freight Transportation",
+                arabic: "نقل الشحنات.",
+                russian: "Доставка грузов",
+                chinese: "货物交付",
+            },
+            paragraph: {
+                english: "Container:\n Based on container type, loading, discharge point, CIF rate, THC.\nChartering:\n Based on type, loading, time of loading and discharge, estination rate",
+                arabic: "الحاوية:\n بناءً على نوع الحاوية ، التحميل ، نقطة التفريغ ، معدل CIF ، THC.\nالتأجير:\n على أساس النوع ، التحميل ، وقت التحميل والتفريغ ، معدل التجهيز",
+                russian: "集装箱：\n 基于集装箱类型、装货点、卸货点、CIF 费率、THC。\n 租船：\n根据类型、装载情况、装卸时间、预计费率",
+                chinese: "Контейнер:\n в зависимости от типа контейнера, загрузки, точки разгрузки, ставки CIF, THC.\nФрахтование:\n в зависимости от типа, погрузки, времени погрузки и разгрузки, скорости отправления."
+            }
         },
         {
-            english: "Warehousing and Distribution",
-            arabic: "التخزين والتوزيع.",
-            russian: "Складирование и дистрибьюция",
-            chinese: "储存及分发",
+            title: {
+                english: "Warehousing and Distribution",
+                arabic: "التخزين والتوزيع.",
+                russian: "Складирование и дистрибьюция",
+                chinese: "储存及分发",
+            },
+            paragraph: {
+                english: "Select the port and your preferred warehouse within that port.",
+                arabic: "حدد المنفذ والمستودع المفضل لديك داخل هذا المنفذ.",
+                russian: "Выберите порт и предпочитаемый склад в этом порту.",
+                chinese: "选择港口以及该港口内您的首选仓库。"
+            }
         },
         {
-            english: "Customs Clearance",
-            arabic: "التخليص الجمركي.",
-            russian: "Таможенное оформление",
-            chinese: "清关服务",
+            title: {
+                english: "Customs Clearance",
+                arabic: "التخليص الجمركي.",
+                russian: "Таможенное оформление",
+                chinese: "清关服务",
+            },
+            paragraph: {
+                english: "Available for all ports expect Egypt",
+                arabic: "متاح لجميع الموانئ ماعدا مصر.",
+                russian: "Доступно для всех портов, кроме Египта",
+                chinese: "适用于除埃及以外的所有港口"
+            }
         },
     ],
     getQuote: {
         english: "Get a Quote",
         arabic: "احصل على عرض",
-        russian: "получить цитату",
+        russian: "Подробности",
         chinese: "获取报价",
     },
 }
@@ -139,7 +163,7 @@ export const faqs = {
             a: {
                 english: "International logistics is the organization and management of the movement of goods and information across borders of different countries.",
                 arabic: "اللوجستيات الدولية هي تنظيم وإدارة حركة البضائع والمعلومات عبر حدود البلدان المختلفة.",
-                russian: ": Международная логистика - это организация и управление перемещением товаров и информации через границы разных стран.",
+                russian: "Международная логистика - это организация и управление перемещением товаров и информации через границы разных стран.",
                 chinese: "国际物流是指通过管理及组织不同国家之间的货物和信息流动。",
             }
         },
