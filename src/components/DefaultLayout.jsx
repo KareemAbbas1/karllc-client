@@ -183,7 +183,7 @@ export default function DefaultLayout() {
                     <div className='flex items-center gap-3 xl:gap-20'>
                       <NavLink to="/" className="flex-shrink-0" onClick={() => { setLoading(true); setTimeout(() => { location.reload() }, 100) }}>
                         <img
-                          className="h-8 xl:h-10 w-auto logos"
+                          className="h-6 lg:h-7 w-auto logos"
                           src={Logo}
                           alt="Your Company"
                         />
@@ -410,6 +410,15 @@ export default function DefaultLayout() {
                         </button>
                     ))}
                   </div>
+
+                  <NavLink
+                    to="https://dev.karllc-group.com/"
+                    target="_blank"
+                    className="block lg:hidden px-5 -mt-2 mb-3"
+                  >
+                    Login
+                  </NavLink>
+
                   <div className="px-2 sm:px-3">
                     <button className='bg-blue text-white font-semibold py-2 px-5 rounded-xl hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers", currentLocation, navigate)}>
                       Get a Quote
@@ -529,7 +538,7 @@ export default function DefaultLayout() {
               </div>
             </div>
 
-            <div className='w-36 py-2 px-6 rounded-md'>
+            <div className='w-36 py-2 px-6 rounded-md border border-blue'>
               <img src={Logo} />
             </div>
             <div className='border-b border-gray-500 w-[98%] absolute bottom-8 left-0 right-0 mx-auto xs:hidden' />

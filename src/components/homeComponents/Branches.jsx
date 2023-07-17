@@ -108,7 +108,7 @@ const Branches = () => {
                     <div className="text-white flex flex-col items-start md:items-end gap-2 text-sm ">
                         {
                             slider.filters.map((filter) => (
-                                <a href={filter.to} key={filter.english} className={`border-l md:border-r md:border-l-0 px-2 md:w-[100%] py-[3px] md:text-right ${filter.english === "LOGISTICS & SHIPPING" && 'border-blue text-blue'}`}>
+                                <NavLink to={filter.to} key={filter.english} target="_blank" className={`border-l md:border-r md:border-l-0 px-2 md:w-[100%] py-[3px] md:text-right ${filter.english === "LOGISTICS & SHIPPING" && 'border-blue text-blue'}`}>
                                     {
                                         language === "English"
                                             ? filter.english
@@ -116,7 +116,7 @@ const Branches = () => {
                                             : language === "Russian" ? filter.russian
                                             : filter.chinese
                                     }
-                                </a>
+                                </NavLink>
                             ))
                         }
                     </div>
@@ -160,10 +160,10 @@ const Branches = () => {
                                     <p className="text-[16px] text-gray-400 mb-6 max-w-[85%] leading-5">
                                         {
                                             language === "English"
-                                                ? branch.description.english.substring(0, 150)
-                                                : language === "العربية" ? branch.description.arabic.substring(0, 150)
-                                                : language === "Russian" ? branch.description.russian.substring(0, 150)
-                                                : branch.description.chinese.substring(0, 150)
+                                                ? branch.description.english.substring(0, 140)
+                                                : language === "العربية" ? branch.description.arabic.substring(0, 140)
+                                                : language === "Russian" ? branch.description.russian.substring(0, 60)
+                                                : branch.description.chinese.substring(0, 50)
                                         }
                                     </p>
 

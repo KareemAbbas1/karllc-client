@@ -2,6 +2,7 @@ import styled from "styled-components";
 // import BackgroundVideo from "../../assets/background.mp4";
 import { hero } from "../../lib/home";
 import { UseStateContext } from "../../context/ContextProvider"
+import HeroLogo from "../../assets/HeroLogo.png"
 
 
 const Container = styled.div`
@@ -57,7 +58,7 @@ const Hero = () => {
             <OverLay />
             <Video
                 className="w-[1700px] md:w-[2000px] lmd:w-[2200px] large:w-[2520px] boject-cover"
-                
+
                 dangerouslySetInnerHTML={{
                     __html: `
             <video
@@ -101,7 +102,25 @@ const Hero = () => {
             pb-6
             ">
 
-                <pre rows={4} className="bg-transparent border-none pb-2 p-0 text-4xl md:text-5xl lg:text-6xl 2xl:text-[6rem] font-semibold 2xl:font-normal w-full md:w-[68%] lg:w-[63%] xl:w-[50%] 2xl:w-[80%]">
+                {/* <img src={HeroLogo} className="w-8" /> */}
+
+                <pre rows={4} className="
+                bg-transparent 
+                border-none 
+                pb-2 
+                p-0 
+                text-4xl 
+                md:text-5xl 
+                lg:text-6xl 
+                2xl:text-[6rem] 
+                font-semibold 
+                2xl:font-normal 
+                w-full 
+                md:w-[68%] 
+                lg:w-[63%] 
+                xl:w-[50%] 
+                2xl:w-[80%]
+                ">
                     {
                         language === "English"
                             ? hero.english.split("\n")[0] + "\n" + hero.english.split("\n")[1] + "\n" + hero.english.split("\n")[2]

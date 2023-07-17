@@ -1,12 +1,13 @@
 import styled from "styled-components"
-import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline"
+import { EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline"
 import ContactUsBG from "../assets/ContactUsBG.jpg"
 import { UseStateContext } from "../context/ContextProvider"
-import { Facebook, Whatsapp, Instagram, Linkedin } from "react-bootstrap-icons"
+import { Facebook, Whatsapp, Printer, Linkedin } from "react-bootstrap-icons"
 import Loader from "../components/Loader"
 import { useEffect } from "react"
 import ScrollToTop from "../components/ScrollToTop"
 import { useForm, ValidationError } from '@formspree/react';
+import { NavLink } from "react-router-dom"
 
 
 
@@ -119,27 +120,52 @@ const Contact = () => {
                   }
                 </p>
               </div>
-              <div className='flex items-center gap-3'>
-                <PhoneIcon className='w-8 h-auto text-white' />
+
+              <NavLink to='https://wa.me/447452117813' target="_blank" className='flex items-center gap-3 hover:text-[#25D366]'>
+                <Whatsapp
+                  className=' hover-effect cursor-pointer'
+                  size={30} />
+
+                {/* <PhoneIcon className='w-8 h-auto text-white' /> */}
+                {/* <p>
+                  {
+                    language === "العربية"
+                      ? "447452117813+"
+                      : "+447452117813"
+                  }
+                </p> */}
                 <p>
                   {
-                    language === "English"
-                      ? "+0238364610"
-                      : "0238364610+"
+                    language === "English" ? "For your service, leave your contact information on whatsapp and one of our team will get back to you soon."
+                    : language === "العربية" ? "لخدمتك ، اترك معلومات الاتصال الخاصة بك على واتس آب وسيقوم أحد فريقنا بالرد عليك قريبًا."
+                    : language === "Russian" ? "Здесь вы можете оставить свою контактную информацию WhatsApp, и один из наших сотрудников свяжется с вами в ближайшее время."
+                    :  "如需为您提供服务，请在 Whatsapp 上留下您的联系信息，我们的团队之一将尽快与您联系。"
+                  }
+                </p>
+              </NavLink>
+
+              <div className='flex items-center gap-3'>
+                <Printer size={30} className='text-white hover:text-blue hover-effect cursor-pointer' />
+                <p>
+                  {
+                    language === "العربية"
+                      ? "442039963709+ (fax)"
+                      : "+442039963709 (fax)"
                   }
                 </p>
               </div>
+
               <div className='flex items-center gap-3'>
                 <EnvelopeIcon className='w-8 h-auto text-white' />
                 <p>info@karllc-group.com</p>
               </div>
               <div className='flex items-center gap-3'>
-                <Facebook size={30} className='text-white hover:text-[#0165E1] hover-effect cursor-pointer' />
-                <Instagram size={30} className='text-white hover:text-[#833AB4] hover-effect cursor-pointer' />
+
+                <NavLink to="https://www.facebook.com/people/Kar-db-group/100093632534966/?mibextid=ZbWKwL" target="_blank">
+                  <Facebook size={30} className='text-white hover:text-[#0165E1] hover-effect cursor-pointer' />
+                </NavLink>
+
                 <Linkedin size={30} className='text-white hover:text-[#0A66C2] hover-effect cursor-pointer' />
-                <Whatsapp
-                  className='text-white hover:text-[#25D366] hover-effect cursor-pointer'
-                  size={30} />
               </div>
             </div>
           </div>

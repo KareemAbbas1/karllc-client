@@ -338,6 +338,7 @@ const Trade = () => {
                     }
                   </textarea>
                 </li>
+
                 <li className="mb-6 cursor-pointer hover:text-blue lg:mb-2 list-item">
                   {
                     language === "English" ? hero.bulletPoints[1].title.english
@@ -354,7 +355,8 @@ const Trade = () => {
                     }
                   </textarea>
                 </li>
-                <li className="mb-6 cursor-pointer hover:text-blue list-item">
+
+                <li className="mb-3 cursor-pointer hover:text-blue list-item">
                   {
                     language === "English" ? hero.bulletPoints[2].title.english
                       : language === "العربية" ? hero.bulletPoints[2].title.arabic
@@ -370,6 +372,7 @@ const Trade = () => {
                     }
                   </textarea>
                 </li>
+
                 <li className="mb-6 cursor-pointer hover:text-blue lg:mb-8 list-item">
                   {
                     language === "English" ? hero.bulletPoints[3].title.english

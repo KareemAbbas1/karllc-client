@@ -119,32 +119,10 @@ export const slider = {
             arabic: "التطوير العقاري",
             russian: "Недвижимость",
             chinese: "房地产。",
-            to: "https://www.facebook.com"
+            to: "https://tolerance-realestate.com/"
         },
     ],
     branches: [
-        {
-            id: uuidv4(),
-            image: KarRus,
-            title: {
-                english: "KAR LLC (RUS)",
-                arabic: "عربي",
-                russian: "ООО \"КАР\" (РОС)",
-                chinese: "KAR LLC（俄罗斯）",
-            },
-            description: {
-                english: "KAR LLC is located in Russia and the main activity of the company is the export of sugar to other countries. The high quality of transportation allows you to deliver sugar without losing the quality of the product. Our highly qualified team will take care of all the necessary documentation for the transportation of the goods. We have many satisfied clients. Ready for cooperation.",
-                arabic: "تقع شركة KAR LLC في روسيا والنشاط الرئيسي للشركة هو تصدير السكر إلى دول أخرى. تتيح لك جودة النقل العالية توصيل السكر دون فقدان جودة المنتج. سيهتم فريقنا المؤهل تأهيلا عاليا بجميع الوثائق اللازمة لنقل البضائع. لدينا العديد من العملاء الراضين. جاهز للتعاون.",
-                russian: "ООО \"КАР\" находится в России и основным видом деятельности компании является экспорт сахара в другие страны. Высокое качество перевозок позволяет доставить сахар без потери качества продукта. Наша высококвалифицированная команда позаботится об этом вся необходимая документация для перевозки груза. ",
-                chinese: "“KAR” LLC 位于俄罗斯，该公司的主要业务是将糖出口到其他国家。 高质量的运输使您能够在不损失产品质量的情况下运送糖。 我们高素质的团队将负责处理货物运输的所有必要文件。 我们有许多满意的客户。 准备合作。",
-            },
-            readMore: {
-                english: "Read more",
-                arabic: "اقرأ أكثر",
-                russian: "Читать далее",
-                chinese: "阅读更多",
-            },
-        },
         {
             id: uuidv4(),
             image: KarPetUAE,
@@ -159,6 +137,50 @@ export const slider = {
                 arabic: "يقع مقر كار للبترول DMCC في الإمارات العربية المتحدة. النشاط الرئيسي هو بيع النفط والمنتجات النفطية. نعهد بهذه المهمة الصعبة إلى محترفين حقيقيين. يتم التعامل مع التوثيق والتحميل والتسليم بشكل كامل من قبل شركتنا. نحن نقدر سمعتنا ونريد لعملائنا أن يكونوا راضين عن الجودة.",
                 russian: "KAR PETROLEUM DMCC базируется в Объединенных Арабских Эмиратах. Основным видом деятельности является продажа нефти и нефтепродуктов. Это непростое дело мы доверяем настоящим профессионалам. Документация, погрузка и доставка полностью ложатся на плечи нашей компании. Мы дорожим своей репутацией и хотим, чтобы Наши клиенты были довольны качеством.",
                 chinese: "KAR PETROLEUM DMCC 总部位于阿拉伯联合酋长国。 主要活动是销售石油和石油产品。 我们将这项艰巨的任务委托给真正的专业人士。 文件、装载和交付完全由我公司处理。 我们重视我们的声誉，并希望我们的客户对质量感到满意。",
+            },
+            readMore: {
+                english: "Read more",
+                arabic: "اقرأ أكثر",
+                russian: "Читать далее",
+                chinese: "阅读更多",
+            },
+        },
+        {
+            id: uuidv4(),
+            image: "https://res.cloudinary.com/dqmqc0uaa/image/upload/v1689608972/pexels-tom-fisk-3057960_qgulcr.webp",
+            title: {
+                english: "KAR LLC Egypt",
+                arabic: "عربي",
+                russian: "КАР ООО Египет",
+                chinese: "KAR LLC 埃及",
+            },
+            description: {
+                english: "The office of \"K.A.R\" LLC in Egypt is a logistics office.  Our team will select for you the best conditions for cargo transportation and prepare all the necessary documents.",
+                arabic: "مكتب \"K.A.R\" LLC في مصر هو مكتب لوجستي. سيقوم فريقنا باختيار أفضل الظروف لنقل البضائع وإعداد جميع المستندات اللازمة.",
+                russian: "Офис ООО \"К.А.Р\" в Египте - логистический офис. Наша команда подберет для вас лучшие условия для перевозки груза и подготовит все необходимые документы.",
+                chinese: "“K.A.R”LLC在埃及的办事处是一个物流办事处。 我们的团队将为您选择最佳的货物运输条件并准备所有必要的文件。",
+            },
+            readMore: {
+                english: "Read more",
+                arabic: "اقرأ أكثر",
+                russian: "Читать далее",
+                chinese: "阅读更多",
+            },
+        },
+        {
+            id: uuidv4(),
+            image: KarRus,
+            title: {
+                english: "KAR LLC (RUS)",
+                arabic: "عربي",
+                russian: "ООО \"КАР\" (РОС)",
+                chinese: "KAR LLC（俄罗斯）",
+            },
+            description: {
+                english: "KAR LLC is located in Russia and the main activity of the company is the export of sugar to other countries. The high quality of transportation allows you to deliver sugar without losing the quality of the product. Our highly qualified team will take care of all the necessary documentation for the transportation of the goods. We have many satisfied clients. Ready for cooperation.",
+                arabic: "تقع شركة KAR LLC في روسيا والنشاط الرئيسي للشركة هو تصدير السكر إلى دول أخرى. تتيح لك جودة النقل العالية توصيل السكر دون فقدان جودة المنتج. سيهتم فريقنا المؤهل تأهيلا عاليا بجميع الوثائق اللازمة لنقل البضائع. لدينا العديد من العملاء الراضين. جاهز للتعاون.",
+                russian: "ООО \"КАР\" находится в России и основным видом деятельности компании является экспорт сахара в другие страны. Высокое качество перевозок позволяет доставить сахар без потери качества продукта. Наша высококвалифицированная команда позаботится об этом вся необходимая документация для перевозки груза. ",
+                chinese: "“KAR” LLC 位于俄罗斯，该公司的主要业务是将糖出口到其他国家。 高质量的运输使您能够在不损失产品质量的情况下运送糖。 我们高素质的团队将负责处理货物运输的所有必要文件。 我们有许多满意的客户。 准备合作。",
             },
             readMore: {
                 english: "Read more",
