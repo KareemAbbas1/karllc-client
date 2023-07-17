@@ -88,7 +88,7 @@ const Cards = () => {
         flex 
         justify-center 
         absolute 
-        top-[20rem]
+        top-[23rem]
         md:top-[30rem]
         lmd:top-[29rem]
         midLarge:top-[32rem]

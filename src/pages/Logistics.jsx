@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import PageComponent from "../components/PageComponent"
 import LogistictsHero from "../assets/LogistictsHero.png"
+import LogisticsLargeHero from "../assets/LogisticsLargeHero.png"
 import LogisticsFAQ from "../assets/LogisticsFAQ.png"
 import styled from "styled-components"
 import { Fragment } from 'react'
@@ -54,9 +55,24 @@ const Ol = styled.ol`
       &:hover {
         .item-content {
           display: block;
+          color: white;
         }   
       }
     }
+`
+
+
+const OverLay = styled.div`
+    width: 100%;
+    height: 100%;
+    min-height: 810px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(180deg, rgba(12, 17, 24, 0.32) 65%, rgba(12, 17, 24, 0) 100%);
+    /* background: linear-gradient(180deg, rgba(12, 17, 24, 0.32) 0%, rgba(12, 17, 24, 0) 100%); */
+    /* background: linear-gradient(0deg, #0C1118 0%, rgba(12, 17, 24, 0.00) 100%); */
+    z-index: 1;
 `
 
 const Logistics = () => {
@@ -71,7 +87,7 @@ const Logistics = () => {
     }, 500)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  
+
   // Extract data
   const { bulletPoints } = hero;
   const { cards } = cardsSection;
@@ -88,6 +104,69 @@ const Logistics = () => {
       }
       <div className="w-screen min-h-[100vh] pt-32 md:pt-40 lg:pt-24 pb-12 lg:pb-32 large:pb-48 bg-dark text-white px-4 md:px-6 lg:px-4 lg:flex flex-col items-center snap-y-mandatory">
 
+        <OverLay />
+
+        <div className="w-screen h-screen">
+          {/* <div className="w-full h-full bg-dark absolute top-0 left-0 z-[1000]" /> */}
+        </div>
+
+        {/* Desktop video */}
+        <div
+          className="hidden lg:block min-h-screen w-auto object-cover lg:w-screen lg:h-screen border absolute top-0 left-0"
+          dangerouslySetInnerHTML={{
+            __html: `
+              <video
+                loop="true"
+                defaultmuted="true"
+                muted="true"
+                autoplay="true"
+                playsinline="true"
+                >
+                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_2500/v1688559175/pexels-kelly-lacy-6618026_2160p_wynkrp.mp4"  type="video/webm"/>
+              </video>
+            `
+          }}
+        >
+        </div>
+
+        {/* tablet video */}
+        <div
+          className="lg:hidden min-h-screen w-auto object-cover lg:w-screen lg:h-screen absolute top-0 left-0"
+          dangerouslySetInnerHTML={{
+            __html: `
+              <video
+                loop="true"
+                defaultmuted="true"
+                muted="true"
+                autoplay="true"
+                playsinline="true"
+                >
+                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_1600,w_1100/v1688559175/pexels-kelly-lacy-6618026_2160p_wynkrp.webm"  type="video/webm"/>
+              </video>
+            `
+          }}
+        >
+        </div>
+
+        {/* mobile video */}
+        <div
+          className="md:hidden min-h-screen w-auto object-cover lg:w-screen lg:h-screen absolute top-0 left-0"
+          dangerouslySetInnerHTML={{
+            __html: `
+              <video
+                loop="true"
+                defaultmuted="true"
+                muted="true"
+                autoplay="true"
+                playsinline="true"
+                >
+                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_1120,w_500/v1688559175/pexels-kelly-lacy-6618026_2160p_wynkrp.webm"  type="video/webm"/>
+              </video>
+            `
+          }}
+        >
+        </div>
+
         {/* Hero */}
         <div className="
         hero 
@@ -95,23 +174,35 @@ const Logistics = () => {
         min-h-[87vh] 
         flex 
         flex-col 
-        items-center 
+        items-start
         justify-between 
         md:items-start 
         md:pb-10 
         snap-start
         lg:flex-row
-        lg:px-20
+        lg:px-32
         lg:pt-28
-        lg:min-h-fit
-        relative
+        lg:min-h-[58vh]
+
         max-w-screen-2xl
         large:mt-32
         large:px-24
+        absolute
+        top-[12vh]
+        midLarge:top-0
+        large:top-[10vh]
+        bottom-0
+        left-0
+        right-0
+        m-auto
+        px-4
+        z-10
         
         ">
 
-          <h1 className="text-6xl md:text-7xl large:text-8xl font-semibold large:-mt-28">
+
+
+          <h1 className="text-6xl md:text-7xl large:text-8xl font-semibold lg:-mt-32 large:-mt-28 lg:max-w-[60%]">
             {
               language === "English"
                 ? hero.headline.english
@@ -121,11 +212,13 @@ const Logistics = () => {
             }
           </h1>
 
-          <img src={LogistictsHero} className="md:scale-125 md:px-20 lg:scale-100 lg:px-0 lg:py-4 large:scale-125" />
+          <img src={LogisticsLargeHero} className={`w-48 large:w-80 absolute bottom-0 large:-bottom-6 ${language !== "العربية" ? "right-32" : "left-32"}`} />
 
-          <div className="cta w-full flex flex-col gap-6 lg:absolute lg:bottom-10 large:-bottom-5 lg:w-[50%] large:w-[50%] lg:gap-8 ">
+          <img src={LogistictsHero} className="md:scale-[1.7] md:mx-40 lg:hidden lg:scale-[1.5] lg:mx-28 lg:px-0 lg:py-4 large:scale-[1.8] large:pt-16  " />
 
-            <p className="hidden large:block text-gray-300 w-[70%]">
+          <div className="cta w-full flex flex-col gap-6 lg:absolute lg:bottom-0 large:-bottom-5 lg:w-[50%] large:w-[50%] lg:gap-8 ">
+
+            <p className="hidden large:block w-[70%]">
               {
                 language === "English"
                   ? hero.secondaryParagraph.english
@@ -135,8 +228,8 @@ const Logistics = () => {
               }
             </p>
 
-            <Ol className="list-disc px-4 md:text-xl lg:text-large lg:text-gray-400">
-              <li className="mb-6 cursor-pointer hover:text-blue lg:mb-6 list-item">
+            <Ol className="list-disc px-4 md:text-xl lg:text-large">
+              <li className="mt-6 cursor-pointer hover:text-blue lg:mb-6 list-item">
                 {
                   language === "English"
                     ? bulletPoints[0].title.english
@@ -144,14 +237,17 @@ const Logistics = () => {
                       : language === "Russian" ? bulletPoints[0].title.russian
                         : bulletPoints[0].title.chinese
                 }
-                <textarea rows={4} className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg">
-                  {
+                <textarea
+                  rows={4}
+                  className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg z-[100]"
+                  defaultValue={
                     language === "English" ? bulletPoints[0].paragraph.english
                       : language === "العربية" ? bulletPoints[0].paragraph.arabic
                         : language === "Russian" ? bulletPoints[0].paragraph.russian
                           : bulletPoints[0].paragraph.chinese
                   }
-                  </textarea>
+                >
+                </textarea>
               </li>
               <li className="lmb-6 cursor-pointer hover:text-blue lg:mb-6 list-item">
                 {
@@ -161,14 +257,17 @@ const Logistics = () => {
                       : language === "Russian" ? bulletPoints[1].title.russian
                         : bulletPoints[1].title.chinese
                 }
-                <textarea rows={4} className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg">
-                  {
+                <textarea
+                  rows={4}
+                  className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg z-[100]"
+                  defaultValue={
                     language === "English" ? bulletPoints[1].paragraph.english
                       : language === "العربية" ? bulletPoints[1].paragraph.arabic
                         : language === "Russian" ? bulletPoints[1].paragraph.russian
                           : bulletPoints[1].paragraph.chinese
                   }
-                  </textarea>
+                >
+                </textarea>
               </li>
               <li className="lg:mb-4 large:mb-8 cursor-pointer hover:text-blue list-item">
                 {
@@ -178,20 +277,23 @@ const Logistics = () => {
                       : language === "Russian" ? bulletPoints[2].title.russian
                         : bulletPoints[2].title.chinese
                 }
-                <textarea rows={4} className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg">
-                  {
+                <textarea
+                  rows={4}
+                  className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg z-[100]"
+                  defaultValue={
                     language === "English" ? bulletPoints[2].paragraph.english
                       : language === "العربية" ? bulletPoints[2].paragraph.arabic
                         : language === "Russian" ? bulletPoints[2].paragraph.russian
                           : bulletPoints[2].paragraph.chinese
                   }
-                  </textarea>
+                >
+                </textarea>
               </li>
             </Ol>
 
-            <button 
-            onClick={() => onScrollableLinkClick("kar-in-numbers",  currentLocation, navigate)} 
-            className="
+            <button
+              onClick={() => onScrollableLinkClick("kar-in-numbers", currentLocation, navigate)}
+              className="
             border-2 
             border-blue 
             w-full 
@@ -200,7 +302,7 @@ const Logistics = () => {
             rounded-lg 
             font-bold 
             md:w-[50%] 
-            md:self-end 
+            
             lg:self-start 
             large:text-2xl 
             large:py-4 
@@ -371,3 +473,139 @@ const Logistics = () => {
 }
 
 export default Logistics
+
+
+
+
+{/* Hero */ }
+{/* <div className="
+hero 
+h-fit 
+min-h-[87vh] 
+flex 
+flex-col 
+items-center 
+justify-between 
+md:items-start 
+md:pb-10 
+snap-start
+lg:flex-row
+lg:px-20
+lg:pt-28
+lg:min-h-fit
+relative
+max-w-screen-2xl
+large:mt-32
+large:px-24
+
+"> */}
+
+{/* <h1 className="text-6xl md:text-7xl large:text-8xl font-semibold large:-mt-28">
+    {
+      language === "English"
+        ? hero.headline.english
+        : language === "العربية" ? hero.headline.arabic
+          : language === "Russian" ? hero.headline.russian
+            : hero.headline.chinese
+    }
+  </h1> */}
+
+{/* <img src={LogistictsHero} className="md:scale-125 md:px-20 lg:scale-100 lg:px-0 lg:py-4 large:scale-125" /> */ }
+
+//   <div className="cta w-full flex flex-col gap-6 lg:absolute lg:bottom-10 large:-bottom-5 lg:w-[50%] large:w-[50%] lg:gap-8 ">
+
+//     <p className="hidden large:block text-gray-300 w-[70%]">
+//       {
+//         language === "English"
+//           ? hero.secondaryParagraph.english
+//           : language === "العربية" ? hero.secondaryParagraph.arabic
+//             : language === "Russian" ? hero.secondaryParagraph.russian
+//               : hero.secondaryParagraph.chinese
+//       }
+//     </p>
+
+//     <Ol className="list-disc px-4 md:text-xl lg:text-large lg:text-gray-400">
+//       <li className="mb-6 cursor-pointer hover:text-blue lg:mb-6 list-item">
+//         {
+//           language === "English"
+//             ? bulletPoints[0].title.english
+//             : language === "العربية" ? bulletPoints[0].title.arabic
+//               : language === "Russian" ? bulletPoints[0].title.russian
+//                 : bulletPoints[0].title.chinese
+//         }
+//         <textarea rows={4} className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg">
+//           {
+//             language === "English" ? bulletPoints[0].paragraph.english
+//               : language === "العربية" ? bulletPoints[0].paragraph.arabic
+//                 : language === "Russian" ? bulletPoints[0].paragraph.russian
+//                   : bulletPoints[0].paragraph.chinese
+//           }
+//           </textarea>
+//       </li>
+//       <li className="lmb-6 cursor-pointer hover:text-blue lg:mb-6 list-item">
+//         {
+//           language === "English"
+//             ? bulletPoints[1].title.english
+//             : language === "العربية" ? bulletPoints[1].title.arabic
+//               : language === "Russian" ? bulletPoints[1].title.russian
+//                 : bulletPoints[1].title.chinese
+//         }
+//         <textarea rows={4} className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg">
+//           {
+//             language === "English" ? bulletPoints[1].paragraph.english
+//               : language === "العربية" ? bulletPoints[1].paragraph.arabic
+//                 : language === "Russian" ? bulletPoints[1].paragraph.russian
+//                   : bulletPoints[1].paragraph.chinese
+//           }
+//           </textarea>
+//       </li>
+//       <li className="lg:mb-4 large:mb-8 cursor-pointer hover:text-blue list-item">
+//         {
+//           language === "English"
+//             ? bulletPoints[2].title.english
+//             : language === "العربية" ? bulletPoints[2].title.arabic
+//               : language === "Russian" ? bulletPoints[2].title.russian
+//                 : bulletPoints[2].title.chinese
+//         }
+//         <textarea rows={4} className="item-content absolute w-[300px] lg:w-[500px] h-fit bg-dark border-0 rounded-lg">
+//           {
+//             language === "English" ? bulletPoints[2].paragraph.english
+//               : language === "العربية" ? bulletPoints[2].paragraph.arabic
+//                 : language === "Russian" ? bulletPoints[2].paragraph.russian
+//                   : bulletPoints[2].paragraph.chinese
+//           }
+//           </textarea>
+//       </li>
+//     </Ol>
+
+//     <button
+//     onClick={() => onScrollableLinkClick("kar-in-numbers",  currentLocation, navigate)}
+//     className="
+//     border-2
+//     border-blue
+//     w-full
+//     text-lg
+//     py-2
+//     rounded-lg
+//     font-bold
+//     md:w-[50%]
+//     md:self-end
+//     lg:self-start
+//     large:text-2xl
+//     large:py-4
+//     hover:bg-blue
+//     cursor-pointer
+//     z-10
+//     transition-all
+//     ease-in-out
+//     ">
+//       {
+//         language === "English"
+//           ? hero.getQuote.english
+//           : language === "العربية" ? hero.getQuote.arabic
+//             : language === "Russian" ? hero.getQuote.russian
+//               : hero.getQuote.chinese
+//       }
+//     </button>
+//   </div>
+// </div>

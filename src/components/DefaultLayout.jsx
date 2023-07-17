@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { UseStateContext } from '../context/ContextProvider'
 import { navigation } from '../lib/navLinks';
+import HeroLogo from "../assets/HeroLogo.png"
 
 
 
@@ -114,7 +115,8 @@ export default function DefaultLayout() {
         navbar.style.paddingBlock = '1.5rem'
         Array.from(document.getElementsByClassName('navLinks')).map(el => el.style.color = "#fff")
         currentLocation.pathname === "/trade" || currentLocation.pathname === "/about-us" ? (document.getElementById("languages-list").style.color = '#fff') : document.getElementById("languages-list").style.color = '#fff'
-        document.getElementById("scroll-down-right").style.display = 'none'
+        document.getElementById("scroll-down-right").style.display = 'none';
+        currentLocation.pathname === "/" && (document.getElementById("old-logo").style.display = "none")
 
       } else {
 
@@ -136,6 +138,7 @@ export default function DefaultLayout() {
         navbar.style.border = 'none';
         (currentLocation.pathname === "/about-us") && (document.getElementById("languages-list").style.color = 'black')
         window.innerWidth > 450 && currentLocation.pathname !== "/contact-us" && (document.getElementById("scroll-down-right").style.display = 'flex')
+        currentLocation.pathname === "/" && (document.getElementById("old-logo").style.display = "block");
       }
     }
 
@@ -181,6 +184,7 @@ export default function DefaultLayout() {
                 <div className="flex items-center justify-between text-white w-full max-w-[1680px] ">
                   <div className="w-full flex items-center justify-between">
                     <div className='flex items-center gap-3 xl:gap-20'>
+
                       <NavLink to="/" className="flex-shrink-0" onClick={() => { setLoading(true); setTimeout(() => { location.reload() }, 100) }}>
                         <img
                           className="h-6 lg:h-7 w-auto logos"
@@ -188,6 +192,7 @@ export default function DefaultLayout() {
                           alt="Your Company"
                         />
                       </NavLink>
+
                       <div className="hidden md:block">
                         <div className="flex items-baseline space-x-4">
                           {navigation.map((item) => (
@@ -255,6 +260,12 @@ export default function DefaultLayout() {
                         </div>
                       </div>
                     </div>
+
+                    {
+
+                      currentLocation.pathname === "/" &&
+                      <img src={HeroLogo} className='w-20 -mb-20 lg:w-32 lg:-mb-24 ' id="old-logo" />
+                    }
 
                     <div className="flex items-center justify-between">
 
