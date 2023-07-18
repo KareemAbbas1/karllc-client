@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { UseStateContext } from '../context/ContextProvider'
 import { navigation } from '../lib/navLinks';
-import HeroLogo from "../assets/HeroLogo.png"
+// import HeroLogo from "../assets/HeroLogo.png"
 
 
 
@@ -116,7 +116,7 @@ export default function DefaultLayout() {
         Array.from(document.getElementsByClassName('navLinks')).map(el => el.style.color = "#fff")
         currentLocation.pathname === "/trade" || currentLocation.pathname === "/about-us" ? (document.getElementById("languages-list").style.color = '#fff') : document.getElementById("languages-list").style.color = '#fff'
         document.getElementById("scroll-down-right").style.display = 'none';
-        currentLocation.pathname === "/" && (document.getElementById("old-logo").style.display = "none")
+        // currentLocation.pathname === "/" && (document.getElementById("old-logo").style.display = "none")
 
       } else {
 
@@ -138,7 +138,7 @@ export default function DefaultLayout() {
         navbar.style.border = 'none';
         (currentLocation.pathname === "/about-us") && (document.getElementById("languages-list").style.color = 'black')
         window.innerWidth > 450 && currentLocation.pathname !== "/contact-us" && (document.getElementById("scroll-down-right").style.display = 'flex')
-        currentLocation.pathname === "/" && (document.getElementById("old-logo").style.display = "block");
+        // currentLocation.pathname === "/" && (document.getElementById("old-logo").style.display = "block");
       }
     }
 
@@ -261,11 +261,11 @@ export default function DefaultLayout() {
                       </div>
                     </div>
 
-                    {
+                    {/* {
 
                       currentLocation.pathname === "/" &&
                       <img src={HeroLogo} className='w-20 -mb-20 lg:w-32 lg:-mb-24 ' id="old-logo" />
-                    }
+                    } */}
 
                     <div className="flex items-center justify-between">
 

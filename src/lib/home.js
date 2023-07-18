@@ -14,7 +14,7 @@ import Dobro from "../assets/Dobro.jpeg";
 
 
 export const hero = {
-    english: "KAR LLC \nGROUP\nBUSSINES INCLUDES",
+    english: "KAR LLC GROUP BUSSINES\nINCLUDES",
     arabic: "بعض الأعمال\nالتي تشملها\nمجموعة شركات كار",
     russian: "Деятельность\nгрупп\nкомпаний \"K.A.R\"",
     chinese: "“K.A.R”\n公司集团的活动"

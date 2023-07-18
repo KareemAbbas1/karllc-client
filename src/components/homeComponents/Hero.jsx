@@ -2,7 +2,7 @@ import styled from "styled-components";
 // import BackgroundVideo from "../../assets/background.mp4";
 import { hero } from "../../lib/home";
 import { UseStateContext } from "../../context/ContextProvider"
-// import HeroLogo from "../../assets/HeroLogo.png"
+import HeroLogo from "../../assets/HeroLogo.png"
 
 
 const Container = styled.div`
@@ -79,51 +79,53 @@ const Hero = () => {
                 {/* <source  type="video/mp4" /> */}
             </Video>
 
+
             <div className="
-            hero-text
-            w-full
-            max-w-screen-xl
-            h-fit
-            px-4
-            text-white
-            absolute
-            flex
+            hero-text 
+            w-full 
+            max-w-screen-xl 
+            h-fit 
+            px-4 
+            text-white 
+            absolute 
+            flex 
             flex-col
-            items-start
-            md:items-center
-            justify-center
-            lg:justify-end
-            top-[20%]
-            md:top-[23%]
-            midLarge:top-[28%]
-            large:top-[25%]
-            left-0
-            right-0
+            items-center 
+            justify-center 
+            gap-3
+            top-[10%]
+            md:top-[15%]
+            midLarge:top-[21%]
+            large:top-[20%]
+            left-0 
+            right-0 
             m-auto
             pb-6
             ">
 
+                <img src={HeroLogo} className="w-20 lg:w-24 midLarge:w-28" />
 
                 <pre rows={4} className="
-                bg-transparent
-                border-none
-                pb-2
-                p-0
-                text-4xl
-                md:text-5xl
-                lg:text-6xl
-                2xl:text-[6rem]
-                font-semibold
-                2xl:font-normal
-                w-full
-                md:w-[68%]
-                lg:w-[63%]
-                xl:w-[50%]
+                bg-transparent 
+                border-none 
+                pb-2 
+                p-0 
+                text-[1.6rem]
+                text-center
+                md:text-4xl 
+                lg:text-5xl 
+                2xl:text-[5rem] 
+                font-semibold 
+                2xl:font-normal 
+                w-full 
+                md:w-[68%] 
+                lg:w-[63%] 
+                xl:w-[50%] 
                 2xl:w-[80%]
                 ">
                     {
                         language === "English"
-                            ? hero.english.split("\n")[0] + "\n" + hero.english.split("\n")[1] + "\n" + hero.english.split("\n")[2]
+                            ? hero.english
                             : language === "العربية" ? hero.arabic
                                 : language === "Russian" ? hero.russian
                                     : hero.chinese

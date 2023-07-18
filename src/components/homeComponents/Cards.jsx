@@ -88,11 +88,11 @@ const Cards = () => {
         flex 
         justify-center 
         absolute 
-        top-[23rem]
+        top-[21rem]
         md:top-[30rem]
         lmd:top-[29rem]
-        midLarge:top-[32rem]
-        large:top-[34rem]
+        midLarge:top-[33rem]
+        large:top-[39rem]
         " 
         id="services"
         >
