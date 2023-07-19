@@ -113,11 +113,14 @@ const Contact = () => {
               <div className='flex items-center gap-3'>
                 <MapPinIcon className='w-8 h-auto text-white' />
                 <p className="text-sm">
-                  {
-                    language === "English"
-                      ? "385020, Maykop, Proletarskaya, 334, office 316"
-                      : "385020, Maykop, Proletarskaya, 334, office 316"
-                  }
+                  HDS Business Centre - Office 3605 - Jumeirah Lake Towers. Dubai, United Arab Emirates.
+                </p>
+              </div>
+
+              <div className='flex items-center gap-3'>
+                <MapPinIcon className='w-8 h-auto text-white' />
+                <p className="text-sm">
+                  The doctors towers. building 21, office no:9 in second floor, 6 October City, Cairo, Egypt.
                 </p>
               </div>
 
@@ -134,12 +137,12 @@ const Contact = () => {
                       : "+447452117813"
                   }
                 </p> */}
-                <p>
+                <p className="lg:text-xl max-w-[60%]">
                   {
-                    language === "English" ? "For your service, leave your contact information on whatsapp and one of our team will get back to you soon."
-                    : language === "العربية" ? "لخدمتك ، اترك معلومات الاتصال الخاصة بك على واتس آب وسيقوم أحد فريقنا بالرد عليك قريبًا."
-                    : language === "Russian" ? "Здесь вы можете оставить свою контактную информацию WhatsApp, и один из наших сотрудников свяжется с вами в ближайшее время."
-                    :  "如需为您提供服务，请在 Whatsapp 上留下您的联系信息，我们的团队之一将尽快与您联系。"
+                    language === "English" ? "To serve you well, please contact any communication option available to re contact you from our team."
+                      : language === "العربية" ? "لخدمتك بشكل جيد ، يرجى الاتصال بأي خيار اتصال متاح وسيقوم فريقنا بالرد عليك قريبًا."
+                        : language === "Russian" ? "Для качественного обслуживания, пожалуйста, оставьте Ваши контактные данные чтобы наша команда связалась с Вами."
+                          : "为了更好地为您服务，请联系任何可用的通讯选项，以便我们的团队重新与您联系"
                   }
                 </p>
               </NavLink>
@@ -155,17 +158,19 @@ const Contact = () => {
                 </p>
               </div>
 
-              <div className='flex items-center gap-3'>
-                <EnvelopeIcon className='w-8 h-auto text-white' />
+              <a href="mailto:info@karllc-group.com" className='flex items-center gap-3 hover:text-blue cursor-pointer'>
+                <EnvelopeIcon className='w-8 h-auto text-white hover:text-blue' />
                 <p>info@karllc-group.com</p>
-              </div>
+              </a>
               <div className='flex items-center gap-3'>
 
                 <NavLink to="https://www.facebook.com/people/Kar-db-group/100093632534966/?mibextid=ZbWKwL" target="_blank">
                   <Facebook size={30} className='text-white hover:text-[#0165E1] hover-effect cursor-pointer' />
                 </NavLink>
 
-                <Linkedin size={30} className='text-white hover:text-[#0A66C2] hover-effect cursor-pointer' />
+                <NavLink to="https://www.linkedin.com/in/karbd-group-0b6247284/" target="_blank">
+                  <Linkedin size={30} className='text-white hover:text-[#0A66C2] hover-effect cursor-pointer' />
+                </NavLink>
               </div>
             </div>
           </div>

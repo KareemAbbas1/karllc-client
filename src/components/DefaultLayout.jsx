@@ -187,7 +187,7 @@ export default function DefaultLayout() {
 
                       <NavLink to="/" className="flex-shrink-0" onClick={() => { setLoading(true); setTimeout(() => { location.reload() }, 100) }}>
                         <img
-                          className="h-6 lg:h-7 w-auto logos"
+                          className="h-8 lg:h-9 w-auto logos"
                           src={Logo}
                           alt="Your Company"
                         />
