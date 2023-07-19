@@ -88,7 +88,7 @@ const Contact = () => {
       {/* <OverLay /> */}
 
       {/* Contact Info */}
-      <div className="form-container max-w-screen-xl py-8 px-4 my-0 lg:pb-6 md:px-10 lg:rounded-xl text-white lg:h-full xl:flex flex-col justify-center ">
+      <div className="form-container max-w-screen-xl w-full py-8 px-4 my-0 lg:pb-6 md:px-10 lg:rounded-xl text-white lg:h-full xl:flex flex-col justify-center ">
         <h1 className="text-blue text-3xl lg:text-2xl xl:text-4xl font-semibold border-s-4 border-blue px-2 mb-6 xl:mb-16 pt-2">
           {
             language === "English"
@@ -98,18 +98,28 @@ const Contact = () => {
                   : "联系我们"
           }
         </h1>
-        <p className="lg:bg-transparent text-md text-white px-2 py-3 rounded-lg mb-2 xl:mb-8 lg:w-[70%]">
+        <p className="lg:bg-transparent text-lg lg:text-2xl text-white px-2 py-3 rounded-lg mb-2 xl:mb-8 lg:w-[70%]">
           {
+            language === "English"
+              ? "To serve you well, please contact any communication option available to re contact you from our team"
+              : language === "العربية" ? "لخدمتك بشكل جيد ، يرجى الاتصال بأي خيار اتصال متاح لإعادة الاتصال بك من خلال فريقنا"
+                : language === "Russian" ? "Для качественного обслуживания, пожалуйста, оставьте Ваши контактные данные чтобы наша команда связалась с Вами."
+                  : "为了更好地为您服务，请联系任何可用的通讯选项，以便我们的团队重新与您联系"
+          }
+          {/* {
             language === "English"
               ? " The ‘’KAR’’ group of companies multilaterally captures many areas of life. We are located in several countries in the world, such as the United Arab Emirates, Turkey, Estonia, Russia, Syria, etc. Our team is ready to cooperate."
               : language === "العربية" ? "تلتقط مجموعة شركات \"KAR\" بشكل متعدد الجوانب العديد من مجالات الحياة. نحن موجودون في عدة دول في العالم ، مثل الإمارات العربية المتحدة وتركيا وإستونيا وروسيا وسوريا ، إلخ. فريقنا جاهز للتعاون."
                 : language === "Russian" ? "Группа компаний «КАР» многосторонне охватывает многие сферы жизни. Мы находимся в нескольких странах мира, таких как Объединенные Арабские Эмираты, Турция, Эстония, Россия, Сирия и др. Наша команда готова к сотрудничеству."
                   : "“KAR”公司集团涉足生活的许多领域。 我们遍布世界多个国家，如阿联酋、土耳其、爱沙尼亚、俄罗斯、叙利亚等。我们的团队已准备好合作。"
-          }
+          } */}
         </p>
         <div>
           <div className="p-0 m-0 lg:bg-transparent px-1 py-3 rounded-xl">
             <div className='flex flex-col gap-5'>
+
+
+              <h1>Our Location:</h1>
               <div className='flex items-center gap-3'>
                 <MapPinIcon className='w-8 h-auto text-white' />
                 <p className="text-sm">
@@ -120,10 +130,11 @@ const Contact = () => {
               <div className='flex items-center gap-3'>
                 <MapPinIcon className='w-8 h-auto text-white' />
                 <p className="text-sm">
-                  The doctors towers. building 21, office no:9 in second floor, 6 October City, Cairo, Egypt.
+                 The doctors towers. building 21, office no:9 in second floor, 6 October City, Cairo, Egypt.
                 </p>
               </div>
 
+              <h1 className="mt-4">Contact Options:</h1>
               <NavLink to='https://wa.me/447452117813' target="_blank" className='flex items-center gap-3 hover:text-[#25D366]'>
                 <Whatsapp
                   className=' hover-effect cursor-pointer'
@@ -137,12 +148,12 @@ const Contact = () => {
                       : "+447452117813"
                   }
                 </p> */}
-                <p className="lg:text-xl max-w-[60%]">
+                <p>
                   {
-                    language === "English" ? "To serve you well, please contact any communication option available to re contact you from our team."
-                      : language === "العربية" ? "لخدمتك بشكل جيد ، يرجى الاتصال بأي خيار اتصال متاح وسيقوم فريقنا بالرد عليك قريبًا."
-                        : language === "Russian" ? "Для качественного обслуживания, пожалуйста, оставьте Ваши контактные данные чтобы наша команда связалась с Вами."
-                          : "为了更好地为您服务，请联系任何可用的通讯选项，以便我们的团队重新与您联系"
+                    language === "English" ? "For your service, leave your contact information on whatsapp and one of our team will get back to you soon."
+                      : language === "العربية" ? "لخدمتك ، اترك معلومات الاتصال الخاصة بك على واتس آب وسيقوم أحد فريقنا بالرد عليك قريبًا."
+                        : language === "Russian" ? "Здесь вы можете оставить свою контактную информацию WhatsApp, и один из наших сотрудников свяжется с вами в ближайшее время."
+                          : "如需为您提供服务，请在 Whatsapp 上留下您的联系信息，我们的团队之一将尽快与您联系。"
                   }
                 </p>
               </NavLink>
