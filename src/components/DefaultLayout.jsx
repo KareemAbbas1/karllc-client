@@ -331,7 +331,7 @@ export default function DefaultLayout() {
                       <div className='bg-blue h-6 w-[2px] rounded mx-5' />
 
                       <NavLink
-                        to="https://dev.karllc-group.com/"
+                        to="https://chat-app.karllc-group.com/"
                         target="_blank"
                         className="hidden lg:block me-6"
                       >
@@ -423,7 +423,7 @@ export default function DefaultLayout() {
                   </div>
 
                   <NavLink
-                    to="https://dev.karllc-group.com/"
+                    to="https://chat-app.karllc-group.com/"
                     target="_blank"
                     className="block lg:hidden px-5 -mt-2 mb-3"
                   >
