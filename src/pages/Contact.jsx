@@ -6,8 +6,11 @@ import { Facebook, Whatsapp, Printer, Linkedin } from "react-bootstrap-icons"
 import Loader from "../components/Loader"
 import { useEffect } from "react"
 import ScrollToTop from "../components/ScrollToTop"
-import { useForm, ValidationError } from '@formspree/react';
+import axios from "axios";
+// import { useForm, ValidationError } from '@formspree/react';
 import { NavLink } from "react-router-dom"
+import { useState } from "react"
+import { useRef } from "react"
 
 
 
@@ -48,11 +51,52 @@ const Contact = () => {
     }, 500)
   }, [])
 
-  const [state, handleSubmit] = useForm("mpzgzogw");
 
+  // Form submission
+  const [sendLoading, setSendLoading] = useState(false);
+  const [succeeded, setSucceeded] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
+  const nameRef = useRef("");
+  const emailRef = useRef("");
+  const subjectRef = useRef(null);
+  const messageRef = useRef("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  // const [state, handleSubmit] = useForm("xbjvrgnd");
+    setSendLoading(true);
+    setSubmitting(true);
+
+    const data = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      subject: subjectRef.current.value,
+      message: messageRef.current.value
+    }
+
+    axios.post('https://www.karllc-group.com/karllc-mailer/contact-mailer.php', data)
+      .then(() => {
+        setSendLoading(false);
+        setSucceeded(true);
+        console.log("Success");
+        document.getElementById("contact-form").reset();
+        setSubmitting(false);
+        setTimeout(() => {
+          setSucceeded(false);
+        }, 20000);
+      })
+      .catch((err) => {
+        setError(true);
+        setErrorMsg("Message could not be sent. Please try again later.");
+        setSendLoading(false);
+        setTimeout(() => {
+          setSubmitting(false);
+        }, 10000);
+        console.error("Error", err);
+      })
+  }
 
   return (
     // <PageComponent>
@@ -130,7 +174,7 @@ const Contact = () => {
               <div className='flex items-center gap-3'>
                 <MapPinIcon className='w-8 h-auto text-white' />
                 <p className="text-sm">
-                 The doctors towers. building 21, office no:9 in second floor, 6 October City, Cairo, Egypt.
+                  The doctors towers. building 21, office no:9 in second floor, 6 October City, Cairo, Egypt.
                 </p>
               </div>
 
@@ -211,7 +255,10 @@ const Contact = () => {
             `
             "
       >
-        <form onSubmit={handleSubmit} className="flex flex-col lg:justify-center text-white px-2 lg:px-6 py-3 rounded-xl h-fit lg:w-full lg:shadow-lg">
+        <form 
+        onSubmit={(e) => handleSubmit(e)}
+        id="contact-form"
+        className="flex flex-col lg:justify-center text-white px-2 lg:px-6 py-3 rounded-xl h-fit lg:w-full lg:shadow-lg">
 
           <h1 className="text-blue text-3xl lg:text-2xl xl:text-4xl font-semibold border-s-4 border-blue px-2 mb-6 xl:mb-16 pt-2">
             {
@@ -224,7 +271,7 @@ const Contact = () => {
           </h1>
 
           {
-            state.succeeded
+            succeeded
               ?
               <div className="w-full h-full flex justify-center items-center">
                 <div
@@ -273,6 +320,7 @@ const Contact = () => {
                     id="contact-us-name"
                     type="text"
                     name="name"
+                    ref={nameRef}
                     className="h-10 px-2 lg:h-12 mb-3 lg:mb-4 rounded-lg border border-gray-400 bg-transparent"
                     required
                   />
@@ -291,6 +339,7 @@ const Contact = () => {
                     id="contact-us-email"
                     type="email"
                     name="email"
+                    ref={emailRef}
                     className="h-10 px-2 lg:h-12 mb-3 lg:mb-4 rounded-lg border border-gray-400 bg-transparent"
                     required
                   />
@@ -309,6 +358,7 @@ const Contact = () => {
                     id="contact-us-subject"
                     type="text"
                     name="subject"
+                    ref={subjectRef}
                     className="h-10 px-2 lg:h-12 mb-3 lg:mb-4 rounded-lg border border-gray-400 bg-transparent"
                   />
                 </div>
@@ -326,20 +376,22 @@ const Contact = () => {
                 <textarea
                   id="contact-us-message"
                   name="message"
+                  ref={messageRef}
                   rows="4"
                   className="border-gray-400 bg-transparent rounded-lg lg:h-48"
                   required
                 />
 
-                <ValidationError
-                  prefix="Message"
-                  field="message"
-                  errors={state.errors}
-                />
+
+                {
+                  error &&
+                  <span style={{ color: 'red' }}>{errorMsg}</span>
+                }
+
 
                 <button
                   type="submit"
-                  disabled={state.submitting}
+                  disabled={submitting}
                   className="bg-blue text-white text-xl mt-4 py-2 rounded-lg font-semibold lg:w-[30%] lg:self-end hover:opacity-75">
                   {
                     language === "English"
@@ -349,6 +401,11 @@ const Contact = () => {
                           : "发信息"
                   }
                 </button>
+
+                {
+                  sendLoading &&
+                  <span className="text-center">Sending...</span>
+                }
               </>
           }
         </form>

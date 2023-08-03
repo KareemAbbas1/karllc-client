@@ -3,7 +3,9 @@ import styled from "styled-components"
 import Logo from "../../assets/logo.png";
 import { karInNumbers } from "../../lib/home";
 import { UseStateContext } from "../../context/ContextProvider";
-import { useForm, ValidationError } from '@formspree/react';
+import { useState } from "react";
+import { useRef } from "react";
+import axios from "axios";
 // import Linkedin from '../../assets/Linkedin.png'
 // import Facebook from '../../assets/Facebook.png'
 // import Twitter from '../../assets/Twitter.png'
@@ -71,7 +73,51 @@ const KarInNumbers = () => {
 
 
     // Form submititon
-    const [state, handleSubmit] = useForm("xnqkqoyb");
+    const [loading, setloading] = useState(false);
+    const [succeeded, setSucceeded] = useState(false);
+    const [error, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
+    const [submitting, setSubmitting] = useState(false);
+
+    const nameRef = useRef("");
+    const emailRef = useRef("");
+    const phoneRef = useRef(null);
+    const messageRef = useRef("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        setloading(true);
+        setSubmitting(true);
+
+        const data = {
+            name: nameRef.current.value,
+            email: emailRef.current.value,
+            phone: phoneRef.current.value,
+            message: messageRef.current.value
+        }
+
+        axios.post('https://www.karllc-group.com/karllc-mailer/', data)
+            .then(() => {
+                setloading(false);
+                setSucceeded(true);
+                console.log("Success");
+                document.getElementById("get-a-quote").reset();
+                setSubmitting(false);
+                setTimeout(() => {
+                    setSucceeded(false);
+                }, 20000);
+            })
+            .catch((err) => {
+                setError(true);
+                setErrorMsg("Message could not be sent. Please try again later.");
+                setTimeout(() => {
+                    setSubmitting(false);
+                }, 10000);
+                console.error("Error", err);
+            })
+
+    }
 
     return (
         <Container className="relative" id="kar-in-numbers">
@@ -264,13 +310,13 @@ const KarInNumbers = () => {
                         </div>
 
                         <form
-                            onSubmit={handleSubmit}
+                            onSubmit={(e) => handleSubmit(e)}
                             id="get-a-quote"
                             className="flex flex-col lg:justify-center lg:text-white px-2 lg:px-6 py-3 rounded-xl h-full lg:w-full lg:shadow-lg"
                             dir={language === "العربية" ? "rtl" : "ltr"}
                         >
                             {
-                                state.succeeded
+                                succeeded
                                     ?
                                     <div className="w-full h-full flex justify-center items-center">
                                         <div
@@ -314,6 +360,7 @@ const KarInNumbers = () => {
                                                 }
                                                 <span className="text-[red]">*</span></label>
                                             <input
+                                                ref={nameRef}
                                                 className="
                                         bg-transparent 
                                         text-[16px]
@@ -341,6 +388,7 @@ const KarInNumbers = () => {
                                                 }
                                                 <span className="text-[red]">*</span></label>
                                             <input
+                                                ref={emailRef}
                                                 className="bg-transparent text-[16px] h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-0 border-b border-gray-400"
                                                 id="get-quote-email"
                                                 type="email"
@@ -358,6 +406,7 @@ const KarInNumbers = () => {
                                                 }
                                                 <span className="text-[red]">*</span></label>
                                             <input
+                                                ref={phoneRef}
                                                 className="bg-transparent text-[16px] h-10 px-2 lg:h-12 mb-3 lg:mb-8 border-0 border-b border-gray-400"
                                                 id="get-quote-phone"
                                                 type="tel"
@@ -377,6 +426,7 @@ const KarInNumbers = () => {
                                             }
                                             <span className="text-[red]">*</span></label>
                                         <textarea
+                                            ref={messageRef}
                                             rows="4"
                                             className="bg-transparent text-[16px] border-0 border-0 border-b border-gray-400 lg:h-48"
                                             id="get-quote-message"
@@ -384,16 +434,20 @@ const KarInNumbers = () => {
                                             required
                                         />
 
-                                        <ValidationError
+                                        {
+                                            error &&
+                                            <span style={{ color: 'red' }}>{errorMsg}</span>
+                                        }
+                                        {/* <ValidationError
                                             prefix="Message"
                                             field="message"
                                             errors={state.errors}
-                                        />
+                                        /> */}
 
                                         <button
                                             type="submit"
-                                            disabled={state.submitting}
-                                            className="bg-blue text-white text-xl mt-4 py-2 rounded-lg font-semibold lg:w-[30%] lg:self-end hover:opacity-75"
+                                            disabled={submitting}
+                                            className="bg-blue text-white text-xl mt-4 py-2 rounded-lg font-semibold lg:w-[30%] lg:self-end hover:opacity-75 disabled:opacity-75"
                                         >
                                             {
                                                 language === "English"
@@ -403,6 +457,11 @@ const KarInNumbers = () => {
                                                             : "发信息"
                                             }
                                         </button>
+
+                                        {
+                                            loading &&
+                                            <span className="text-blue text-center">Sending...</span>
+                                        }
                                     </>
                             }
                         </form>
