@@ -212,7 +212,7 @@ const Logistics = () => {
             }
           </h1>
 
-          <img src={LogisticsLargeHero} className={`hidden large:block w-48 large:w-80 absolute bottom-0 large:-bottom-6 ${language !== "العربية" ? "right-32" : "left-32"}`} />
+          <img src={LogisticsLargeHero} className={`hidden lg:block w-48 large:w-80 absolute bottom-0 large:-bottom-6 ${language !== "العربية" ? "right-32" : "left-32"}`} />
 
           <img src={LogistictsHero} className="md:scale-[1.7] md:mx-40 lg:hidden lg:scale-[1.5] lg:mx-28 lg:px-0 lg:py-4 large:scale-[1.8] large:pt-16  " />
 
