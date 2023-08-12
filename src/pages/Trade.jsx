@@ -2,7 +2,7 @@ import PageComponent from "../components/PageComponent"
 import BlueArrows2 from "../assets/BlueArrows2.png"
 import LogisticsFAQ from "../assets/LogisticsFAQ.png"
 import styled from "styled-components"
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 // import TradeHero from '../assets/TradeHero.jpg'
@@ -142,6 +142,29 @@ const Trade = () => {
     }, 500)
   }, [])
 
+  const [iosDevice, setIosDevice] = useState(false);
+
+  useEffect(() => {
+    const isIOS = (function () {
+      const iosQuirkPresent = function () {
+        const audio = new Audio();
+
+        audio.volume = 0.5;
+        return audio.volume === 1;   // volume cannot be changed from "1" on iOS 12 and below
+      };
+
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      const isAppleDevice = navigator.userAgent.includes('Macintosh');
+      const isTouchScreen = navigator.maxTouchPoints >= 1;   // true for iOS 13 (and hopefully beyond)
+
+      return isIOS || (isAppleDevice && (isTouchScreen || iosQuirkPresent()));
+    })();
+
+    if (isIOS) {
+      setIosDevice(true)
+    }
+  }, []);
+
 
   return (
     <PageComponent>
@@ -173,7 +196,11 @@ const Trade = () => {
                 autoplay="true"
                 playsinline="true"
                 >
-                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1689266008/Inside_World_s_Biggest_Most_Advanced_Vertical_Farm_online-video-cutter.com_fb3x67.webm"  type="video/webm"/>
+                <source src="${iosDevice
+                ? "https://res.cloudinary.com/dqmqc0uaa/video/upload/v1691843198/Inside_World_s_Biggest_Most_Advanced_Vertical_Farm_online-video-cutter.com_sesshg.mp4"
+                : "https://res.cloudinary.com/dqmqc0uaa/video/upload/v1689266008/Inside_World_s_Biggest_Most_Advanced_Vertical_Farm_online-video-cutter.com_fb3x67.webm"
+              }"  
+                type="video/${iosDevice ? "mp4" : "webm"}"/>
               </video>
             `
           }}
@@ -192,7 +219,11 @@ const Trade = () => {
                 autoplay="true"
                 playsinline="true"
                 >
-                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_1600,w_1100/v1689266008/Inside_World_s_Biggest_Most_Advanced_Vertical_Farm_online-video-cutter.com_fb3x67.webm"  type="video/webm"/>
+                <source src="${iosDevice
+                ? "https://res.cloudinary.com/dqmqc0uaa/video/upload/c_scale,h_1600,w_1100/v1691843198/Inside_World_s_Biggest_Most_Advanced_Vertical_Farm_online-video-cutter.com_sesshg.mp4"
+                : "https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_1600,w_1100/v1689266008/Inside_World_s_Biggest_Most_Advanced_Vertical_Farm_online-video-cutter.com_fb3x67.webm"
+              }"  
+                type="video/${iosDevice ? "mp4" : "webm"}"/>
               </video>
             `
           }}
@@ -211,7 +242,12 @@ const Trade = () => {
                 autoplay="true"
                 playsinline="true"
                 >
-                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_1080,w_500/v1689266008/Inside_World_s_Biggest_Most_Advanced_Vertical_Farm_online-video-cutter.com_fb3x67.webm"  type="video/webm"/>
+                <source src="${
+                  iosDevice
+                  ? "https://res.cloudinary.com/dqmqc0uaa/video/upload/c_scale,h_1080,w_500/v1691843198/Inside_World_s_Biggest_Most_Advanced_Vertical_Farm_online-video-cutter.com_sesshg.mp4"
+                  : "https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_1080,w_500/v1689266008/Inside_World_s_Biggest_Most_Advanced_Vertical_Farm_online-video-cutter.com_fb3x67.webm"
+                }"  
+                type="video/${iosDevice ? "mp4" : "webm"}"/>
               </video>
             `
           }}

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { hero } from "../../lib/home";
 import { UseStateContext } from "../../context/ContextProvider"
 import HeroLogo from "../../assets/HeroLogo.png"
+import { useEffect, useState } from "react";
 
 
 const Container = styled.div`
@@ -50,7 +51,28 @@ const OverLay = styled.div`
 const Hero = () => {
 
     const { language } = UseStateContext();
+    const [iosDevice, setIosDevice] = useState(false);
 
+    useEffect(() => {
+        const isIOS = (function () {
+            const iosQuirkPresent = function () {
+                const audio = new Audio();
+
+                audio.volume = 0.5;
+                return audio.volume === 1;   // volume cannot be changed from "1" on iOS 12 and below
+            };
+
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isAppleDevice = navigator.userAgent.includes('Macintosh');
+            const isTouchScreen = navigator.maxTouchPoints >= 1;   // true for iOS 13 (and hopefully beyond)
+
+            return isIOS || (isAppleDevice && (isTouchScreen || iosQuirkPresent()));
+        })();
+
+        if (isIOS) {
+            setIosDevice(true)
+        }
+    }, []);
 
 
     return (
@@ -68,7 +90,12 @@ const Hero = () => {
               autoplay="true"
               playsinline="true"
               >
-              <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1689254439/pexels-henry-5396795_2160p_xqhudg.webm"  type="video/webm"/>
+              <source src="${iosDevice
+                            ? "https://res.cloudinary.com/dqmqc0uaa/video/upload/v1691842111/acc-codec_bws17e.mp4"
+                            : "https://res.cloudinary.com/dqmqc0uaa/video/upload/v1689254439/pexels-henry-5396795_2160p_xqhudg.webm"
+                        }"  
+                    type="video/${iosDevice ? "mp4" : "webm"}"
+                />
             </video>
           ` }}
             // src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" 

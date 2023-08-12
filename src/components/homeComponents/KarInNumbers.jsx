@@ -3,7 +3,7 @@ import styled from "styled-components"
 import Logo from "../../assets/logo.png";
 import { karInNumbers } from "../../lib/home";
 import { UseStateContext } from "../../context/ContextProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 import axios from "axios";
 // import Linkedin from '../../assets/Linkedin.png'
@@ -119,6 +119,29 @@ const KarInNumbers = () => {
 
     }
 
+    const [iosDevice, setIosDevice] = useState(false);
+
+    useEffect(() => {
+        const isIOS = (function () {
+            const iosQuirkPresent = function () {
+                const audio = new Audio();
+
+                audio.volume = 0.5;
+                return audio.volume === 1;   // volume cannot be changed from "1" on iOS 12 and below
+            };
+
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isAppleDevice = navigator.userAgent.includes('Macintosh');
+            const isTouchScreen = navigator.maxTouchPoints >= 1;   // true for iOS 13 (and hopefully beyond)
+
+            return isIOS || (isAppleDevice && (isTouchScreen || iosQuirkPresent()));
+        })();
+
+        if (isIOS) {
+            setIosDevice(true)
+        }
+    }, []);
+
     return (
         <Container className="relative" id="kar-in-numbers">
             <OverLay />
@@ -134,24 +157,17 @@ const KarInNumbers = () => {
             autoplay="true"
             playsinline="true"
             >
-            <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.webm"  type="video/webm"/>
+            <source src="${
+                iosDevice
+                ? "https://res.cloudinary.com/dqmqc0uaa/video/upload/v1691848797/background-71fffdb1_xr5otm_nxx7wp.mp4"
+                : "https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.webm"
+            }"  
+            type="video/${iosDevice ? "mp4" : "webm"}"/>
             </video>
           ` }}
-            // src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" 
-            // autoPlay 
-            // loop 
-            // muted
             >
-                {/* <source  type="video/mp4" /> */}
             </Video>
-            {/* <Video 
-            src="https://res.cloudinary.com/dqmqc0uaa/video/upload/v1688387825/background-71fffdb1_xr5otm.mp4" 
-            autoPlay 
-            loop 
-            muted 
-            className="h-[180vh] min-h-[1630px] md:h-[100vh]"
-            >
-            </Video> */}
+
 
             <div>
                 <div className="

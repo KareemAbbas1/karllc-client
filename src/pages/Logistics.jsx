@@ -4,7 +4,7 @@ import LogistictsHero from "../assets/LogistictsHero.png"
 import LogisticsLargeHero from "../assets/LogisticsLargeHero.png"
 import LogisticsFAQ from "../assets/LogisticsFAQ.png"
 import styled from "styled-components"
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { UseStateContext } from '../context/ContextProvider'
@@ -34,10 +34,8 @@ const Slider = styled.div`
     }
 
     /* Hide scrollbar for IE, Edge and Firefox */
-     {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
-    }
 
     .horizontal-snap > a {
         scroll-snap-align: center;
@@ -88,6 +86,31 @@ const Logistics = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+
+  // 
+  const [iosDevice, setIosDevice] = useState(false);
+
+  useEffect(() => {
+    const isIOS = (function () {
+      const iosQuirkPresent = function () {
+        const audio = new Audio();
+
+        audio.volume = 0.5;
+        return audio.volume === 1;   // volume cannot be changed from "1" on iOS 12 and below
+      };
+
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      const isAppleDevice = navigator.userAgent.includes('Macintosh');
+      const isTouchScreen = navigator.maxTouchPoints >= 1;   // true for iOS 13 (and hopefully beyond)
+
+      return isIOS || (isAppleDevice && (isTouchScreen || iosQuirkPresent()));
+    })();
+
+    if (isIOS) {
+      setIosDevice(true)
+    }
+  }, []);
+
   // Extract data
   const { bulletPoints } = hero;
   const { cards } = cardsSection;
@@ -122,7 +145,11 @@ const Logistics = () => {
                 autoplay="true"
                 playsinline="true"
                 >
-                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_2500/v1688559175/pexels-kelly-lacy-6618026_2160p_wynkrp.mp4"  type="video/webm"/>
+                <source src="${
+                  iosDevice
+                  ? "https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_2500/v1688559175/pexels-kelly-lacy-6618026_2160p_wynkrp.mp4"
+                  : "https://res.cloudinary.com/dqmqc0uaa/video/upload/v1691844913/pexels-kelly-lacy-6618026_2160p_wynkrp_fy6vb8.webm"
+                }"  type="video/${iosDevice ? "mp4" : "webm"}"/>
               </video>
             `
           }}
@@ -141,7 +168,12 @@ const Logistics = () => {
                 autoplay="true"
                 playsinline="true"
                 >
-                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_1600,w_1100/v1688559175/pexels-kelly-lacy-6618026_2160p_wynkrp.webm"  type="video/webm"/>
+                <source src="${
+                  iosDevice
+                  ? "https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_1600,w_1100/v1691844913/pexels-kelly-lacy-6618026_2160p_wynkrp_fy6vb8.mp4"
+                  : "https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_1600,w_1100/v1688559175/pexels-kelly-lacy-6618026_2160p_wynkrp.webm"
+                }"  
+                type="video/${iosDevice ? "mp4" : "webm"}"/>
               </video>
             `
           }}
@@ -160,7 +192,12 @@ const Logistics = () => {
                 autoplay="true"
                 playsinline="true"
                 >
-                <source src="https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_1120,w_500/v1688559175/pexels-kelly-lacy-6618026_2160p_wynkrp.webm"  type="video/webm"/>
+                <source src="${
+                  iosDevice
+                  ? "https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_1120,w_500/v1691844913/pexels-kelly-lacy-6618026_2160p_wynkrp_fy6vb8.mp4"
+                  : "https://res.cloudinary.com/dqmqc0uaa/video/upload/c_fill,h_1120,w_500/v1688559175/pexels-kelly-lacy-6618026_2160p_wynkrp.webm"
+                }"  
+                type="video/${iosDevice ? "mp4" : "webm"}"/>
               </video>
             `
           }}
@@ -212,7 +249,7 @@ const Logistics = () => {
             }
           </h1>
 
-          <img src={LogisticsLargeHero} className={`hidden lg:block w-48 large:w-80 absolute bottom-0 large:-bottom-6 ${language !== "العربية" ? "right-32" : "left-32"}`} />
+          <img src={LogisticsLargeHero} className={`hidden lmd:block w-48 large:w-80 absolute bottom-0 large:-bottom-6 ${language !== "العربية" ? "right-32" : "left-32"}`} />
 
           <img src={LogistictsHero} className="md:scale-[1.7] md:mx-40 lg:hidden lg:scale-[1.5] lg:mx-28 lg:px-0 lg:py-4 large:scale-[1.8] large:pt-16  " />
 
