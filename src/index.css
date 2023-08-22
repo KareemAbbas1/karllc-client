@@ -5,6 +5,10 @@ html, body {
 }
 
 
+.smooth-snimation {
+    transition: all 300ms ease-in-out;
+}
+
 
 @tailwind base;
 @tailwind components;
