@@ -7,9 +7,14 @@ import {
   seaTransportaionTypes,
   landTransportaionTypes,
   transportationDetails,
-  containerTypes
+  containerTypes,
+  shipsTypes,
+  trucksTypes,
+  associatedServices
 } from "../../lib/logisticsForm";
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import CountryList from "./CountryList";
+import axios from "axios";
 
 const LogisticsForm = () => {
 
@@ -23,62 +28,102 @@ const LogisticsForm = () => {
     from: "",
     to: "",
     readyToLoad: "",
-    additionalInfo: "",
+    additionalInfo: null,
     associatedServices: [],
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-    company: ""
+    company: null,
+    invoiceAmount: null
   })
-  console.log(formData)
+
+
 
   const [showProducts, setShowProducts] = useState(false);
   const [showCargoTypes, setShowCargoTypes] = useState(false);
   const [showCargoDetails, setShowCargoDetails] = useState(false);
   const [showTransportaionType, setShowTransportaionType] = useState(false);
   const [showContainerTypes, setShowContainerTypes] = useState(false);
+  const [showShipsTypes, setShowShipsTypes] = useState(false);
+  const [showTrucksTypes, setShowTrucksTypes] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => {
-      return { ...prev, [name]: value }
-    })
+  const handleCheckboxChange = (el, service) => {
+    let newArr = formData.associatedServices;
+    let elIndex;
+    if (el.checked) {
+      newArr.push(service);
+      setFormData((prev) => {
+        return { ...prev, associatedServices: newArr }
+      })
+    } else {
+      elIndex = formData.associatedServices.indexOf(service)
+      if (elIndex > -1) {
+        formData.associatedServices.splice(elIndex, 1);
+        service === "Insurance" && setFormData((prev) => {
+          return { ...prev, invoiceAmount: null }
+        })
+        newArr = formData.associatedServices;
+        setFormData((prev) => {
+          return { ...prev, associatedServices: newArr }
+        })
+      }
+    }
+  }
+
+
+  // Handle Submit
+  const [sendLoading, setSendLoading] = useState(false);
+  const [succeeded, setSucceeded] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios.post('http://localhost/karllc-mailer/get-logistics-qoute.php', formData)
+    .then(() => console.log("message sent"))
+    .catch((err) => console.log(err))
   }
   return (
-    <form className="
-    w-full 
-    max-w-[1100px] 
-    min-h-[500px] 
-    border 
-    border-gray-600 
-    rounded-lg 
-    relative 
-    mb-6 
-    pb-4 
-    px-3
-    lg:px-7
-    flex 
-    flex-col 
-    gap-12
-    lg:mt-24
-    "
+    <form
+      onSubmit={handleSubmit}
+      className="
+        w-full 
+        max-w-[1100px] 
+        min-h-[500px] 
+        border 
+        border-gray-600 
+        rounded-lg 
+        relative 
+        mb-6 
+        pb-4 
+        px-3
+        lg:px-7
+        flex 
+        flex-col 
+        gap-12
+        lg:mt-24
+      "
     >
       <h1 className="
-      absolute 
-      left-1
-      lg:left-5
-      -top-[1.5rem] 
-      h-[3rem] 
-      flex 
-      items-center
-      px-1
-      text-3xl 
-      font-bold
-      bg-dark
-      text-blue
-      lg:text-5xl
-      ">
+          absolute 
+          left-1
+          lg:left-5
+          -top-[1.5rem] 
+          h-[3rem] 
+          flex 
+          items-center
+          px-1
+          text-3xl 
+          font-bold
+          bg-dark
+          text-blue
+          lg:text-5xl
+        "
+      >
         Request a Quote
       </h1>
 
@@ -99,17 +144,16 @@ const LogisticsForm = () => {
         <div className="flex flex-col gap-3 w-full relative" >
           <label className="text-gray-400">Product <span className="text-[red]">*</span></label>
 
-          <div className="relative md:w-[84%] lg:w-[80%]">
+          <div className="relative md:w-[84%]">
             <input className="
             w-full
             border 
             border-gray-600 
-            opacity-50 
             px-2 
             h-[3rem] 
             flex 
             items-center 
-            cursor-text
+            cursor-pointer
             rounded-md
             bg-dark
             flex
@@ -118,8 +162,8 @@ const LogisticsForm = () => {
               name="product"
               placeholder="Choose commodity type"
               required
-              value={formData.product}
-              onClick={() => setShowProducts(true)}
+              defaultValue={formData.product}
+              onClick={() => setShowProducts(!showProducts)}
             />
 
 
@@ -133,6 +177,7 @@ const LogisticsForm = () => {
             cursor-pointer 
             text-xl 
             h-fit
+            z-10
             "
               onClick={() => {
                 setFormData((prev) => {
@@ -146,7 +191,10 @@ const LogisticsForm = () => {
               {
                 formData.product
                   ? "x"
-                  : <ChevronDownIcon className="w-6 text-gray-600" />
+                  : showProducts
+                    ? <ChevronDownIcon className="w-6 text-gray-600 smooth-snimation" style={{ transform: 'rotate(180deg)' }} />
+                    : <ChevronDownIcon className="w-6 text-gray-600 smooth-snimation" />
+
               }
             </span>
 
@@ -186,7 +234,7 @@ const LogisticsForm = () => {
 
             {
               showCargoTypes &&
-              <div className="flex flex-nowrap gap-2 overflow-x-scroll py-7 ">
+              <div className="w-full flex flex-nowrap gap-2 overflow-x-scroll py-7 ">
                 {
 
                   cargoTypes.map(t => (
@@ -207,12 +255,11 @@ const LogisticsForm = () => {
                           cursor-pointer
                           ${formData.cargoType === t ? "bg-blue" : "bg-dark"}
                         `}
-                        onClick={(e) => {
+                        onClick={() => {
                           setFormData((prev) => {
                             return { ...prev, cargoType: t }
                           });
                           setShowCargoDetails(true);
-                          console.log(e.target.value)
                         }}
                       >{t}</label>
                       <input
@@ -243,7 +290,6 @@ const LogisticsForm = () => {
                           w-full 
                           border 
                           border-gray-600 
-                          opacity-50 
                           px-2 
                           h-[3rem] 
                           flex 
@@ -283,7 +329,8 @@ const LogisticsForm = () => {
                       setFormData((prev) => {
                         return { ...prev, deliveryType: type, transportationType: "Full Container Load FCL", transportationDetails: {} }
                       });
-                    document.getElementById("Container Type").value = ""
+                    document.getElementById("Container Type")
+                      && (document.getElementById("Container Type").value = "")
                   }
                   }
                   key={type}
@@ -314,7 +361,6 @@ const LogisticsForm = () => {
                 w-full 
                 border 
                 border-gray-600 
-                opacity-50 
                 px-2 
                 h-[3rem] 
                 flex 
@@ -325,16 +371,16 @@ const LogisticsForm = () => {
                 flex
                 justify-between
               "
-              value={formData.transportationType}
+              defaultValue={formData.transportationType}
               onClick={() => setShowTransportaionType(!showTransportaionType)}
             />
 
             <span className="absolute bottom-3 right-2 text-gray-600" onClick={() => setShowTransportaionType(!showTransportaionType)}>
               {
                 showTransportaionType
-                  ? "x"
+                  ? <ChevronDownIcon className="w-6 text-gray-600 smooth-snimation" style={{ transform: 'rotate(180deg)' }} />
                   :
-                  <ChevronDownIcon className="w-6 text-gray-600" />
+                  <ChevronDownIcon className="w-6 text-gray-600 smooth-snimation" />
               }
             </span>
 
@@ -367,7 +413,7 @@ const LogisticsForm = () => {
                           className="border-b border-gray-600 p-2 cursor-pointer hover:opacity-50 smooth-snimation"
                           onClick={(e) => {
                             setFormData((prev) => {
-                              return { ...prev, transportationType: e.target.innerText }
+                              return { ...prev, transportationType: e.target.innerText, transportationDetails: {} }
                             });
                             setShowTransportaionType(!showTransportaionType);
                           }}>
@@ -395,7 +441,7 @@ const LogisticsForm = () => {
           </div>
 
           <div
-            className="flex flex-col gap-6 md:flex-row md:flex-wrap md:w-[84%] lg:w-[80%]"
+            className="flex flex-col gap-6 md:flex-row md:flex-wrap md:w-[84%] lg:w-[81%]"
           >
             {
               transportationDetails.filter(item => item.transTypes.includes(formData.transportationType)).map(type => (
@@ -405,7 +451,7 @@ const LogisticsForm = () => {
                 >
                   <label className="text-gray-400">{type.name} {type.required && (<span className="text-[red]">*</span>)}</label>
                   <input
-                    required
+                    required={type.required}
                     className="
                       w-full 
                       border 
@@ -415,29 +461,69 @@ const LogisticsForm = () => {
                       rounded-md
                       bg-dark
                   "
-                    onClick={() => type.name === "Container Type" && setShowContainerTypes(!showContainerTypes)}
+                    onClick={() =>
+                      type.name === "Container Type"
+                        ? setShowContainerTypes(!showContainerTypes)
+                        : type.name === "Ship Type" ? setShowShipsTypes(!showShipsTypes)
+                          : type.name === "Truck Type" && setShowTrucksTypes(!showTrucksTypes)
+                    }
                     id={type.name}
+                    onChange={(e) =>
+                      setFormData((prev) => {
+                        return {
+                          ...prev, transportationDetails: {
+                            ...formData.transportationDetails, [
+                              type.name.split(" ").join("-")
+                            ]: e.target.value
+                          }
+                        }
+                      })}
                   />
 
                   {
-                    type.name !== "Container Type"
-                      ? ""
-                      : (
+                    type.name === "Container Type"
+                      ?
+                      (
 
                         <span className="absolute bottom-3 right-2 text-gray-600" onClick={() => setShowContainerTypes(!showContainerTypes)}>
                           {
                             showContainerTypes
-                              ? "x"
+                              ? <ChevronDownIcon className="w-6 text-gray-600 smooth-snimation" style={{ transform: 'rotate(180deg)' }} />
                               :
-                              <ChevronDownIcon className="w-6 text-gray-600" />
+                              <ChevronDownIcon className="w-6 text-gray-600 smooth-snimation" />
                           }
                         </span>
                       )
+                      : type.name === "Ship Type"
+                        ? (
+
+                          <span className="absolute bottom-3 right-2 text-gray-600" onClick={() => setShowShipsTypes(!showShipsTypes)}>
+                            {
+                              showShipsTypes
+                                ? <ChevronDownIcon className="w-6 text-gray-600 smooth-snimation" style={{ transform: 'rotate(180deg)' }} />
+                                :
+                                <ChevronDownIcon className="w-6 text-gray-600 smooth-snimation" />
+                            }
+                          </span>
+                        )
+                        : type.name === "Truck Type"
+                        &&
+                        (
+
+                          <span className="absolute bottom-3 right-2 text-gray-600" onClick={() => setShowTrucksTypes(!showTrucksTypes)}>
+                            {
+                              showTrucksTypes
+                                ? <ChevronDownIcon className="w-6 text-gray-600 smooth-snimation" style={{ transform: 'rotate(180deg)' }} />
+                                :
+                                <ChevronDownIcon className="w-6 text-gray-600 smooth-snimation" />
+                            }
+                          </span>
+                        )
                   }
 
                   {
-                    type.name === "Container Type" && showContainerTypes &&
-                    <div className="
+                    type.name === "Container Type" && showContainerTypes ?
+                      <div className="
                       border 
                       border-gray-600 
                       absolute 
@@ -450,45 +536,425 @@ const LogisticsForm = () => {
                       smooth-snimation
                       top-[100%]
                     "
-                    >
-                      {
-                        containerTypes.map(t => (
-                          <p
-                            key={t}
-                            className="border-b border-gray-600 p-2 cursor-pointer hover:opacity-50 smooth-snimation"
-                            onClick={(e) => {
-                              setFormData((prev) => {
-                                return { ...prev, transportationDetails: { ...formData.transportationDetails, ["containerType"]: e.target.innerText } }
-                              });
-                              setShowContainerTypes(false);
-                              document.getElementById(type.name).value = e.target.innerText;
-                            }
-                            }
-                          >
-                            {t}
-                          </p>
-                        ))
-                      }
-                    </div>
+                      >
+                        {
+                          containerTypes.map(t => (
+                            <p
+                              key={t}
+                              className="border-b border-gray-600 p-2 cursor-pointer hover:opacity-50 smooth-snimation"
+                              onClick={(e) => {
+                                setFormData((prev) => {
+                                  return { ...prev, transportationDetails: { ...formData.transportationDetails, ["containerType"]: e.target.innerText } }
+                                });
+                                setShowContainerTypes(false);
+                                document.getElementById(type.name).value = e.target.innerText;
+                              }
+                              }
+                            >
+                              {t}
+                            </p>
+                          ))
+                        }
+                      </div>
+
+                      : type.name === "Ship Type" && showShipsTypes
+                        ?
+                        <div className="
+                      border 
+                      border-gray-600 
+                      absolute 
+                      bg-dark 
+                      z-10
+                      w-[85vw]
+                      md:w-full
+                      max-h-[300px]
+                      overflow-y-scroll
+                      smooth-snimation
+                      top-[100%]
+                    "
+                        >
+                          {
+                            shipsTypes.map(ship => (
+                              <p
+                                key={ship}
+                                className="border-b border-gray-600 p-2 cursor-pointer hover:opacity-50 smooth-snimation"
+                                onClick={(e) => {
+                                  setFormData((prev) => {
+                                    return { ...prev, transportationDetails: { ...formData.transportationDetails, ["shipType"]: e.target.innerText } }
+                                  });
+                                  setShowShipsTypes(false);
+                                  document.getElementById(type.name).value = e.target.innerText;
+                                }
+                                }
+                              >
+                                {ship}
+                              </p>
+                            ))
+                          }
+                        </div>
+                        : type.name === "Truck Type" && showTrucksTypes &&
+                        <div className="
+                      border 
+                      border-gray-600 
+                      absolute 
+                      bg-dark 
+                      z-10
+                      w-[85vw]
+                      md:w-full
+                      max-h-[300px]
+                      overflow-y-scroll
+                      smooth-snimation
+                      top-[100%]
+                    "
+                        >
+                          {
+                            trucksTypes.map(truck => (
+                              <p
+                                key={truck}
+                                className="border-b border-gray-600 p-2 cursor-pointer hover:opacity-50 smooth-snimation"
+                                onClick={(e) => {
+                                  setFormData((prev) => {
+                                    return { ...prev, transportationDetails: { ...formData.transportationDetails, ["truckType"]: e.target.innerText } }
+                                  });
+                                  setShowTrucksTypes(false);
+                                  document.getElementById(type.name).value = e.target.innerText;
+                                }
+                                }
+                              >
+                                {truck}
+                              </p>
+                            ))
+                          }
+                        </div>
                   }
                 </div>
               ))
             }
           </div>
+
+
+          <div className="flex flex-col md:flex-row md:gap-6 md:w-[84%] lg:w-[81%] md:flex-wrap">
+            <div className="flex flex-col gap-3 mt-8 md:w-[48%] relative">
+              <label className="text-gray-400">From <span className="text-[red]">*</span></label>
+              <input
+                required
+                className="
+                w-full 
+                border 
+                border-gray-600 
+                px-2 
+                h-[3rem] 
+                flex 
+                items-center 
+                cursor-text
+                rounded-md
+                bg-dark
+                flex
+                justify-between
+              "
+                onChange={(e) => setFormData((prev) => {
+                  return { ...prev, from: e.target.value }
+                })}
+              />
+            </div>
+
+            <div className="flex flex-col gap-3 mt-8 md:w-[48%] relative">
+              <label className="text-gray-400">To <span className="text-[red]">*</span></label>
+              <input
+                required
+                className="
+                w-full 
+                border 
+                border-gray-600 
+                px-2 
+                h-[3rem] 
+                flex 
+                items-center 
+                cursor-text
+                rounded-md
+                bg-dark
+                flex
+                justify-between
+              "
+                onChange={(e) => setFormData((prev) => {
+                  return { ...prev, to: e.target.value }
+                })}
+              />
+            </div>
+
+            <div className="flex flex-col gap-3 mt-8 md:w-[48%] relative">
+              <label className="text-gray-400">Ready to Load <span className="text-[red]">*</span></label>
+              <input
+                required
+                className="
+                w-full 
+                border 
+                border-gray-600 
+                px-2 
+                h-[3rem] 
+                flex 
+                items-center 
+                cursor-text
+                rounded-md
+                bg-dark
+                flex
+                justify-between
+              "
+                onChange={(e) => setFormData((prev) => {
+                  return { ...prev, readyToLoad: e.target.value }
+                })}
+              />
+            </div>
+
+            <div className="flex flex-col gap-3 mt-8 w-full relative">
+              <label className="text-gray-400">Additional Information</label>
+              <textarea
+                className="
+                w-full 
+                border 
+                border-gray-600 
+                px-2 
+                bg-dark
+                rounded-lg
+              "
+                rows={3}
+                style={{ resize: 'none' }}
+                onChange={(e) => setFormData((prev) => {
+                  return { ...prev, additionalInfo: e.target.value }
+                })}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Associated Services */}
-      <div>
+      <div className="
+        w-full
+        mt-[2rem]
+        flex
+        flex-col
+        items-start
+        justify-center
+        gap-4
+        max-w-[1000px]
+        lg:mt-[4rem]
+      ">
         <h2 className="text-lg font-semibold">Associated Services</h2>
+
+        <div className="w-full flex flex-nowrap gap-2 overflow-x-scroll py-7 ">
+          {
+
+            associatedServices.map(service => (
+              <div
+                key={service}
+                className={`
+                          block
+                          min-w-fit
+                          border
+                          border-gray-600
+                          px-2
+                          py-1
+                          flex
+                          justify-center
+                          items-center
+                          gap-3
+                          rounded-3xl
+                          cursor-pointer
+                          bg-dark
+                `}
+              >
+                <input
+                  id={service}
+                  type="checkbox"
+                  className="rounded bg-dark"
+                  onChange={(e) => handleCheckboxChange(e.target, service)}
+                />
+                <label htmlFor={service} className="cursor-pointer">
+                  {service}
+                </label>
+
+              </div>
+            ))
+          }
+
+        </div>
+
+        {
+          formData.associatedServices.includes("Insurance") && (
+
+
+            <div className="flex flex-col gap-3 mt-8 w-full md:w-[40%] max-w-[400px]">
+              <label className="text-gray-400">Invoice Amount <span className="text-[red]">*</span></label>
+              <input
+                required
+                className="
+                w-full 
+                border 
+                border-gray-600 
+                px-2 
+                h-[3rem] 
+                flex 
+                items-center 
+                cursor-text
+                rounded-md
+                bg-dark
+                flex
+                justify-between
+              "
+                onChange={(e) => setFormData((prev) => {
+                  return { ...prev, invoiceAmount: e.target.value }
+                })}
+              />
+            </div>
+          )
+        }
+
+
+
       </div>
 
       {/* Contact Details */}
-      <div>
+      <div className="
+        
+        ">
         <h2 className="text-lg font-semibold">Contact Details</h2>
+
+        <div className="flex flex-col md:flex-row md:gap-6 md:w-[84%] lg:w-[81%] md:flex-wrap">
+
+          <div className="flex flex-col gap-3 mt-8 md:w-[48%] relative">
+            <label className="text-gray-400">First Name <span className="text-[red]">*</span></label>
+            <input
+              required
+              className="
+                w-full 
+                border 
+                border-gray-600 
+                px-2 
+                h-[3rem] 
+                flex 
+                items-center 
+                cursor-text
+                rounded-md
+                bg-dark
+                flex
+                justify-between
+              "
+              onChange={(e) => setFormData((prev) => {
+                return { ...prev, firstName: e.target.value }
+              })}
+            />
+          </div>
+
+          <div className="flex flex-col gap-3 mt-8 md:w-[48%] relative">
+            <label className="text-gray-400">Last Name <span className="text-[red]">*</span></label>
+            <input
+              required
+              className="
+                w-full 
+                border 
+                border-gray-600 
+                px-2 
+                h-[3rem] 
+                flex 
+                items-center 
+                cursor-text
+                rounded-md
+                bg-dark
+                flex
+                justify-between
+              "
+              onChange={(e) => setFormData((prev) => {
+                return { ...prev, lastName: e.target.value }
+              })}
+            />
+          </div>
+
+          <div className="flex flex-col gap-3 mt-8 md:w-[48%] relative">
+            <label className="text-gray-400">Email <span className="text-[red]">*</span></label>
+            <input
+              required
+              className="
+                w-full 
+                border 
+                border-gray-600 
+                px-2 
+                h-[3rem] 
+                flex 
+                items-center 
+                cursor-text
+                rounded-md
+                bg-dark
+                flex
+                justify-between
+              "
+              onChange={(e) => setFormData((prev) => {
+                return { ...prev, email: e.target.value }
+              })}
+              type="email"
+            />
+          </div>
+
+          <div className="flex flex-col gap-3 mt-8 md:w-[48%] relative">
+            <label className="text-gray-400">Phone <span className="text-[red]">*</span></label>
+            <div className="flex flex-nowrap items-center gap-2">
+              <CountryList setFormData={setFormData} />
+              <input
+                required
+                className="
+                w-[70%]
+                border 
+                border-gray-600 
+                px-2 
+                h-[3rem] 
+                flex 
+                items-center 
+                cursor-text
+                rounded-md
+                bg-dark
+                flex
+                justify-between
+                "
+                placeholder="00-000-0000"
+                type="tel"
+                id="phone-num"
+                onChange={(e) => {
+                  const countryCode = document.getElementById("country_list").value;
+                  setFormData((prev) => {
+                    return { ...prev, phone: `(+${countryCode})-${e.target.value}` }
+                  })
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-3 mt-8 md:w-[48%] relative">
+            <label className="text-gray-400">Company</label>
+            <input
+              className="
+                w-full 
+                border 
+                border-gray-600 
+                px-2 
+                h-[3rem] 
+                flex 
+                items-center 
+                cursor-text
+                rounded-md
+                bg-dark
+                flex
+                justify-between
+              "
+              onChange={(e) => setFormData((prev) => {
+                return { ...prev, company: e.target.value }
+              })}
+              type="text"
+            />
+          </div>
+        </div>
       </div>
 
-      <button className="w-full p-3 text-lg bg-blue" type="submit">Submit</button>
+      <button className="w-full md:w-[300px] border border-blue hover:bg-dark py-2 text-xl rounded-lg bg-blue smooth-snimation" type="submit">Send</button>
     </form >
   )
 }

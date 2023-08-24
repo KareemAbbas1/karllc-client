@@ -178,7 +178,7 @@ const Logistics = () => {
         {/* overlay */}
         <div style={{
           position: 'absolute',
-          zIndex: '10',
+          zIndex: '9',
           background: 'rgba(0,0,0,0.3)',
           width: '100vw',
           height: '100vh',
@@ -190,7 +190,7 @@ const Logistics = () => {
         <div className="
           w-full
           h-full
-          z-[10]
+          z-[9]
           absolute
           top-0
           left-0
@@ -211,7 +211,8 @@ const Logistics = () => {
           bg-[rgba(0,0,0,0.5)]
           md:bg-[rgba(0,0,0,0.7)]
           lg:bg-transparent
-          p-2 
+          px-2
+          py-6
           rounded-lg
           md:p-6
           lg:w-[60%]

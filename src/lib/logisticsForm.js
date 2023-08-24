@@ -64,10 +64,12 @@ export const seaTransportaionTypes = [
 
 
 export const transportationDetails = [
-    { name: "Container Type", transTypes: ["Full Container Load FCL", "Full Truck Load FTL"], required: true },
-    { name: "Quantity of Containers", transTypes: ["Full Container Load FCL", "Full Truck Load FTL"], required: true },
-    { name: "Weight", transTypes: ["Full Container Load FCL", "Less Container Load LCL", "Full Truck Load FTL", "Less Truck Load LTL"], required: false },
-    { name: "Volume", transTypes: ["Less Container Load LCL", "Less Truck Load LTL"], required: false },
+    { name: "Container Type", transTypes: ["Full Container Load FCL"], required: true },
+    { name: "Truck Type", transTypes: ["Full Truck Load FTL"], required: true },
+    { name: "Quantity of Containers", transTypes: ["Full Container Load FCL"], required: true },
+    { name: "Quantity of Trucks", transTypes: ["Full Truck Load FTL"], required: true },
+    { name: "Weight", transTypes: ["Full Container Load FCL", "Less Container Load LCL", "Full Truck Load FTL", "Less Truck Load LTL"], required: true },
+    { name: "Volume", transTypes: ["Less Container Load LCL", "Less Truck Load LTL"], required: true },
     { name: "Height", transTypes: ["Oversized cargo"], required: false },
     { name: "Ship Type", transTypes: ["Bulk"], required: true },
     { name: "Gross Weight", transTypes: ["Bulk"], required: true },
@@ -94,4 +96,54 @@ export const containerTypes = [
     "20 Bulk",
     "45 High-Cube",
     "10 Standard",
-  ]
+  ];
+
+
+  export const shipsTypes = [
+    "Bulk Carriers",
+    "Containership",
+    "General Cargo",
+    "Product Tankers / Asphalt carriers",
+    "Product Tankers / Chemical tankers",
+    "Product Tankers / Crude carriers",
+    "Product Tankers / Gas carriers",
+    "Specialized / Heavy-lift",
+    "Specialized / Refrigerate",
+    "Specialized / RoRo ",
+    "Specialized / Wood chip",
+  ];
+
+
+  export const trucksTypes = [
+    "2T - 14M³",
+    "3.5T - 35M3",
+    "3.75T - 50M3",
+    "Autocart",
+    "Container",
+    "Dump",
+    "Flatbed",
+    "Grain",
+    "Heavy loaders",
+    "Iosterm",
+    "Jumbo 100M3",
+    "Jumbo 120M3",
+    "Logging & Pipes",
+    "Mega Trailer 100M3",
+    "Refrigerator",
+    "Road Trains",
+    "Semitrailer",
+    "Tanker",
+    "Tautliner",
+    "Tilt",
+    "Tilt 120M3",
+    "Tilt 82M3",
+    "Tilt 92M3",
+  ];
+
+
+  export const associatedServices =  [
+    "Insurance",
+    "Inspection services",
+    "Certification",
+    "Customs clearance",
+ ]
