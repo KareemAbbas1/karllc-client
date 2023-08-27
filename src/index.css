@@ -9,6 +9,10 @@ html, body {
     transition: all 300ms ease-in-out;
 }
 
+.slide-top-animation {
+    transition: all 1s ease-in-out;
+}
+
 
 @tailwind base;
 @tailwind components;
