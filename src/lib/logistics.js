@@ -16,42 +16,135 @@ export const hero = {
     },
     bulletPoints: [
         {
+            id: uuidv4(),
             title: {
-                english: "Freight Transportation",
+                english: "Container",
                 arabic: "نقل الشحنات.",
                 russian: "Доставка грузов",
                 chinese: "货物交付",
             },
             paragraph: {
-                english: "Container:\n Based on container type, loading, discharge point, CIF rate, THC.\nChartering:\n Based on type, loading, time of loading and discharge, estination rate",
+                english: "FCL (Full Container Load) – is an ocean shipping mode, in which the entire container is intended for one supplier and occupies a full container (regardless of size). FCL transportation can be filled directly at the supplier’s warehouse, and then sent to the container yard (container cargo station in the port). The container can be unloaded at the port of destination or the carrier can deliver to the recipient's warehouse.",
                 arabic: "الحاوية:\n بناءً على نوع الحاوية ، التحميل ، نقطة التفريغ ، معدل CIF ، THC.\nالتأجير:\n على أساس النوع ، التحميل ، وقت التحميل والتفريغ ، معدل التجهيز",
                 russian: "集装箱：\n 基于集装箱类型、装货点、卸货点、CIF 费率、THC。\n 租船：\n根据类型、装载情况、装卸时间、预计费率",
                 chinese: "Контейнер:\n в зависимости от типа контейнера, загрузки, точки разгрузки, ставки CIF, THC.\nФрахтование:\n в зависимости от типа, погрузки, времени погрузки и разгрузки, скорости отправления."
             }
         },
         {
+            id: uuidv4(),
             title: {
-                english: "Warehousing and Distribution",
+                english: "Air & Sea Cargo",
                 arabic: "التخزين والتوزيع.",
                 russian: "Складирование и дистрибьюция",
                 chinese: "储存及分发",
             },
             paragraph: {
-                english: "Select the port and your preferred warehouse within that port.",
+                english: "shipping goods via air carrier or sea freight shipping items are packed and loaded into ship.",
                 arabic: "حدد المنفذ والمستودع المفضل لديك داخل هذا المنفذ.",
                 russian: "Выберите порт и предпочитаемый склад в этом порту.",
                 chinese: "选择港口以及该港口内您的首选仓库。"
             }
         },
         {
+            id: uuidv4(),
             title: {
-                english: "Customs Clearance",
+                english: "Custome clearance",
+                arabic: "التخليص الجمركي.",
+                russian: "Таможенное оформление",
+                chinese: "清关服务",
+            },
+            paragraph: {
+                english: "Simplifies documentation generation - Offers expert guidance and support to effortlessly navigate the complexities of customs clearance, expand your business globally, and focus on what matters most, boosting sales.",
+                arabic: "متاح لجميع الموانئ ماعدا مصر.",
+                russian: "Доступно для всех портов, кроме Египта",
+                chinese: "适用于除埃及以外的所有港口"
+            }
+        },
+        {
+            id: uuidv4(),
+            title: {
+                english: "Inland Trucks",
+                arabic: "التخليص الجمركي.",
+                russian: "Таможенное оформление",
+                chinese: "清关服务",
+            },
+            paragraph: {
+                english: "Provides inland trucking from and to all of Egyptian ports/airports. - Fast Freight International offers international trucking services from/to all Arab and Middle East countries, offering competitive rates, as well as fast and high-caliber services. - Fast Freight International specializes in all kinds of low-bed trailers, for over-sized shipments, and reefer trailers, for fresh and frozen products. - Our well-trained & experienced staff is always ready to hear from you for any inquiries, comments & consultations.",
+                arabic: "متاح لجميع الموانئ ماعدا مصر.",
+                russian: "Доступно для всех портов, кроме Египта",
+                chinese: "适用于除埃及以外的所有港口"
+            }
+        },
+        {
+            id: uuidv4(),
+            title: {
+                english: "Door-to-Door",
+                arabic: "التخليص الجمركي.",
+                russian: "Таможенное оформление",
+                chinese: "清关服务",
+            },
+            paragraph: {
+                english: "Fast, easy, and affordable door-to-door shipping services with pick up, delivery, land transportation, customs, paperwork, and 24/7 tracking included. All-inclusive and transparent rates for your door-to-door shipment.",
+                arabic: "متاح لجميع الموانئ ماعدا مصر.",
+                russian: "Доступно для всех портов, кроме Египта",
+                chinese: "适用于除埃及以外的所有港口"
+            }
+        },
+        {
+            id: uuidv4(),
+            title: {
+                english: "Packing & Shipping",
+                arabic: "التخليص الجمركي.",
+                russian: "Таможенное оформление",
+                chinese: "清关服务",
+            },
+            paragraph: {
+                english: "Having a dedicated packing station will streamline your fulfillment process.",
+                arabic: "متاح لجميع الموانئ ماعدا مصر.",
+                russian: "Доступно для всех портов, кроме Египта",
+                chinese: "适用于除埃及以外的所有港口"
+            }
+        },
+        {
+            id: uuidv4(),
+            title: {
+                english: "Quarries Products",
                 arabic: "التخليص الجمركي.",
                 russian: "Таможенное оформление",
                 chinese: "清关服务",
             },
             paragraph: {
                 english: "Available for all ports expect Egypt",
+                arabic: "متاح لجميع الموانئ ماعدا مصر.",
+                russian: "Доступно для всех портов, кроме Египта",
+                chinese: "适用于除埃及以外的所有港口"
+            }
+        },
+        {
+            id: uuidv4(),
+            title: {
+                english: "Fruits & Vegetables",
+                arabic: "التخليص الجمركي.",
+                russian: "Таможенное оформление",
+                chinese: "清关服务",
+            },
+            paragraph: {
+                english: "Supplying a premium quality fresh fruits and vegetables in order to fulfill needs all year round. - Packaging, pesticide Management and traceability system. - Confidence, continuity and premium products.",
+                arabic: "متاح لجميع الموانئ ماعدا مصر.",
+                russian: "Доступно для всех портов, кроме Египта",
+                chinese: "适用于除埃及以外的所有港口"
+            }
+        },
+        {
+            id: uuidv4(),
+            title: {
+                english: "Chartering",
+                arabic: "التخليص الجمركي.",
+                russian: "Таможенное оформление",
+                chinese: "清关服务",
+            },
+            paragraph: {
+                english: "Chartering Tanker Vessels, Bulk Vessels, Cargo Vessels and Ro/Ro Vessel to anywhere and everywhere.",
                 arabic: "متاح لجميع الموانئ ماعدا مصر.",
                 russian: "Доступно для всех портов, кроме Египта",
                 chinese: "适用于除埃及以外的所有港口"

@@ -16,8 +16,11 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import CountryList from "./CountryList";
 import axios from "axios";
 import Loader from "../Loader";
+import { UseStateContext } from "../../context/ContextProvider";
 
 const LogisticsForm = () => {
+
+  const { language } = UseStateContext();
 
   const [formData, setFormData] = useState({
     product: "",
@@ -48,6 +51,7 @@ const LogisticsForm = () => {
   const [showContainerTypes, setShowContainerTypes] = useState(false);
   const [showShipsTypes, setShowShipsTypes] = useState(false);
   const [showTrucksTypes, setShowTrucksTypes] = useState(false);
+
 
   const handleCheckboxChange = (el, service) => {
     let newArr = formData.associatedServices;
@@ -80,7 +84,6 @@ const LogisticsForm = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -93,6 +96,7 @@ const LogisticsForm = () => {
         setSucceeded(true);
         console.log("Success");
         document.getElementById("logistics-get-goute").reset();
+        setFormData({});
         setSubmitting(false);
         setTimeout(() => {
           setSucceeded(false);
@@ -101,9 +105,12 @@ const LogisticsForm = () => {
       .catch((err) => {
         setError(true);
         setErrorMsg("Message could not be sent. Please try again later.");
+        document.getElementById("logistics-get-goute").reset();
+        setFormData({});
         setSendLoading(false);
         setTimeout(() => {
           setSubmitting(false);
+          setError(false);
         }, 10000);
         console.error("Error", err);
       })
@@ -130,12 +137,20 @@ const LogisticsForm = () => {
         slide-top-animation
       "
       id="logistics-get-goute"
+      onClick={() => {
+        showProducts === true && setShowProducts(false);
+        showTransportaionType === true && setShowTransportaionType(false);
+        showContainerTypes === true && setShowContainerTypes(false);
+        showShipsTypes === true && setShowShipsTypes(false);
+      }}
     >
 
-      <h1 className="
+
+
+      <h1
+        className={`
           absolute 
-          left-1
-          lg:left-5
+          ${language === "العربية" ? "right-1 lg:right-5" : "left-1 lg:left-5"}
           -top-[1.5rem] 
           h-[3rem] 
           flex 
@@ -146,9 +161,14 @@ const LogisticsForm = () => {
           bg-dark
           text-blue
           lg:text-5xl
-        "
+        `}
       >
-        Request a Quote
+        {
+          language === "Chinese" ? "请求报价"
+            : language === "Russian" ? "Запрос цитаты"
+              : language === "العربية" ? "طلب عرض أسعار"
+                : "Request a Quote"
+        }
       </h1>
       {
         sendLoading
@@ -162,6 +182,7 @@ const LogisticsForm = () => {
           : (
             <>
 
+              {/* Send success modal */}
               <div className={`
                     w-screen 
                     h-fit 
@@ -175,45 +196,70 @@ const LogisticsForm = () => {
                     justify-start 
                     pt-3 
                     slide-top-animation
-                    ${succeeded ? "top-0" : "-top-[100%]"}
+                    top-0
+                    ${succeeded || error ? "translate-y-[20%]" : "-translate-y-[100%]"}
                   `}>
-                <div className="w-[90%] h-[4rem] max-w-[1100px] overflow-hidden bg-dark border border-gray-600 rounded-lg flex items-center px-4">
-                  <p>Message sent successfully.</p>
+                <div
+                  className={`
+                    w-[90%] 
+                    h-[4rem] 
+                    max-w-[1100px] 
+                    overflow-hidden 
+                    bg-dark 
+                    border 
+                    ${succeeded ? "border-blue" : "border-[red]"}
+                    rounded-lg 
+                    flex 
+                    items-center 
+                    px-4
+                    `}
+                >
+                  <p>
+                    {
+                      succeeded ? "Message sent successfully." : errorMsg
+                    }
+                  </p>
                 </div>
               </div>
 
               {/* Cargo Details */}
-              <div className="
-        w-full
-        mt-[2rem]
-        flex
-        flex-col
-        items-start
-        justify-center
-        gap-4
-        max-w-[1000px]
-        lg:mt-[4rem]
-      ">
+              <div
+                className="
+                  w-full
+                  mt-[2rem]
+                  flex
+                  flex-col
+                  items-start
+                  justify-center
+                  gap-4
+                  max-w-[1100px]
+                  lg:mt-[4rem]
+                  
+                "
+
+              >
                 <h2 className="text-lg font-semibold">Cargo Details</h2>
 
                 <div className="flex flex-col gap-3 w-full relative" >
                   <label className="text-gray-400">Product <span className="text-[red]">*</span></label>
 
-                  <div className="relative md:w-[84%]">
-                    <input className="
-            w-full
-            border 
-            border-gray-600 
-            px-2 
-            h-[3rem] 
-            flex 
-            items-center 
-            cursor-pointer
-            rounded-md
-            bg-dark
-            flex
-            justify-between
-            "
+                  <div className="relative md:w-[84%] lg:w-[81%]">
+                    <input
+                      className="
+                        w-full
+                        border 
+                        border-gray-600 
+                        px-2 
+                        h-[3rem] 
+                        flex 
+                        items-center 
+                        cursor-pointer
+                        rounded-md
+                        bg-dark
+                        flex
+                        justify-between
+                        z-[1]
+                      "
                       name="product"
                       placeholder="Choose commodity type"
                       required
@@ -413,19 +459,19 @@ const LogisticsForm = () => {
                     <input
                       required
                       className="
-                w-full 
-                border 
-                border-gray-600 
-                px-2 
-                h-[3rem] 
-                flex 
-                items-center 
-                cursor-text
-                rounded-md
-                bg-dark
-                flex
-                justify-between
-              "
+                        w-full 
+                        border 
+                        border-gray-600 
+                        px-2 
+                        h-[3rem] 
+                        flex 
+                        items-center 
+                        cursor-text
+                        rounded-md
+                        bg-dark
+                        flex
+                        justify-between
+                      "
                       defaultValue={formData.transportationType}
                       onClick={() => setShowTransportaionType(!showTransportaionType)}
                     />
@@ -444,19 +490,20 @@ const LogisticsForm = () => {
                       showTransportaionType && (
 
 
-                        <div className="
-                  border 
-                  border-gray-600  
-                  bg-dark 
-                  z-10
-                  w-[85vw]
-                  md:w-full
-                  max-h-[300px]
-                  overflow-y-scroll
-                  smooth-snimation
-                  absolute
-                  top-[100%]
-                "
+                        <div
+                          className="
+                            border 
+                            border-gray-600  
+                            bg-dark 
+                            z-10
+                            w-[85vw]
+                            md:w-full
+                            max-h-[300px]
+                            overflow-y-scroll
+                            smooth-snimation
+                            absolute
+                            top-[100%]
+                          "
                         >
 
                           {
@@ -761,7 +808,7 @@ const LogisticsForm = () => {
                       />
                     </div>
 
-                    <div className="flex flex-col gap-3 mt-8 w-full relative">
+                    <div className="flex flex-col gap-3 mt-8 w-full relative ">
                       <label className="text-gray-400">Additional Information</label>
                       <textarea
                         className="
@@ -794,6 +841,7 @@ const LogisticsForm = () => {
         gap-4
         max-w-[1000px]
         lg:mt-[4rem]
+        z-[1]
       ">
                 <h2 className="text-lg font-semibold">Associated Services</h2>
 
@@ -836,7 +884,7 @@ const LogisticsForm = () => {
                 </div>
 
                 {
-                  formData.associatedServices.includes("Insurance") && (
+                  formData.associatedServices && formData.associatedServices.includes("Insurance") && (
 
 
                     <div className="flex flex-col gap-3 mt-8 w-full md:w-[40%] max-w-[400px]">

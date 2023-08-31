@@ -6,7 +6,7 @@ import LogisticsFAQ from "../assets/LogisticsFAQ.png"
 import styled from "styled-components"
 import { Fragment, useState } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon, ChevronLeftIcon } from '@heroicons/react/20/solid'
 import { UseStateContext } from '../context/ContextProvider'
 import Loader from "../components/Loader"
 import { useEffect } from "react"
@@ -61,6 +61,8 @@ const Ol = styled.ol`
 `
 
 
+
+
 const OverLay = styled.div`
     width: 100%;
     height: 100%;
@@ -88,7 +90,7 @@ const Logistics = () => {
   }, [])
 
 
-  // 
+  // Handle video background on ios devices
   const [iosDevice, setIosDevice] = useState(false);
 
   useEffect(() => {
@@ -115,6 +117,46 @@ const Logistics = () => {
   // Extract data
   const { bulletPoints } = hero;
   const { cards } = cardsSection;
+
+
+  // handle serivces
+  const [showServicesMenu, setShowServicesMenu] = useState(false);
+  // console.log(showServicesMenu)
+
+  const toggleServicesMenu = () => {
+    const links = Array.from(document.getElementsByClassName("service-link"));
+    if (!showServicesMenu) {
+      setShowServicesMenu(true);
+      setTimeout(() => {
+        links.map(li => li.style.display = "block")
+      }, 100);
+    } else {
+      setShowServicesMenu(false);
+      links.map(li => li.style.display = "none")
+    }
+  }
+
+  const onServiceClick = (serviceId) => {
+    setActiveAccordion("");
+    window.scrollTo({ top: `${document.getElementById(serviceId).offsetTop - 100}` });
+    setTimeout(() => {
+      setActiveAccordion(serviceId);
+    }, 1000);
+  };
+  // End handle serivces
+
+
+
+  // handel services description accordions
+  const [activeAccordion, setActiveAccordion] = useState("");
+  console.log(activeAccordion)
+  const toggleAccordion = () => {
+
+  };
+
+
+
+
 
   return (
     <PageComponent>
@@ -144,7 +186,17 @@ const Logistics = () => {
       flex-col 
       items-center 
       snap-y-mandatory
-      ">
+      "
+        onClick={() => {
+          const body = document.querySelector("body");
+          const links = Array.from(document.getElementsByClassName("service-link"));
+
+          if (showServicesMenu) {
+            setShowServicesMenu(false);
+            links.map(li => li.style.display = "none")
+          }
+        }}
+      >
 
 
         {/* <OverLay /> */}
@@ -178,29 +230,48 @@ const Logistics = () => {
         {/* overlay */}
         <div style={{
           position: 'absolute',
-          zIndex: '9',
+          zIndex: '8',
           background: 'rgba(0,0,0,0.3)',
           width: '100vw',
           height: '100vh',
           top: '0',
           left: '0'
         }} />
+        <div style={{
+          position: 'absolute',
+          zIndex: '9',
+          background: 'linear-gradient(180deg, rgba(12, 17, 23, 0.00) 86.98%, #0C1117 100%)',
+          width: '100vw',
+          height: '100vh',
+          top: '0',
+          left: '0'
+        }}
+
+        />
+
 
         {/* Hero */}
         <div className="
           w-full
-          h-full
+          lg:w-[900px]
+          lmd:w-[67%]
+          midLarge:w-[70%]
+          large:w-[1230px]
+          h-fit
           z-[9]
           absolute
           top-0
+          -bottom-16
           left-0
-          pt-36
+          right-0
+          m-auto
+          lg:-bottom-16
+          midLarge:bottom-0
           px-4
-          md:pt-40
-          lg:pt-20
-          lg:px-24
-          large:px-[12vw]
-        ">
+          lg:px-0
+          
+        "
+        >
 
 
           <div className="
@@ -216,8 +287,10 @@ const Logistics = () => {
           rounded-lg
           md:p-6
           lg:w-[60%]
+          lg:min-w-[700px]
           lg:h-full
           lg:justify-center
+          lg:px-0
           
           ">
             <h1 className="text-6xl md:text-7xl large:text-8xl font-semibold">
@@ -234,9 +307,111 @@ const Logistics = () => {
               It is a long established fact that a reader will be distracted by the readable content of a when looking at its layout.
             </p>
 
-            <div className="flex flex-col items-start gap-3 md:flex-row md:w-[80%] large:w-[40rem]">
-              <button className="bg-blue w-full text-lg py-3 rounded-lg md:w-[150%] md:text-xl midLarge:py-4 large:w-[60%] border border-blue hover:bg-transparent smooth-snimation">Get a Quote</button>
-              <button className="bg-white text-dark w-full text-lg py-3 rounded-lg md:text-xl midLarge:py-4 large:w-[40%] border hover:bg-transparent hover:text-white smooth-snimation">Shipping services</button>
+            <div className="flex flex-col items-start gap-3 md:flex-row md:w-[80%] large:w-[40rem] relative">
+              <button
+                className="bg-blue w-full text-lg py-3 rounded-lg md:w-[150%] md:text-xl midLarge:py-4 large:w-[60%] border border-blue hover:bg-transparent smooth-snimation"
+                onClick={() => window.scrollTo({top: document.getElementById("logistics-get-goute").offsetTop - 120})}
+              >
+                Get a Quote
+              </button>
+
+              <div
+                className={`
+                  absolute
+                  bg-white 
+                  text-dark 
+                  w-full
+                  max-h-[300px]
+                  md:w-[330px]
+                  bottom-[2.9rem]
+                  md:right-0
+                  ${language !== "العربية" ? "lg:-right-[330px]" : "lg:right-[100%]"}
+                  lg:bottom-0
+                  flex
+                  flex-wrap
+                  items-center
+                  justify-start
+                  smooth-snimation
+                  gap-2
+                  px-3
+                  rounded-xl
+                  ${showServicesMenu ? "h-[230px] py-3 rounded-es-none" : "h-0 py-0"}
+                `}
+              >
+
+                {
+                  bulletPoints.map(service => (
+                    <p
+                      key={`${service.id}ser`}
+                      className={`
+                        w-[48%] 
+                        cursor-pointer
+                        service-link
+                        hover:opacity-50
+                        smooth-snimation
+                        hidden
+                      `}
+                      onClick={() => onServiceClick(service.id)}
+                    >
+                      {
+                        language === "Russian" ? service.title.russian
+                          : language === "Chinese" ? service.title.chinese
+                            : language === "العربية" ? service.title.arabic
+                              : service.title.english
+                      }
+                    </p>
+                  ))
+                }
+
+              </div>
+              <button
+                onClick={toggleServicesMenu}
+                className={`
+                  bg-white 
+                  text-dark 
+                  w-full 
+                  text-lg 
+                  py-3 
+                  rounded-lg 
+                  md:text-xl 
+                  midLarge:py-4 
+                  large:w-[40%] 
+                  border 
+                  hover:opacity-75
+                  smooth-snimation
+                  flex
+                  items-center
+                  justify-center
+                  gap-1
+                  ${showServicesMenu ? "rounded-ee-none rounded-se-none" : ""}
+                `}
+              >
+                <span>Shipping services</span>
+                {
+                  showServicesMenu
+                    ? (
+                      <ChevronLeftIcon
+                        className={`
+                          w-5 
+                          smooth-snimation
+                          ${language === "العربية" ? "rotate-180" : ""}
+                        `}
+                      />
+                    )
+                    : (
+                      <ChevronLeftIcon
+                        className={`
+                          w-5 
+                          smooth-snimation
+                          ${language !== "العربية" ? "rotate-180" : ""}
+                          
+                        `}
+                      // style={{ transform: 'rotate(180deg)' }}
+                      />
+                    )
+                }
+              </button>
+
             </div>
           </div>
 
@@ -254,13 +429,106 @@ const Logistics = () => {
                     : cardsSection.paragraph.chinese
             }
           </h1> */}
-          
+
           <LogisticsForm />
         </div>
 
 
+        {/* Services Description */}
+        <div className="w-full h-fit flex flex-col gap-3 my-[6rem] lg:my-[11rem] max-w-[1100px]">
+          <h2 className="text-3xl font-bold text-blue mb-6">Our Services</h2>
+          {
+            bulletPoints.map(service => (
+              <div
+                key={service.id}
+                id={service.id}
+                className="w-full h-fit rounded-lg flex flex-col items-start justify-center border border-gray-600 relative">
+
+                <div
+                  className={`
+                    w-full 
+                    h-[3.5rem] 
+                    px-3 
+                    rounded-lg
+                    flex 
+                    items-center 
+                    jsutify-between 
+                    border-b 
+                    border-gray-600
+                    cursor-pointer
+                    hover:bg-blue
+                    smooth-snimation
+                  `}
+                  onClick={() => {
+                    activeAccordion === service.id
+                      ? setActiveAccordion("")
+                      : setActiveAccordion(service.id)
+                  }}
+                >
+                  <p className="w-full">
+                    {
+                      service.title.english
+                    }
+                  </p>
+
+                  <div>
+                    {
+                      activeAccordion === service.id
+                        ? (
+                          <ChevronDownIcon className="w-7 rotate-180 smooth-snimation" />
+                        )
+                        : (
+                          <ChevronDownIcon className="w-7 smooth-snimation" />
+                        )
+                    }
+                  </div>
+                </div>
+
+                <p
+                  className={`
+                  ${activeAccordion === service.id
+                      ? "block"
+                      : "h-0 hidden"
+                    }
+                    p-4
+                    h-fit
+                    smooth-snimation
+                  `}
+                >
+                  {
+                    service.paragraph.english
+                  }
+                </p>
+              </div>
+            ))
+          }
+        </div>
+
+
         {/* FAQs */}
-        <div className="w-full max-w-[1040px] min-h-[88vh] large:scale-125 large:mt-24 flex flex-col lg:flex-row gap-12 snap-start md:px-10 lg:px-0 lg:h-fit lg:min-h-[400px] lg:gap-3 lg:pt-3 relative ">
+        <div
+          className="
+          w-full 
+          max-w-[1100px] 
+          min-h-[88vh] 
+          
+          large:mt-24 
+          flex 
+          flex-col 
+          lg:flex-row 
+          gap-12 
+          snap-start 
+          lg:px-0 
+          lg:h-fit 
+          lg:min-h-[400px] 
+          lg:gap-3 
+          lg:pt-3 
+          relative
+          mt-[7rem]
+          md:mt-[9rem]
+          lg:mt-[3rem]
+        "
+        >
           <h2 className="text-3xl font-bold text-blue lg:absolute">FAQs</h2>
 
           <p className="text-gray-400 md:text-xl lg:w-[70%] lg:pt-8">

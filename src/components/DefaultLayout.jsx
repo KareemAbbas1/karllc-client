@@ -338,7 +338,14 @@ export default function DefaultLayout() {
                         Login
                       </NavLink>
 
-                      <button className='hidden md:block bg-blue text-white 2xl:text-sm font-semibold pb-2 pt-3 px-5 rounded-md hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers", currentLocation, navigate)}>
+                      <button
+                        className='hidden md:block bg-blue text-white 2xl:text-sm font-semibold pb-2 pt-3 px-5 rounded-md hover:opacity-80'
+                        onClick={() => {
+                          currentLocation.pathname !== "/logistics" 
+                          ? onScrollableLinkClick("kar-in-numbers", currentLocation, navigate)
+                          : window.scrollTo({top: document.getElementById("logistics-get-goute").offsetTop - 120})
+                        }}
+                      >
                         {
                           language === "English"
                             ? "Get a Quote"
@@ -431,7 +438,9 @@ export default function DefaultLayout() {
                   </NavLink>
 
                   <div className="px-2 sm:px-3">
-                    <button className='bg-blue text-white font-semibold py-2 px-5 rounded-xl hover:opacity-80' onClick={() => onScrollableLinkClick("kar-in-numbers", currentLocation, navigate)}>
+                    <button className='bg-blue text-white font-semibold py-2 px-5 rounded-xl hover:opacity-80'
+                      onClick={() => onScrollableLinkClick("kar-in-numbers", currentLocation, navigate)}
+                    >
                       Get a Quote
                     </button>
                   </div>
