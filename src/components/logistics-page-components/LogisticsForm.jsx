@@ -90,7 +90,7 @@ const LogisticsForm = () => {
     setSendLoading(true);
     setSubmitting(true);
 
-    axios.post('http://localhost/karllc-mailer/get-logistics-qoute.php', formData)
+    axios.post('https://www.karllc-group.com/karllc-mailer/get-logistics-qoute.php', formData)
       .then(() => {
         setSendLoading(false);
         setSucceeded(true);
