@@ -304,15 +304,27 @@ const Logistics = () => {
             </h1>
 
             <p className="mt-8 mb-24 md:w-[80%] md:text-2xl lg:w-full">
-              It is a long established fact that a reader will be distracted by the readable content of a when looking at its layout.
+              {
+                language === "English"
+                  ? hero.secondaryParagraph.english
+                  : language === "العربية" ? hero.secondaryParagraph.arabic
+                    : language === "Russian" ? hero.secondaryParagraph.russian
+                      : hero.secondaryParagraph.chinese
+              }
             </p>
 
             <div className="flex flex-col items-start gap-3 md:flex-row md:w-[80%] large:w-[40rem] relative">
               <button
                 className="bg-blue w-full text-lg py-3 rounded-lg md:w-[150%] md:text-xl midLarge:py-4 large:w-[60%] border border-blue hover:bg-transparent smooth-snimation"
-                onClick={() => window.scrollTo({top: document.getElementById("logistics-get-goute").offsetTop - 120})}
+                onClick={() => window.scrollTo({ top: document.getElementById("logistics-get-goute").offsetTop - 120 })}
               >
-                Get a Quote
+                {
+                  language === "English"
+                    ? "Get a Quote"
+                    : language === "العربية" ? "احصل على عرض"
+                      : language === "Russian" ? "получить цитату"
+                        : "获取报价"
+                }
               </button>
 
               <div
@@ -386,7 +398,15 @@ const Logistics = () => {
                   ${showServicesMenu ? "rounded-ee-none rounded-se-none" : ""}
                 `}
               >
-                <span>Shipping services</span>
+                <span>
+                  {
+                    language === "English"
+                      ? "Shipping Services"
+                      : language === "العربية" ? "خدمات الشحن"
+                        : language === "Russian" ? "Услуги доставки"
+                          : "运输服务"
+                  }
+                </span>
                 {
                   showServicesMenu
                     ? (
@@ -436,7 +456,15 @@ const Logistics = () => {
 
         {/* Services Description */}
         <div className="w-full h-fit flex flex-col gap-3 my-[6rem] lg:my-[11rem] max-w-[1100px]">
-          <h2 className="text-3xl font-bold text-blue mb-6">Our Services</h2>
+          <h2 className="text-3xl font-bold text-blue mb-6">
+            {
+              language === "English"
+                ? "Our Services"
+                : language === "العربية" ? "خداماتنا"
+                  : language === "Russian" ? "Наши услуги"
+                    : "我们的服务"
+            }
+          </h2>
           {
             bulletPoints.map(service => (
               <div
@@ -467,7 +495,10 @@ const Logistics = () => {
                 >
                   <p className="w-full">
                     {
-                      service.title.english
+                      language === "Russian" ? service.title.russian
+                        : language === "Chinese" ? service.title.chinese
+                          : language === "العربية" ? service.title.arabic
+                            : service.title.english
                     }
                   </p>
 
@@ -496,7 +527,10 @@ const Logistics = () => {
                   `}
                 >
                   {
-                    service.paragraph.english
+                    language === "Russian" ? service.paragraph.russian
+                      : language === "Chinese" ? service.paragraph.chinese
+                        : language === "العربية" ? service.paragraph.arabic
+                          : service.paragraph.english
                   }
                 </p>
               </div>
