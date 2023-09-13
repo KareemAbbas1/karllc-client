@@ -322,7 +322,7 @@ const Logistics = () => {
                   language === "English"
                     ? "Get a Quote"
                     : language === "العربية" ? "احصل على عرض"
-                      : language === "Russian" ? "получить цитату"
+                      : language === "Russian" ? "Подробнее"
                         : "获取报价"
                 }
               </button>

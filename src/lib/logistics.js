@@ -35,7 +35,7 @@ export const hero = {
             title: {
                 english: "Air & Sea Cargo",
                 arabic: "الشحن الجوي والبحري.",
-                russian: "Воздушные и морские перевозки.",
+                russian: "Воздушные и морские перевозки",
                 chinese: "空运和海运。",
             },
             paragraph: {
@@ -80,7 +80,7 @@ export const hero = {
             title: {
                 english: "Door-to-Door",
                 arabic: "من الباب إلى الباب",
-                russian: "От двери до двери.",
+                russian: "От двери до двери",
                 chinese: "送货上门。",
             },
             paragraph: {
@@ -95,7 +95,7 @@ export const hero = {
             title: {
                 english: "Packing & Shipping",
                 arabic: "التعبئة والشحن",
-                russian: "Упаковка и доставка.",
+                russian: "Упаковка и доставка",
                 chinese: "包装和运输。",
             },
             paragraph: {
@@ -125,7 +125,7 @@ export const hero = {
             title: {
                 english: "Fruits & Vegetables",
                 arabic: "الفاكهة والخضروات",
-                russian: "Фрукты и овощи.",
+                russian: "Фрукты и овощи",
                 chinese: "水果和蔬菜。",
             },
             paragraph: {

@@ -165,7 +165,7 @@ const LogisticsForm = () => {
       >
         {
           language === "Chinese" ? "请求报价"
-            : language === "Russian" ? "Запрос цитаты"
+            : language === "Russian" ? "Сделать заказ"
               : language === "العربية" ? "طلب عرض أسعار"
                 : "Request a Quote"
         }
